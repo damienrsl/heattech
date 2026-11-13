@@ -771,8 +771,10 @@ document.querySelectorAll('.decision .opts').forEach(function(g){
 var cp=document.getElementById('copier');
 cp.addEventListener('click',function(){
  var t=recap.textContent;
- var fait=function(){cp.textContent='Copié';setTimeout(function(){cp.textContent='Copier le récap'},1600)};
- if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(fait,fait)}else{fait()}
+ var dire=function(m){cp.textContent=m;setTimeout(function(){cp.textContent='Copier le récap'},1800)};
+ var secours=function(){var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';document.body.appendChild(a);a.focus();a.select();a.setSelectionRange(0,t.length);var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);
+  if(ok){dire('Copié')}else{var r=document.createRange();r.selectNodeContents(recap);var s=getSelection();s.removeAllRanges();s.addRange(r);dire('Sélectionné : copie-le')}};
+ if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){dire('Copié')},secours)}else{secours()}
 });
 maj();
 })();
