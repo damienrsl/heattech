@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>HEATTECH : le dossier pour décider</title>
+<title>HEATTECH : Toray, le développement, les technologies, les prix</title>
 <style>
 /* KIT ARTEFACT « AURA » — DA validée par Damien le 11/11/2026 (Tokn v3, commit 30cee5f).
    Fond blanc + 3 auras cœur noir → bleus qui dérivent, grain, verre blanc, PolySans. SEULE DA des artefacts.
@@ -129,7 +129,7 @@ main{max-width:640px;margin:0 auto;position:relative;z-index:1;padding:0 16px 60
 @keyframes souffle{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
 .hero h1{font-size:33px;line-height:1.08;letter-spacing:-.03em;max-width:14ch}
 .hero p{margin:16px 0 0;font-size:16px;line-height:1.5;max-width:38ch;color:var(--texte-2)}
-.hero p b,.carte p b,.franc b,.spec p b,.spec li b,.chiffre p b,.beat p b{color:var(--texte)}
+.hero p b,.carte p b,.franc b,.spec p b,.chiffre p b,.frise b,.etape p b{color:var(--texte)}
 section{margin:34px 0}
 section>.etiquette{display:block;margin:0 4px 10px}
 .carte{padding:20px;margin-bottom:12px}
@@ -148,19 +148,29 @@ section>.etiquette{display:block;margin:0 4px 10px}
 .tag{display:inline-block;font:600 12px var(--police-mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-pilule);margin-left:6px;vertical-align:middle}
 .tag.v{background:rgba(40,95,255,.14);color:var(--pan-3)}
 .tag.m{background:rgba(255,255,255,.7);border:1px solid var(--filet);color:var(--texte-3)}
-.beat{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--filet)}
-.beat:first-of-type{border-top:0;padding-top:4px;margin-top:10px}
-.beat .t{font:600 13px var(--police-mono);color:var(--pan-3);letter-spacing:.04em;line-height:1.4;padding-top:3px}
-.beat h3{font-size:18px;letter-spacing:-.01em;line-height:1.2;margin:0}
-.beat p{margin:5px 0 0;font-size:16px;line-height:1.5;color:var(--texte-2)}
 .frise{list-style:none;margin:8px 0 0;padding:0}
-.frise li{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--filet);font-size:16px;line-height:1.45;color:var(--texte-2)}
+.frise li{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:11px 0;border-top:1px solid var(--filet);font-size:16px;line-height:1.45;color:var(--texte-2)}
 .frise li:first-child{border-top:0}
 .frise b{font-family:var(--large);color:var(--pan-3);font-size:18px}
-.reco{display:inline-block;font:600 12px var(--police-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--bleu-chat),var(--bleu-renard));padding:4px 10px;border-radius:var(--r-pilule);margin:0 0 6px}
-.options{margin:8px 0 0;padding-left:0;list-style:none}
-.options li{padding:6px 0 6px 14px;border-left:2px solid var(--filet);margin:4px 0;font-size:16px;line-height:1.45;color:var(--texte-2)}
-.options li:first-child{border-left-color:var(--pan-2);color:var(--texte);font-weight:600}
+.vol{margin:14px 0 0}
+.vol .l{display:grid;grid-template-columns:56px 1fr 104px;gap:10px;align-items:center;padding:7px 0;font-size:16px;color:var(--texte-2)}
+.vol .l b{font-family:var(--large);color:var(--texte);font-size:16px}
+.vol .l .n{text-align:right;font-variant-numeric:tabular-nums;color:var(--pan-3);font-weight:600}
+.barre{height:10px;border-radius:5px;background:rgba(36,54,184,.1);overflow:hidden}
+.barre i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--bleu-chat),var(--bleu-renard));width:0;transition:width 1.4s var(--ressort)}
+.etape{display:grid;grid-template-columns:44px 1fr;gap:12px;padding:12px 0;border-top:1px solid var(--filet)}
+.etape:first-of-type{border-top:0}
+.etape .k{font-family:var(--large);font-size:28px;color:var(--pan-3);line-height:1}
+.etape h3{font-size:19px;line-height:1.2;margin:0}
+.etape p{margin:5px 0 0;font-size:16px;line-height:1.5;color:var(--texte-2)}
+.compo{margin:10px 0 0;display:flex;height:14px;border-radius:7px;overflow:hidden;background:rgba(36,54,184,.08)}
+.compo i{display:block;height:100%}
+.compo i:nth-child(1){background:var(--bleu-chat)}
+.compo i:nth-child(2){background:var(--bleu-renard)}
+.compo i:nth-child(3){background:rgba(36,54,184,.45)}
+.compo i:nth-child(4){background:rgba(36,54,184,.2)}
+.legende{font-size:15px;color:var(--texte-3);margin:6px 0 0;line-height:1.5}
+.prix{font-family:var(--large);font-size:34px;letter-spacing:-.03em;color:var(--pan-3);line-height:1;margin:4px 0 2px}
 .puces{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
 .puce{background:rgba(255,255,255,.7);border:1px solid var(--filet);color:var(--texte-2);font:500 16px var(--police);padding:10px 16px;border-radius:var(--r-pilule);cursor:pointer;transition:all .3s var(--ressort);-webkit-tap-highlight-color:transparent}
 .puce.on{color:#fff;border-color:transparent;background:linear-gradient(135deg,var(--bleu-chat),var(--bleu-renard));box-shadow:0 6px 16px -6px rgba(36,54,184,.6);transform:scale(1.04)}
@@ -176,109 +186,192 @@ section>.etiquette{display:block;margin:0 4px 10px}
 <main>
   <header class="hero">
     <span class="orbe"></span>
-    <span class="etiquette">Uniqlo · vidéo 1 de novembre · post le 18/11</span>
-    <h1>HEATTECH&nbsp;: le dossier pour décider</h1>
-    <p>Un reel de <b>40 à 50 secondes</b>, une seule idée&nbsp;: <b>pourquoi c'est si peu cher</b>. Les faits sont triés, les pièges marqués. Le script, c'est toi qui l'écris.</p>
+    <span class="etiquette">Uniqlo · HEATTECH · 51 faits sourcés · post le 18/11</span>
+    <h1>HEATTECH&nbsp;: l'histoire, les technologies, les prix</h1>
+    <p>Tout ce qu'il faut savoir pour écrire le reel&nbsp;: <b>la collab avec Toray</b>, <b>le développement année par année</b>, <b>comment ça chauffe</b> et <b>ce que ça coûte</b>. Chaque fait porte son étiquette&nbsp;: <span class="tag v">V</span> vérifié, <span class="tag m">M</span> dit par la marque.</p>
   </header>
 
   <section>
-    <span class="etiquette">L'essentiel · 5 cartes</span>
+    <span class="etiquette">Toray · 1 · l'histoire, 2000 à 2015</span>
     <div class="verre carte">
+      <h2>Un rendez-vous de 30 minutes, puis 25 ans</h2>
+      <p>Toray est le géant japonais de la fibre (il fait aussi le carbone des Boeing). Uniqlo pose le besoin, Toray invente la matière.</p>
       <div class="grille">
-      <div class="spec"><span class="num">01 · LA DATE</span><h3>Post le mardi 18 novembre</h3>
-        <p>Donnée à Uniqlo le 13/11 sur WhatsApp («&nbsp;une publication le 18 et le 30&nbsp;»). Aperçu et légende à faire valider avant, via Alexis. Pas de preview envoyée pour l'instant.</p></div>
-      <div class="spec"><span class="num">02 · LE FORMAT</span><h3>Un reel, fond vert, une idée</h3>
-        <p>Brief du 26/10&nbsp;: 30 à 45 s, vécu perso, une limite honnête, fin sur ta sélection Diggeur. Le contrat prévoit 1 contenu HEATTECH en novembre, pas trois.</p></div>
-      <div class="spec"><span class="num">03 · LA COLONNE</span><h3>Le prix, pas la transpiration</h3>
-        <p>Le 26/10 l'idée était «&nbsp;ta transpiration te chauffe&nbsp;». Changé&nbsp;: c'est l'angle le plus risqué face à un annonceur, et J23 l'explique déjà dans ta série. Le prix est ton fil rouge.</p></div>
-      <div class="spec"><span class="num">04 · LA RÈGLE DE VOIX</span><h3>«&nbsp;Selon Uniqlo&nbsp;», jamais «&nbsp;prouvé&nbsp;»</h3>
-        <p>Chaque fait porte une étiquette&nbsp;: <span class="tag v">V</span> vérifié dans un brevet ou des comptes, <span class="tag m">M</span> dit par la marque. Un fait M se dit à voix haute avec sa source.</p></div>
-      <div class="spec"><span class="num">05 · LE BUDGET DE MOTS</span><h3>45 s ≈ 250 mots ≈ 4 faits</h3>
-        <p>À ton débit de 5,5 mots par seconde. Pas plus de 4 ou 5 faits chiffrés, une phrase chacun. Le reste va en légende ou en commentaire épinglé.</p></div>
+      <div class="spec"><span class="num">24 AVRIL 2000, 14 H</span><h3>Yanai s'isole avec le président de Toray</h3>
+        <p>Tadashi Yanai (patron d'Uniqlo) vient avec ses dirigeants. Trente minutes en tête-à-tête avec Katsunosuke Maeda, puis il annonce&nbsp;: «&nbsp;on sera partenaires de Toray&nbsp;» <span class="tag m">M</span>. Trois ans avant HEATTECH.</p></div>
+      <div class="spec"><span class="num">LE CONTEXTE</span><h3>Juste après la fureur du fleece</h3>
+        <p>Automne-hiver 2000&nbsp;: Uniqlo vend environ 26 millions de polaires <span class="tag v">V</span>. Yanai cherche le coup d'après et veut des partenaires qui ont le savoir-faire technique <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">2003 · LA DEMANDE</span><h3>«&nbsp;Fin, chaud, et sous un jean&nbsp;»</h3>
+        <p>Uniqlo demande à Toray un matériau chaud mais assez fin pour se porter sous un denim <span class="tag m">M</span>. Marché visé&nbsp;: le sous-vêtement, dominé par le coton 100 % <span class="tag v">V</span>.</p></div>
+      <div class="spec"><span class="num">LE REFUS</span><h3>«&nbsp;Hors de question&nbsp;» pour un seul client</h3>
+        <p>Créer une fibre pour une seule marque coûte trop cher&nbsp;: une matière de mode ne sert souvent qu'une saison. Toray dit non <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">LA CONDITION</span><h3>Une ligne de production dédiée</h3>
+        <p>Uniqlo s'engage à faire tourner une ligne rien que pour ça, et à vendre assez, longtemps <span class="tag m">M</span>. C'est le vrai secret industriel, et la racine du prix bas.</p></div>
+      <div class="spec"><span class="num">LES FRICTIONS</span><h3>Uniqlo n'avait jamais développé une fibre</h3>
+        <p>La marque ne connaissait que les tissus finis. Des collègues trouvaient Toray trop lent. Yanai a répété qu'on travaillerait toujours avec Toray <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">LA «&nbsp;SOCIÉTÉ VIRTUELLE&nbsp;»</span><h3>50 personnes, 3 à 4 réunions par semaine</h3>
+        <p>En 2008, les équipes des deux sociétés se voient plusieurs fois par semaine et vont en usine améliorer le produit. Uniqlo parle d'une société virtuelle <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">JUIN 2006</span><h3>Le partenariat stratégique est signé</h3>
+        <p>Objectifs sur 5 ans&nbsp;: 200 milliards de yens d'affaires cumulées d'ici 2010 <span class="tag m">M</span>. HEATTECH est présenté comme le «&nbsp;2e fruit&nbsp;» du partenariat, après un pantalon blanc.</p></div>
+      <div class="spec"><span class="num">25 AOÛT 2011</span><h3>Yanai&nbsp;: «&nbsp;comme Boeing et Apple&nbsp;»</h3>
+        <p>Conférence commune. HEATTECH comparé à l'avion en carbone et au smartphone, deux produits qui ont changé la vie. 200 M de pièces depuis 2003 <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">17 NOVEMBRE 2015</span><h3>1 000 milliards de yens visés</h3>
+        <p>Troisième étape, 2016-2020&nbsp;: 1 000 Md¥ d'échanges cumulés entre les deux groupes <span class="tag v">V</span>. Un objectif, pas un réalisé.</p></div>
+      <div class="spec"><span class="num">À QUI EST LE NOM</span><h3>HEATTECH appartient à Fast Retailing</h3>
+        <p>La marque déposée est à la maison mère d'Uniqlo, pas à Toray <span class="tag m">M</span>. L'origine du nom (heat + technology&nbsp;?) n'est sourcée nulle part.</p></div>
+      <div class="spec"><span class="num">ET APRÈS</span><h3>AIRism, Ultra Light Down, Active Joggers</h3>
+        <p>Selon Toray, la même co-création a donné les autres piliers d'Uniqlo <span class="tag m">M</span>. HEATTECH est le premier produit vraiment développé à deux.</p></div>
       </div>
+      <div class="franc"><b>Piège de dates&nbsp;:</b> Toray dit à la fois «&nbsp;vendu dès 2003&nbsp;» et «&nbsp;premier HEATTECH à 4 fibres en 2006&nbsp;». Piste&nbsp;: 2003 = version coton creux, 2006 = micro-acrylique. Écris «&nbsp;selon Toray&nbsp;», jamais «&nbsp;inventé en 2006&nbsp;».</div>
     </div>
   </section>
 
   <section>
-    <span class="etiquette">Le reel · 7 beats · 48 s</span>
+    <span class="etiquette">Développement · 2 · année par année</span>
     <div class="verre carte">
-      <h2>Pourquoi si peu cher</h2>
-      <p>Le squelette, pas le texte. Pour tenir 30 s&nbsp;: fusionne les beats 4 et 5 en un seul fait de prix.</p>
-      <div class="beat"><span class="t">0-5 s<br>ACCROCHE</span><div><h3>L'écart prix contre chaleur</h3><p>14,90 € contre 29,90 € pour «&nbsp;2,25 fois plus chaud&nbsp;». Le ×2,25 est un calcul d'Uniqlo <span class="tag m">M</span>.</p></div></div>
-      <div class="beat"><span class="t">5-12 s<br>ENJEU</span><div><h3>Ton vécu</h3><p>Toi seul&nbsp;: en portes-tu, depuis quand, en Chine du Nord, à Tokyo&nbsp;? Le moment où tu as senti la différence, ou pas.</p></div></div>
-      <div class="beat"><span class="t">12-20 s<br>MÉCANISME</span><div><h3>Un seul beat, attribué</h3><p>La fibre capte la vapeur du corps, l'air piégé garde la chaleur. «&nbsp;Selon Uniqlo&nbsp;» <span class="tag m">M</span>. Pas une seconde de plus.</p></div></div>
-      <div class="beat"><span class="t">20-30 s<br>PREUVE 1</span><div><h3>Le refus de Toray</h3><p>Toray refuse de faire une fibre pour un seul client. Condition&nbsp;: une ligne dédiée et du volume. 1,5 M de pièces en 2003, 28 M en 2008 <span class="tag v">V</span>.</p></div></div>
-      <div class="beat"><span class="t">30-38 s<br>PREUVE 2</span><div><h3>Tu paies de la maille</h3><p>Mêmes 4 fibres du classique à l'Ultra. Ce qui change&nbsp;: la maille et le brossage. ×2 le prix pour ×2,25 la chaleur annoncée <span class="tag m">M</span>.</p></div></div>
-      <div class="beat"><span class="t">38-43 s<br>TENSION</span><div><h3>La limite, en conseil d'usage</h3><p>«&nbsp;Pas pour courir&nbsp;»&nbsp;: la viscose garde l'eau. À savoir&nbsp;: la fiche FR de l'Ultra Chaud autorise le sport en plein air, elle te contredit.</p></div></div>
-      <div class="beat"><span class="t">43-48 s<br>CHUTE</span><div><h3>Essaie le manches longues</h3><p>Ce que fait le spectateur. Le lien de la sélection Diggeur arrive en dernier.</p></div></div>
-      <div class="franc"><b>Le contre-argument en une ligne&nbsp;:</b> le prix est la partie où le sourcing est le plus faible. Aucun coût de fabrication n'est publié, tout se dit «&nbsp;selon eux&nbsp;».</div>
-    </div>
-  </section>
-
-  <section>
-    <span class="etiquette">Les faits · 6 qui tiennent un hook</span>
-    <div class="verre carte">
-      <div class="grille">
-      <div class="chiffre"><span class="gros">28 M</span><p><b>2008&nbsp;: 28 millions de HEATTECH vendus.</b> Le record du fleece était 26 M en 2000. Un sous-vêtement bat une polaire <span class="tag v">V</span>. Promesse à tenir&nbsp;: expliquer pourquoi.</p></div>
-      <div class="chiffre"><span class="gros">×2</span><p><b>14,90 € contre 29,90 € pour ×2,25 de chaleur.</b> La différence vient de la maille, pas d'une fibre miracle <span class="tag m">M</span>. Piège&nbsp;: «&nbsp;Ultra Chaud&nbsp;» contient un mot de ta liste interdite.</p></div>
-      <div class="chiffre"><span class="gros">2000</span><p><b>Le brevet Toray sur la chaleur d'adsorption date de l'automne 2000</b>, 3 ans avant la première vente <span class="tag v">V</span>. Piège&nbsp;: le brevet ne nomme pas HEATTECH.</p></div>
-      <div class="chiffre"><span class="gros">17,5</span><p><b>1 milliard de pièces = 700 000 km de tissu = 17,5 tours de Terre.</b> Chiffre Uniqlo de 2017, avec une projection dedans <span class="tag m">M</span>. Donner l'année.</p></div>
-      <div class="chiffre"><span class="gros">30 min</span><p><b>24 avril 2000, 14 h&nbsp;: Yanai chez Toray, 30 minutes en tête-à-tête.</b> La scène d'ouverture de l'histoire, racontée par Toray <span class="tag m">M</span>.</p></div>
-      <div class="chiffre"><span class="gros">55 %</span><p><b>Le prix est bas, la marge du groupe ne l'est pas&nbsp;:</b> 55,2 % de marge brute Fast Retailing en 2026, tous produits <span class="tag v">V</span>. Le contrepoint honnête.</p></div>
-      </div>
-      <div class="franc"><b>En respiration seulement, jamais en hook&nbsp;:</b> 50 personnes et 3 réunions par semaine chez Toray · la chambre climatique de Tokyo · l'hydratant lait, camélia puis argan · le short «&nbsp;haramaki&nbsp;» · le degré de chauffage en moins après 2011.</div>
-    </div>
-  </section>
-
-  <section>
-    <span class="etiquette">Le fil du prix · 6 maillons</span>
-    <div class="verre carte">
-      <div class="grille">
-      <div class="spec"><span class="num">1 · LE REFUS</span><h3>«&nbsp;Hors de question&nbsp;»</h3><p>Une fibre sur mesure pour un seul client, Toray dit non <span class="tag m">M</span>.</p></div>
-      <div class="spec"><span class="num">2 · LA CONDITION</span><h3>Une ligne dédiée, du volume, longtemps</h3><p>Uniqlo s'engage à vendre assez, assez longtemps <span class="tag m">M</span>.</p></div>
-      <div class="spec"><span class="num">3 · LE VOLUME</span><h3>1,5 M → 28 M → ~1 milliard</h3><p>2003, 2008, puis le cumul 2017 selon Uniqlo <span class="tag v">V</span> <span class="tag m">M</span>.</p></div>
-      <div class="spec"><span class="num">4 · LES COUCHES</span><h3>Un produit, des fonctions ajoutées</h3><p>11 fonctions en 2019. Les 3 niveaux viennent de la maille et du brossage <span class="tag m">M</span>.</p></div>
-      <div class="spec"><span class="num">5 · LE PRIX AFFICHÉ</span><h3>14,90 · 24,90 · 29,90 €</h3><p>uniqlo.com/fr, relevé le 13/11. Le 24,90 est la version cachemire 9 %, non comparable <span class="tag v">V</span>.</p></div>
-      <div class="spec"><span class="num">6 · LE CONTREPOINT</span><h3>55,2 % de marge brute</h3><p>Comptes 2026 du groupe, tous produits <span class="tag v">V</span>. Aucune marge HEATTECH publiée.</p></div>
-      </div>
-      <div class="franc"><b>Face à la laine&nbsp;:</b> mérinos Decathlon 54,99 € (×3,7), Icebreaker 99,95 € (×6,7). Relevés du 12/10, non revérifiés.</div>
-    </div>
-  </section>
-
-  <section>
-    <span class="etiquette">La frise · 2000 à 2026</span>
-    <div class="verre carte">
+      <h2>Une fonction à la fois, pendant 20 ans</h2>
+      <p>Le produit de 2003 ne faisait qu'une chose&nbsp;: tenir chaud. Tout le reste a été ajouté, saison après saison.</p>
       <ul class="frise">
-        <li><b>2000</b><span>24/04&nbsp;: Yanai chez Toray. Automne&nbsp;: brevet de chaleur déposé <span class="tag v">V</span></span></li>
-        <li><b>2003</b><span>Premières ventes, homme, coton creux, 1,5 M de pièces</span></li>
-        <li><b>2006</b><span>Les 4 fibres actuelles. Partenariat stratégique signé en juin</span></li>
-        <li><b>2008</b><span>28 M vendus, le fleece est battu. Lancement international</span></li>
-        <li><b>2013</b><span>Extra Chaud lancé le 4 novembre. Plan à 130 M par an</span></li>
-        <li><b>2016</b><span>Ultra Chaud, hiver 2016, mois non confirmé</span></li>
-        <li><b>2017</b><span>Environ 1 milliard cumulé, 700 000 km de tissu <span class="tag m">M</span></span></li>
-        <li><b>2026</b><span>Fast Retailing 3 963 Md¥ (+16,6 %). T-shirt à 14,90 € <span class="tag v">V</span></span></li>
+        <li><b>2003</b><span>Sous-vêtement homme, une seule fonction, base coton creux. 1,5 M de pièces <span class="tag v">V</span></span></li>
+        <li><b>2004</b><span>Version «&nbsp;Plus&nbsp;» homme&nbsp;: antibactérien, séchage rapide <span class="tag v">V</span></span></li>
+        <li><b>2005</b><span>Version femme avec hydratant <span class="tag v">V</span></span></li>
+        <li><b>2006</b><span>Le coton creux cède la place au micro-acrylique, toucher plus doux. Les 4 fibres actuelles <span class="tag v">V</span></span></li>
+        <li><b>2007</b><span>Plus de stretch, première pub TV, 20 M de pièces <span class="tag v">V</span></span></li>
+        <li><b>2008</b><span>28 M vendus&nbsp;: HEATTECH bat le record du fleece. Lancement international <span class="tag v">V</span></span></li>
+        <li><b>2009</b><span>Antistatique, tenue de forme. 50 M préparés pour l'hiver <span class="tag m">M</span></span></li>
+        <li><b>2011</b><span>Anti-odeur. 200 M cumulés. L'hiver de la pénurie d'électricité au Japon <span class="tag m">M</span></span></li>
+        <li><b>2012</b><span>Plus de viscose pour «&nbsp;absorber et relâcher l'humidité&nbsp;». Plan&nbsp;: 130 M dans l'année <span class="tag v">V</span></span></li>
+        <li><b>2013</b><span>Extra Chaud en vente le 4 novembre. 250 articles&nbsp;: pulls, leggings, velours, jean, short «&nbsp;haramaki&nbsp;». Collabs Orla Kiely, Pokémon <span class="tag v">V</span></span></li>
+        <li><b>2016</b><span>Ultra Chaud, hiver 2016, mois non confirmé <span class="tag m">M</span></span></li>
+        <li><b>2017</b><span>Environ 1 milliard de pièces cumulées, soit 700 000 km de tissu <span class="tag m">M</span></span></li>
+        <li><b>2019</b><span>Liste officielle de 11 fonctions <span class="tag m">M</span></span></li>
+        <li><b>2023</b><span>20 ans. Environ 1,5 milliard cumulé selon la presse japonaise <span class="tag v">V</span></span></li>
+        <li><b>2026</b><span>Le polyester recyclé devient la première fibre du modèle de base <span class="tag m">M</span></span></li>
       </ul>
-      <div class="franc"><b>Piège de dates&nbsp;:</b> Toray date la vente en 2003 mais le produit à 4 fibres en 2006. Écris «&nbsp;selon Toray&nbsp;», jamais «&nbsp;inventé en 2006&nbsp;».</div>
+      <div class="franc"><b>L'anecdote 2011&nbsp;:</b> selon Uniqlo, baisser le chauffage d'un degré grâce à HEATTECH économise 58 W par foyer, soit la moitié du déficit électrique attendu cet hiver-là au Japon. Calcul de la marque, non audité.</div>
+    </div>
+
+    <div class="verre carte">
+      <h2>De 1,5 million à 130 millions par an</h2>
+      <p>Pièces vendues ou prévues dans l'année. Les barres s'animent au défilement.</p>
+      <div class="vol">
+        <div class="l"><b>2003</b><div class="barre"><i data-w="1.2"></i></div><span class="n">1,5 M</span></div>
+        <div class="l"><b>2007</b><div class="barre"><i data-w="15.4"></i></div><span class="n">20 M</span></div>
+        <div class="l"><b>2008</b><div class="barre"><i data-w="21.5"></i></div><span class="n">28 M</span></div>
+        <div class="l"><b>2009</b><div class="barre"><i data-w="38.5"></i></div><span class="n">50 M</span></div>
+        <div class="l"><b>2010</b><div class="barre"><i data-w="61.5"></i></div><span class="n">80 M</span></div>
+        <div class="l"><b>2012</b><div class="barre"><i data-w="100"></i></div><span class="n">130 M</span></div>
+      </div>
+      <p class="legende">2003, 2007, 2008&nbsp;: réalisés (Daiwa, Toyo Keizai). 2009 et 2012&nbsp;: objectifs annoncés. 2010&nbsp;: cité par Yanai en 2011. Aucun chiffre HEATTECH n'apparaît dans les comptes du groupe.</p>
+      <div class="grille">
+      <div class="chiffre"><span class="gros">28 M</span><p><b>2008, le record du fleece tombe.</b> 28 millions de HEATTECH contre 26 millions de polaires en 2000. Toyo Keizai titre «&nbsp;Uniqlo a enfin dépassé le fleece&nbsp;» <span class="tag v">V</span>.</p></div>
+      <div class="chiffre"><span class="gros">17,5</span><p><b>Tours de Terre.</b> 1 milliard de pièces = 700 000 km de tissu, selon Uniqlo en 2017 <span class="tag m">M</span>. Le chiffre inclut une projection de fin de saison.</p></div>
+      <div class="chiffre"><span class="gros">130 Md¥</span><p><b>Le poids estimé en 2012.</b> 130 M de pièces à 1 000 ¥ de prix moyen, calcul de WWD Japan <span class="tag v">V</span>. Uniqlo ne publie pas le chiffre d'affaires HEATTECH.</p></div>
+      </div>
     </div>
   </section>
 
   <section>
-    <span class="etiquette">Tes décisions · la reco est en premier</span>
+    <span class="etiquette">Technologies · 3 · comment ça chauffe</span>
     <div class="verre carte">
+      <h2>Deux étapes, selon Uniqlo</h2>
+      <p>La version officielle depuis 2012 <span class="tag m">M</span>. Le mot exact est «&nbsp;adsorbe&nbsp;».</p>
+      <div class="etape"><span class="k">1</span><div><h3>La fibre capte la vapeur du corps</h3><p>L'humidité que tu dégages en permanence est adsorbée par la fibre. Ce passage vapeur → fibre libère de la chaleur. C'est la viscose qui fait ce travail.</p></div></div>
+      <div class="etape"><span class="k">2</span><div><h3>L'air entre les fibres garde cette chaleur</h3><p>Une couche d'air se forme entre les fibres et empêche la chaleur de partir. Plus la maille est épaisse et brossée, plus il y a d'air.</p></div></div>
+      <div class="franc"><b>Ce que la science dit&nbsp;:</b> le phénomène est réel. Une étude de 2026 (revue Fibers) mesure que la laine mérinos, puis la viscose et le coton dégagent de la chaleur au mouillage, le polyester presque rien <span class="tag v">V</span>. Mais sur tissu fini l'effet est plus faible et plus variable, et l'étude ne teste pas HEATTECH. Aucun test indépendant du produit n'a été trouvé.</div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Quatre fibres, un rôle chacune</h2>
+      <p>Expliqué par Toray en 2008 <span class="tag m">M</span>. Le HEATTECH de base en 2026&nbsp;: 40 % polyester recyclé, 32 % acrylique, 21 % viscose, 7 % élasthanne.</p>
+      <div class="compo"><i style="width:40%"></i><i style="width:32%"></i><i style="width:21%"></i><i style="width:7%"></i></div>
+      <p class="legende">polyester · acrylique · viscose · élasthanne</p>
       <div class="grille">
-      <div class="spec"><span class="num">D1 · NOMBRE DE VIDÉOS</span><h3>1 reel + recyclage</h3>
-        <ul class="options"><li>1 reel, les autres angles en légende, commentaire épinglé, carrousel, page Diggeur</li><li>3 reels (dépasse le contrat, à voir avec Alexis)</li><li>1 long de 8 à 10 min + courts</li></ul></div>
-      <div class="spec"><span class="num">D2 · COLONNE</span><h3>Le prix</h3>
-        <ul class="options"><li>Prix&nbsp;: pourquoi si peu cher</li><li>Mécanisme honnête (idée du 26/10, déjà dans J23)</li><li>Histoire, la scène de 2000</li><li>Guide des 3 niveaux</li></ul></div>
-      <div class="spec"><span class="num">D3 · QUEL SCRIPT FAIT FOI</span><h3>Un nouveau, écrit par toi</h3>
-        <ul class="options"><li>Nouveau script sur la colonne choisie</li><li>PDF du 26/10 (angle prix, à corriger&nbsp;: «&nbsp;synthétique&nbsp;» et «&nbsp;1 milliard en 2023&nbsp;»)</li><li>L'idée transpiration</li></ul></div>
-      <div class="spec"><span class="num">D4 · DATE DE POST</span><h3>Le 18/11, c'est donné</h3>
-        <ul class="options"><li>Tenir le 18&nbsp;: preview à Uniqlo dès le montage fini</li><li>Décaler, en le disant à Alexis avant le 17</li></ul></div>
-      <div class="spec"><span class="num">D5 · LA LIMITE HONNÊTE</span><h3>Conseil d'usage</h3>
-        <ul class="options"><li>«&nbsp;Pas pour courir&nbsp;»</li><li>«&nbsp;Pas de test indépendant&nbsp;» (à faire accepter par écrit avant)</li><li>Pas de limite</li></ul></div>
-      <div class="spec"><span class="num">D6 · LE NOM</span><h3>«&nbsp;Ultra Chaud&nbsp;», tu arbitres</h3>
-        <ul class="options"><li>Dire le nom officiel, une fois, en lisant l'étiquette</li><li>Dire «&nbsp;le troisième niveau&nbsp;»</li></ul></div>
+      <div class="spec"><span class="num">ACRYLIQUE · 32 %</span><h3>La chaleur</h3><p>Fibre fine et gonflante, elle isole. C'est elle qui a remplacé le coton creux en 2006.</p></div>
+      <div class="spec"><span class="num">VISCOSE · 21 %</span><h3>L'humidité qui chauffe</h3><p>Fibre artificielle (cellulose), pas synthétique. Elle boit la vapeur et dégage la chaleur. Plus de viscose en 2012 pour la fonction «&nbsp;absorbe et relâche&nbsp;».</p></div>
+      <div class="spec"><span class="num">POLYESTER · 40 %</span><h3>Le séchage rapide</h3><p>Il n'absorbe presque rien, donc il sèche vite. Recyclé sur le modèle 2026, et devenu la première fibre.</p></div>
+      <div class="spec"><span class="num">ÉLASTHANNE · 7 %</span><h3>L'ajustement</h3><p>Le stretch, près du corps. Il passe à 14 % sur l'Ultra Chaud.</p></div>
       </div>
+      <div class="franc"><b>Attention&nbsp;:</b> la composition change selon l'année et le modèle. Un modèle 2020 donnait 50 % acrylique, 33 % viscose, 13 % polyester, 4 % élasthanne. Lis l'étiquette de la pièce que tu filmes.</div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Le brevet de 2000</h2>
+      <div class="grille">
+      <div class="chiffre"><span class="gros">2000</span><p><b>Toray dépose un brevet sur la chaleur d'adsorption</b> dès l'automne 2000, trois ans avant la demande d'Uniqlo <span class="tag v">V</span>. «&nbsp;Structure fibreuse retenant la chaleur&nbsp;», publié en Europe en 2002.</p></div>
+      <div class="chiffre"><span class="gros">≥ 5</span><p><b>Un indice d'énergie exothermique sans unité.</b> Le brevet revendique 5 ou plus. Les exemples tricotés valent 9 à 11, les tissus comparatifs 1 <span class="tag v">V</span>.</p></div>
+      <div class="chiffre"><span class="gros">0</span><p><b>Le brevet ne nomme pas HEATTECH.</b> Le lien brevet → produit n'est écrit nulle part. Dis «&nbsp;Toray avait breveté le principe&nbsp;», jamais «&nbsp;le brevet de HEATTECH&nbsp;».</p></div>
+      </div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Trois niveaux, une seule différence&nbsp;: la maille</h2>
+      <p>Mêmes fibres du classique à l'Ultra. Ce qui change, c'est l'épaisseur du tricot et le brossage, donc la quantité d'air piégé <span class="tag m">M</span>.</p>
+      <div class="vol">
+        <div class="l"><b>×1</b><div class="barre"><i data-w="44"></i></div><span class="n">classique</span></div>
+        <div class="l"><b>×1,5</b><div class="barre"><i data-w="67"></i></div><span class="n">Extra Chaud</span></div>
+        <div class="l"><b>×2,25</b><div class="barre"><i data-w="100"></i></div><span class="n">Ultra Chaud</span></div>
+      </div>
+      <div class="grille">
+      <div class="spec"><span class="num">CLASSIQUE · 2003</span><h3>Jersey fin</h3><p>La base, pensée pour passer sous un jean.</p></div>
+      <div class="spec"><span class="num">EXTRA CHAUD · 2013</span><h3>Tricot épaissi, face peau brossée</h3><p>Le brossage crée une couche d'air. ×1,5 annoncé&nbsp;: en détail ×1,4 chez les hommes et ×1,6 chez les femmes <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">ULTRA CHAUD · 2016</span><h3>Extérieur gaufré, poil long</h3><p>Tissu plus épais, fibres plus gonflées, brossage à poil plus long. ×2,25, c'est 1,5 × 1,5 <span class="tag m">M</span>.</p></div>
+      </div>
+      <div class="franc"><b>D'où viennent les «&nbsp;×&nbsp;»&nbsp;:</b> la valeur CLO, une mesure de résistance thermique (norme ISO 9920), calculée par Uniqlo. Aucun laboratoire indépendant n'a publié de test. À dire «&nbsp;selon Uniqlo&nbsp;».</div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Les détails qu'on ne connaît pas</h2>
+      <div class="grille">
+      <div class="spec"><h3>11 fonctions en 2019</h3><p>Chaleur, rétention, séchage, absorption d'humidité, stretch, antistatique, anti-odeur, antibactérien, hydratant, toucher lisse, tenue de forme <span class="tag m">M</span>. Aucune n'est chiffrée.</p></div>
+      <div class="spec"><h3>Une chambre météo à Tokyo</h3><p>Uniqlo teste froid et humidité dans une chambre de simulation climatique à son siège <span class="tag m">M</span>.</p></div>
+      <div class="spec"><h3>L'hydratant a changé trois fois</h3><p>Sérum de lait en 2012, huile de camélia en 2013, huile d'argan en 2019, sur la version femme <span class="tag m">M</span>.</p></div>
+      <div class="spec"><h3>La même propriété, deux effets</h3><p>Une fibre qui garde l'humidité chauffe et limite l'électricité statique quand tu t'habilles <span class="tag m">M</span>.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <span class="etiquette">Prix · 4 · d'où vient le 14,90 €</span>
+    <div class="verre carte">
+      <h2>Trois t-shirts manches longues, relevés le 13/11</h2>
+      <p>Sur uniqlo.com/fr, homme <span class="tag m">M</span>.</p>
+      <div class="grille">
+      <div class="spec"><span class="num">HEATTECH CLASSIQUE</span><div class="prix">14,90 €</div>
+        <div class="compo"><i style="width:40%"></i><i style="width:32%"></i><i style="width:21%"></i><i style="width:7%"></i></div>
+        <p>40 % polyester recyclé, 32 % acrylique, 21 % viscose, 7 % élasthanne. Chaleur ×1.</p></div>
+      <div class="spec"><span class="num">EXTRA CHAUD · CACHEMIRE</span><div class="prix">24,90 €</div>
+        <div class="compo"><i style="width:0"></i><i style="width:57%"></i><i style="width:28%"></i><i style="width:15%"></i></div>
+        <p>57 % acrylique, 28 % viscose, 9 % cachemire, 6 % élasthanne. ×1,5. Seule version sans polyester&nbsp;: pas comparable aux deux autres.</p></div>
+      <div class="spec"><span class="num">ULTRA CHAUD</span><div class="prix">29,90 €</div>
+        <div class="compo"><i style="width:33%"></i><i style="width:32%"></i><i style="width:21%"></i><i style="width:14%"></i></div>
+        <p>33 % polyester recyclé, 32 % acrylique, 21 % viscose, 14 % élasthanne. ×2,25. La fiche l'autorise «&nbsp;en activité sportive en pleine nature&nbsp;».</p></div>
+      </div>
+      <div class="franc"><b>L'arithmétique&nbsp;:</b> du classique à l'Ultra, le prix fait ×2,01 et la chaleur annoncée ×2,25. Tu paies de la maille et du brossage, pas une fibre différente. La fiche Ultra Chaud écrit aussi «&nbsp;en coton ultra chaud&nbsp;» alors qu'il n'y a aucun coton&nbsp;: ne la recopie pas.</div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Pourquoi si peu cher, selon eux</h2>
+      <p>Aucune source ouverte ne donne le coût de fabrication ni la marge de HEATTECH. Voici l'explication de Toray et d'Uniqlo, cohérente mais non prouvée par des coûts.</p>
+      <div class="grille">
+      <div class="spec"><span class="num">1 · LA LIGNE DÉDIÉE</span><h3>Une usine qui ne fait que ça</h3><p>La condition de Toray en 2003. Une ligne qui tourne toute l'année sur une seule matière coûte moins par mètre <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">2 · LE VOLUME</span><h3>130 M de pièces par an dès 2012</h3><p>Le volume amortit la recherche et la ligne. De 1,5 M à 130 M en 9 ans <span class="tag v">V</span>.</p></div>
+      <div class="spec"><span class="num">3 · LE MÊME PRODUIT CHAQUE ANNÉE</span><h3>Pas de collection à jeter</h3><p>Les fonctions s'ajoutent, le produit reste. Une matière de mode classique vit une saison <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">4 · LES FIBRES</span><h3>Acrylique, viscose, polyester</h3><p>Des fibres industrielles, bien moins chères que la laine. Et 40 % de polyester recyclé sur le modèle de base.</p></div>
+      <div class="spec"><span class="num">5 · LE CONTREPOINT</span><h3>55,2 % de marge brute pour le groupe</h3><p>Le prix est bas, la marge de Fast Retailing ne l'est pas. Ratio recalculé dans les comptes 2026, tous produits <span class="tag v">V</span>.</p></div>
+      <div class="spec"><span class="num">6 · LE GROUPE</span><h3>3 963 milliards de yens de ventes en 2026</h3><p>+16,6 % en un an, exercice record <span class="tag v">V</span>. L'international pèse désormais plus que le Japon.</p></div>
+      </div>
+    </div>
+
+    <div class="verre carte">
+      <h2>Les prix dans le temps</h2>
+      <div class="grille">
+      <div class="chiffre"><span class="gros">1 500 ¥</span><p><b>2013, Extra Chaud col rond, TTC au Japon</b>, le jour du lancement <span class="tag v">V</span>. Environ 9 € au cours de 2026.</p></div>
+      <div class="chiffre"><span class="gros">1 500 ¥</span><p><b>2017, t-shirt sans couture col V, hors taxe au Japon</b> <span class="tag m">M</span>. Pas le modèle le plus basique&nbsp;: ne pas en déduire «&nbsp;prix stable&nbsp;».</p></div>
+      <div class="chiffre"><span class="gros">1 990 ¥</span><p><b>2023, col roulé côtelé en collab Princess Tam Tam</b>, TTC <span class="tag v">V</span>. Un modèle de collab, pas la base.</p></div>
+      <div class="chiffre"><span class="gros">×3,7</span><p><b>Face à la laine&nbsp;:</b> mérinos Decathlon 54,99 € (×3,7), Icebreaker 99,95 € (×6,7) pour 14,90 €. Relevés du 12/10, non revérifiés.</p></div>
+      </div>
+      <div class="franc"><b>Ce qu'on n'a pas&nbsp;:</b> le prix de 2003, les prix historiques en France, les prix actuels au Japon, la part de HEATTECH dans les ventes d'Uniqlo. Si tu tournes à Tokyo, relève le prix en rayon.</div>
     </div>
   </section>
 
@@ -286,50 +379,42 @@ section>.etiquette{display:block;margin:0 4px 10px}
     <span class="etiquette">Les pièges · à ne pas dire de travers</span>
     <div class="verre carte">
       <div class="grille">
-      <div class="spec"><h3>«&nbsp;1,5 milliard vendus&nbsp;»</h3><p>Non. 1 milliard = 2017, dit par Uniqlo. 1,5 milliard = presse 2023, compteur non daté.</p></div>
-      <div class="spec"><h3>«&nbsp;Synthétique&nbsp;»</h3><p>La viscose est artificielle, pas synthétique. Et la version 24,90 € contient 9 % de cachemire.</p></div>
-      <div class="spec"><h3>«&nbsp;Prouvé&nbsp;»</h3><p>×1,5 et ×2,25 sont des calculs d'Uniqlo. L'étude Fibers 2026 ne teste pas HEATTECH. Le brevet ne le nomme pas.</p></div>
-      <div class="spec"><h3>Deux mécanismes</h3><p>«&nbsp;Adsorbe la vapeur&nbsp;» ou «&nbsp;convertit l'énergie cinétique&nbsp;» circulent. Garde la seule version 2012&nbsp;: la vapeur.</p></div>
-      <div class="spec"><h3>«&nbsp;En coton ultra chaud&nbsp;»</h3><p>C'est écrit sur la fiche FR de l'Ultra Chaud, qui ne contient aucun coton. Ne la recopie pas.</p></div>
-      <div class="spec"><h3>Les mots hype</h3><p>«&nbsp;Ultra, trop, de fou&nbsp;»&nbsp;: 0,57 abonné pour 1 000 vues contre 1,10 sans. Aveu, question ou preuve filmée à la place.</p></div>
+      <div class="spec"><h3>«&nbsp;1,5 milliard vendus&nbsp;»</h3><p>1 milliard = chiffre Uniqlo 2017. 1,5 milliard = presse 2023, compteur non daté. Dis «&nbsp;environ 1,5 milliard selon la presse japonaise&nbsp;».</p></div>
+      <div class="spec"><h3>«&nbsp;Synthétique&nbsp;»</h3><p>La viscose est artificielle (cellulose régénérée), pas synthétique. Le script du 26/10 se trompait.</p></div>
+      <div class="spec"><h3>«&nbsp;Prouvé&nbsp;»</h3><p>×1,5 et ×2,25 sont des calculs d'Uniqlo. L'étude Fibers ne teste pas HEATTECH. Le brevet ne le nomme pas.</p></div>
+      <div class="spec"><h3>«&nbsp;Inventé en 2006&nbsp;»</h3><p>Vendu dès 2003 en coton creux, 4 fibres en 2006. Dis «&nbsp;selon Toray&nbsp;».</p></div>
+      <div class="spec"><h3>Le cumul qui ne colle pas</h3><p>400 M en 2013, 1 Md en 2017, 1,5 Md en 2023&nbsp;: le rythme ralentit sous les 130 M par an annoncés. Soit le compteur n'est pas à jour, soit les volumes baissent. Non tranché.</p></div>
+      <div class="spec"><h3>Deux mécanismes qui circulent</h3><p>«&nbsp;Adsorbe la vapeur&nbsp;» (Japon 2012) ou «&nbsp;convertit l'énergie cinétique&nbsp;» (Inde 2021). Garde la version 2012.</p></div>
       </div>
     </div>
   </section>
 
   <section>
-    <span class="etiquette">Le jeu · V ou M ?</span>
+    <span class="etiquette">Le jeu · vérifié ou dit par la marque ?</span>
     <div class="verre carte">
-      <h2>Vérifié ou dit par la marque&nbsp;?</h2>
-      <p>Avant de tourner, 6 faits. Touche <b>V</b> ou <b>M</b>.</p>
+      <h2>Six faits, touche V ou M</h2>
+      <p>Pour savoir ce que tu peux dire sans «&nbsp;selon Uniqlo&nbsp;».</p>
       <div id="jeu"></div>
       <div class="bilan" id="bilan"></div>
     </div>
   </section>
 
-  <section>
-    <span class="etiquette">À toi · 3 questions</span>
-    <div class="verre carte">
-      <div class="grille">
-      <div class="spec"><span class="num">1</span><h3>En portes-tu, depuis quand, où&nbsp;?</h3><p>Chine du Nord, Tokyo. C'est la seule matière que personne ne peut te fournir.</p></div>
-      <div class="spec"><span class="num">2</span><h3>Le moment où tu as senti la différence, ou pas&nbsp;?</h3><p>Ce que tu dirais même si Uniqlo n'écoutait pas.</p></div>
-      <div class="spec"><span class="num">3</span><h3>Qu'est-ce que tu refuses de dire sur ce produit&nbsp;?</h3><p>Ta limite honnête vient de là.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <p class="pied">Sources, 51 faits étiquetés et le dossier complet du 13/11&nbsp;: <a href="dossier-complet.html">version détaillée</a>. Prix relevés sur uniqlo.com/fr le 13/11/2026. Script PDF du 26/10 dans ~/Documents/uniqlo-heattech/envoi.</p>
+  <p class="pied">Sources&nbsp;: 51 faits étiquetés dans ~/Documents/Uniqlo Heattech/sources.md (Toray × NewsPicks, Toyo Keizai 2008, Daiwa 2016, communiqués Uniqlo 2007-2017, WWD Japan, brevet EP 1 260 355, Fibers 2026, comptes Fast Retailing). Prix relevés sur uniqlo.com/fr le 13/11/2026. <a href="dossier-complet.html">Dossier détaillé du 13/11</a> (structures, décisions).</p>
 </main>
 <script>
 (function(){
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.barre i').forEach(i=>i.style.width=i.dataset.w+'%');io.unobserve(e.target)}}),{threshold:.3});
+document.querySelectorAll('.vol').forEach(v=>io.observe(v));
+if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.querySelectorAll('.barre i').forEach(i=>{i.style.transition='none';i.style.width=i.dataset.w+'%'});
 const Q=[
- ["28 M de HEATTECH vendus en 2008, record du fleece","V","Deux saisons comparées, deux sources ouvertes."],
+ ["28 M de HEATTECH vendus en 2008, record du fleece battu","V","Deux sources indépendantes, Toyo Keizai et Daiwa."],
  ["L'Ultra Chaud est 2,25 fois plus chaud que le classique","M","Valeur CLO calculée par Uniqlo, aucun test indépendant."],
- ["Le brevet de chaleur d'adsorption date de l'automne 2000","V","Priorités sept.-nov. 2000, dans le brevet Toray."],
- ["1 milliard de pièces = 700 000 km de tissu","M","Chiffre Uniqlo 2017, avec une projection dedans."],
- ["Toray refusait de faire une fibre pour un seul client","M","Récit de Toray, raconté après coup."],
- ["55,2 % de marge brute Fast Retailing en 2026","V","Ratio recalculé dans les comptes, tous produits."]];
+ ["Toray a breveté la chaleur d'adsorption dès l'automne 2000","V","Brevet EP 1 260 355, priorités de septembre et novembre 2000."],
+ ["Toray refusait de créer une fibre pour un seul client","M","Récit de Toray, raconté après coup."],
+ ["1 milliard de pièces = 700 000 km de tissu","M","Communiqué Uniqlo 2017, avec une projection dedans."],
+ ["Fast Retailing fait 55,2 % de marge brute en 2026","V","Ratio recalculé dans les comptes publiés, tous produits."]];
 const jeu=document.getElementById('jeu'),bilan=document.getElementById('bilan');let i=0,ok=0;
-function pose(){if(i>=Q.length){bilan.innerHTML='<b>'+ok+' sur '+Q.length+'.</b> '+(ok==Q.length?'Tu peux tourner.':'Relis les étiquettes des faits ratés avant de tourner.');return}
+function pose(){if(i>=Q.length){bilan.innerHTML='<b>'+ok+' sur '+Q.length+'.</b> '+(ok==Q.length?'Tu peux écrire.':'Relis les étiquettes des faits ratés.');return}
 const q=Q[i];jeu.innerHTML='<p style="font-size:18px;line-height:1.4;margin:14px 0 0;color:var(--texte)">'+q[0]+'</p><div class="puces"><button class="puce" data-r="V">V · vérifié</button><button class="puce" data-r="M">M · dit par la marque</button></div>';
 bilan.textContent='';jeu.querySelectorAll('.puce').forEach(b=>b.onclick=()=>{const bon=b.dataset.r===q[1];jeu.querySelectorAll('.puce').forEach(x=>x.classList.add(x.dataset.r===q[1]?'on':'faux'));if(bon)ok++;bilan.innerHTML=(bon?'<b>Oui.</b> ':'<b>Non, c\'est '+q[1]+'.</b> ')+q[2];i++;setTimeout(pose,1600)})}
 pose()})();
