@@ -1,8 +1,9 @@
 <!doctype html>
-<html lang="fr"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="robots" content="noindex,nofollow">
-<title>HEATTECH · le dossier pour décider</title>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>HEATTECH : le dossier pour décider</title>
 <style>
 /* KIT ARTEFACT « AURA » — DA validée par Damien le 11/11/2026 (Tokn v3, commit 30cee5f).
    Fond blanc + 3 auras cœur noir → bleus qui dérivent, grain, verre blanc, PolySans. SEULE DA des artefacts.
@@ -122,764 +123,216 @@ body.aura .hero{align-items:start!important}
 body.aura .hero .photo,body.aura .hero figure{grid-column:1/-1;max-width:980px}
 body.aura .carte p,body.aura .carte li,body.aura .verre p,body.aura .verre li{max-width:72ch}
 
-*{box-sizing:border-box}
-body{margin:0}
-main{max-width:1040px;margin:0 auto;padding:22px 16px 80px}
-p{margin:0 0 8px;line-height:1.45;color:var(--texte-2)}
-h1{font:700 30px/1.05 var(--large);letter-spacing:-.02em;margin:0 0 10px}
-h2{font:700 22px/1.12 var(--large);letter-spacing:-.01em;margin:0 0 8px}
-h3{font:700 15.5px/1.2 var(--large);margin:0 0 6px;color:var(--texte)}
-section{margin:26px 0}
-.verre{padding:18px 20px}
-.texte p{font-size:15px}
-.texte p b,.cell b,.noeud b{color:var(--texte)}
-.nb{display:block;margin-top:10px;font:600 11.5px/1.45 var(--police-mono);letter-spacing:.01em;color:var(--texte-3)}
-.nb b{color:var(--texte-2)}
-.bloc.d{text-align:right}
-.bloc.d>*:not(.etiquette){text-align:left}
-.rangee{display:grid;gap:12px;grid-template-columns:1fr;align-items:start}
-.bloc.g .rangee>.verre{margin-right:5%}
-.bloc.d .rangee>.verre{margin-left:5%}
-.bloc.large .rangee>.verre{margin-left:0;margin-right:0}
-@media(min-width:760px){
- h1{font-size:40px}
- h2{font-size:25px}
- .bloc .rangee>.verre{margin:0!important}
- .bloc.g .rangee{grid-template-columns:5fr 6fr}
- .bloc.d .rangee{grid-template-columns:6fr 5fr}
- .bloc.d .rangee>.texte{order:2}
- .bloc.large .rangee{grid-template-columns:1fr}
- .bloc.large.d .rangee>.texte{order:0}
-}
-/* pastilles de source : plein = vérifié, contour = dit par la marque */
-.src{display:inline-block;font:700 10px/1 var(--police-mono);letter-spacing:.04em;padding:3px 6px;border-radius:6px;margin:0 2px 2px 0;white-space:nowrap;vertical-align:1px}
-.src.v{background:var(--pan);color:#fff}
-.src.m{background:rgba(40,95,255,.09);color:var(--pan-3);box-shadow:inset 0 0 0 .5px rgba(36,54,184,.4)}
-.leg{font-size:13px}
-/* tête */
-.tete .cadre{margin-top:2px}
-.tuiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:10px}
-@media(min-width:760px){.tuiles{grid-template-columns:repeat(4,1fr)}}
-.tuiles .verre{padding:14px 16px}
-.gros{display:block;font:700 34px/1 var(--large);color:var(--pan-3);letter-spacing:-.02em;margin-bottom:6px}
-.tuiles span.t{display:block;font-size:12.5px;line-height:1.35;color:var(--texte-2);margin-bottom:6px}
-.reco{margin-top:10px}
-.reco ol{margin:6px 0 0;padding-left:20px}
-.reco li{margin:4px 0;color:var(--texte-2);font-size:14.5px;line-height:1.4}
-.reco li b{color:var(--texte)}
-/* cellules à l'intérieur d'un verre (pas de verre dans un verre) */
-.cell{background:rgba(255,255,255,.6);border:1px solid rgba(40,95,255,.1);border-radius:var(--r-m);padding:12px 14px}
-.cell p{font-size:13px;margin:0 0 6px}
-.trio{display:grid;gap:10px;margin-top:12px}
-@media(min-width:760px){.trio{grid-template-columns:repeat(3,1fr)}}
-.trio .verre{padding:15px 17px}
-.trio p{font-size:13.5px}
-.mono{font:600 11px var(--police-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--texte-3)}
-/* animations : par défaut l'état final est visible ; .go rejoue l'entrée */
-@keyframes entree{from{opacity:0;transform:translate(var(--dx,0),var(--dy,10px))}}
-@keyframes trace{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
-@keyframes fil{from{transform:scaleY(0)}to{transform:scaleY(1)}}
-@keyframes barre{from{transform:scaleX(0)}to{transform:scaleX(1)}}
-@keyframes pop{from{opacity:0;transform:scale(.2)}}
-@keyframes fond{from{opacity:0}}
-@keyframes descend{from{top:0;opacity:0}8%{opacity:1}92%{opacity:1}to{top:calc(100% - 18px);opacity:0}}
-.go .spirale{stroke-dasharray:1;animation:trace 3.2s cubic-bezier(.45,.05,.3,1) both}
-.go .courbe{stroke-dasharray:1;animation:trace 1.5s ease-out both}
-.go .obj{animation:fond .9s 1.4s both}
-.go .pt{transform-box:fill-box;transform-origin:center;animation:pop .5s var(--ressort) both;animation-delay:var(--dl,0s)}
-.go .bar i,.go .seg{transform-origin:left;animation:barre .9s cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--i,0)*130ms)}
-.bar i{display:block;height:100%;width:var(--w);border-radius:inherit;background:linear-gradient(90deg,var(--pan-3),var(--pan))}
-.go.frise::before{animation:fil 2.4s ease-out both}
-.noeud.go,.tuile.go,.hook.go,.struct.go,.maillon.go,.role.go,.decision.go{animation:entree .7s var(--ressort) both;animation-delay:calc(var(--i,0)*70ms)}
-.chaine.go .pulse{animation:descend 3.4s ease-in-out .2s both}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
-/* 01 · spirale */
-.orbite{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}
-.spirale{fill:none;stroke:var(--pan);stroke-width:1.5;stroke-linecap:round}
-.rail{fill:none;stroke:rgba(40,95,255,.14);stroke-width:1.5}
-.compteur{text-align:center;margin-top:4px}
-.compteur .gros{display:inline-block;font-size:44px;margin:0 6px 0 0}
-.compteur span{font-size:14px;color:var(--texte-2)}
-.compteur small{display:block;font:600 11px var(--police-mono);color:var(--texte-3);margin-top:4px;letter-spacing:.03em}
-/* 02 · frise */
-.frise{position:relative;margin-top:14px;padding:4px 0}
-.frise::before{content:"";position:absolute;left:12px;top:0;bottom:0;width:2px;border-radius:2px;background:linear-gradient(var(--pan),var(--pan-3));transform-origin:top}
-.noeud{position:relative;margin:0 0 10px 38px;padding:12px 15px}
-.noeud::before{content:"";position:absolute;left:-33px;top:17px;width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,#000 0 20%,#0041FF 50%,#285FFF 100%);box-shadow:0 0 0 4px rgba(255,255,255,.85),0 0 12px rgba(40,95,255,.5)}
-.noeud .an{display:block;font:700 13px var(--police-mono);color:var(--pan);margin-bottom:3px;letter-spacing:.04em}
-.noeud p{font-size:13.5px;margin:0 0 4px;color:var(--texte-2);line-height:1.4}
-@media(min-width:760px){
- .frise::before{left:calc(50% - 1px)}
- .noeud{width:calc(50% - 30px);margin:0 0 -6px 0;--dx:-16px}
- .noeud.d{margin-left:calc(50% + 30px);--dx:16px;margin-top:-26px}
- .noeud::before{left:auto;right:-37px}
- .noeud.d::before{right:auto;left:-37px}
- .noeud.g:first-child{margin-top:0}
-}
-/* 03 · courbe + cumul */
-.graph{width:100%;height:auto;display:block}
-.graph .axe{stroke:rgba(20,20,30,.16);stroke-width:1}
-.graph .grille{stroke:rgba(20,20,30,.07);stroke-width:1}
-.graph .courbe,.graph .obj{fill:none;stroke:var(--pan);stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.graph .obj{stroke-dasharray:3 7;stroke-width:3}
-.graph .ref{stroke:var(--pan-3);stroke-width:1.2;stroke-dasharray:2 4}
-.graph .pt{fill:var(--pan);stroke:#fff;stroke-width:2}
-.graph .pt.o{fill:#fff;stroke:var(--pan);stroke-width:2.5}
-.svgt{font:600 10.5px var(--police-mono);fill:#48484e;letter-spacing:.02em}
-.svgt.g{font-weight:700;fill:#0b0f24;font-size:11.5px}
-.svgt.s{fill:#6a6a70;font-size:9.5px}
-.cumul{margin-top:14px;display:grid;gap:8px}
-.lig{display:grid;grid-template-columns:78px 1fr;gap:10px;align-items:center}
-.lig .e{font:700 11.5px/1.2 var(--police-mono);color:var(--texte-2)}
-.lig .e small{display:block;font-weight:600;color:var(--texte-3);font-size:10.5px}
-.bar{position:relative;height:22px;border-radius:7px;background:rgba(40,95,255,.08);overflow:hidden}
-.bar em{position:absolute;left:9px;top:0;line-height:22px;font:700 11px var(--police-mono);color:#fff;font-style:normal;letter-spacing:.02em}
-.bar.clair em{color:var(--pan-3)}
-.lig .src{margin-left:0}
-/* 04 · mécanisme (boucle 8 s) */
-.meca{width:100%;max-width:420px;height:auto;display:block;margin:0 auto}
-.meca .fib{fill:#2436b8}
-.meca .lueur{fill:#8AA8FF;opacity:.85;animation:chauffe 8s infinite}
-.meca .vap{fill:#4fa8f7;transform-box:fill-box;transform-origin:center;opacity:.9;transform:translateY(-34px);animation:vapeur 8s var(--dl,0s) infinite}
-.meca .vague{fill:none;stroke:#285FFF;stroke-width:2.2;stroke-linecap:round;opacity:.8;animation:chaleur 8s var(--dl,0s) infinite}
-.meca .froid{fill:none;stroke:#6f93ff;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;opacity:.8;animation:froid 8s var(--dl,0s) infinite}
-.meca .poche{fill:#8AA8FF;opacity:.22}
-@keyframes vapeur{0%,2%{opacity:0;transform:translateY(0) scale(1)}6%{opacity:1}34%{opacity:1;transform:translateY(-56px) scale(1)}42%{opacity:0;transform:translateY(-62px) scale(.3)}100%{opacity:0;transform:translateY(0)}}
-@keyframes chauffe{0%,14%{opacity:0}40%,92%{opacity:.85}100%{opacity:0}}
-@keyframes chaleur{0%,48%{opacity:0;transform:translateY(0)}56%{opacity:.9}72%{opacity:.9;transform:translateY(-8px)}92%{opacity:.7;transform:translateY(-2px)}100%{opacity:0}}
-@keyframes froid{0%,48%{opacity:0;transform:translateY(0)}54%{opacity:.9}72%{opacity:.9;transform:translateY(36px)}84%{opacity:.5;transform:translateY(14px)}94%,100%{opacity:0;transform:translateY(0)}}
-.pas{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;justify-content:center}
-.pas span{font:700 11.5px/1.2 var(--police-mono);padding:7px 11px;border-radius:999px;background:rgba(40,95,255,.08);color:var(--texte-2)}
-.pas .p1{animation:p1 8s infinite}.pas .p2{animation:p2 8s infinite}
-@keyframes p1{0%,48%{background:var(--pan);color:#fff}52%,100%{background:rgba(40,95,255,.08);color:#48484e}}
-@keyframes p2{0%,48%{background:rgba(40,95,255,.08);color:#48484e}52%,96%{background:var(--pan);color:#fff}100%{background:rgba(40,95,255,.08);color:#48484e}}
-.cap{font:600 10.5px/1.4 var(--police-mono);color:var(--texte-3);text-align:center;margin-top:8px}
-/* 05 · niveaux */
-.niv{margin-bottom:12px}
-.niv .tt{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:5px}
-.niv .tt b{font:700 14px var(--large);color:var(--texte)}
-.niv .tt span{font:700 14px var(--police-mono);color:var(--pan-3)}
-.niv small{display:block;font-size:12px;color:var(--texte-3);margin-top:4px;line-height:1.35}
-.niv .bar{height:24px}.niv .bar em{line-height:24px}
-.comp{display:grid;grid-template-columns:70px 1fr;gap:8px;align-items:center;margin:6px 0}
-.comp .e{font:700 10.5px/1.2 var(--police-mono);color:var(--texte-2)}
-.pile{display:flex;height:26px;border-radius:8px;overflow:hidden;gap:1.5px;background:#fff}
-.seg{display:flex;align-items:center;justify-content:center;font:700 10.5px var(--police-mono);color:#fff;min-width:0;width:var(--w);transform-origin:left}
-.c1{background:#0a1a66}.c2{background:#2436b8}.c3{background:#285FFF}.c4{background:#6f93ff}.c5{background:#B6C9FF;color:#0b0f24}
-.legende{display:flex;flex-wrap:wrap;gap:4px 12px;margin-top:8px;font:600 10.5px var(--police-mono);color:var(--texte-2)}
-.legende i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
-.lecture{margin-top:12px;padding:11px 13px;border-radius:var(--r-m);background:rgba(40,95,255,.07);font-size:13.5px;line-height:1.4;color:var(--texte-2)}
-.lecture b{color:var(--texte)}
-/* 06 · chaîne */
-.chaine{position:relative;padding-left:46px}
-.chaine::before{content:"";position:absolute;left:14px;top:12px;bottom:12px;width:2px;background:linear-gradient(var(--pan),var(--pan-3));border-radius:2px;opacity:.5}
-.pulse{position:absolute;left:5px;top:0;width:20px;height:20px;border-radius:50%;background:radial-gradient(circle at 50% 50%,#000 0 14%,#0a1a66 30%,#0041FF 52%,#285FFF 70%,#8AA8FF 100%);box-shadow:0 0 14px rgba(40,95,255,.6);opacity:0}
-.maillon{position:relative;padding:11px 0 11px;border-bottom:1px solid var(--filet)}
-.maillon:last-of-type{border-bottom:0}
-.maillon .n{position:absolute;left:-46px;top:11px;width:28px;text-align:center;font:700 12px var(--police-mono);color:var(--pan-3);background:#fff;border-radius:50%;line-height:24px;height:24px;box-shadow:0 0 0 2px rgba(40,95,255,.25)}
-.maillon p{font-size:14px;margin:0 0 3px}
-.maillon b{color:var(--texte)}
-.contre{margin-top:12px;padding:11px 13px;border-radius:var(--r-m);background:rgba(40,95,255,.07);font-size:13px;line-height:1.4;color:var(--texte-2)}
-/* 07 · pépites */
-.grille{display:grid;gap:10px;grid-template-columns:repeat(2,1fr);margin-top:12px}
-.grille>*{min-width:0}
-.grille.st,.grille.hk{grid-template-columns:1fr;align-items:start}
-@media(min-width:760px){.grille.pep{grid-template-columns:repeat(5,1fr)}.grille.hk{grid-template-columns:repeat(2,1fr)}.grille.st{grid-template-columns:repeat(2,1fr)}}
-.tuile{padding:14px 15px}
-.tuile .gros{font-size:24px;margin-bottom:5px}
-.tuile p{font-size:12.5px;line-height:1.4;margin:0 0 6px}
-/* 08 · hooks */
-.hook{padding:0}
-.hook summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:30px 1fr 18px;gap:10px;align-items:start;padding:13px 15px}
-.hook summary::-webkit-details-marker{display:none}
-.hook summary::after{content:"+";font:700 16px var(--police-mono);color:var(--pan-3);grid-column:3;grid-row:1;text-align:right}
-.hook[open] summary::after{content:"−"}
-.hook .n{font:700 12.5px var(--police-mono);color:var(--pan);padding-top:2px}
-.hook .f{font-size:14px;line-height:1.35;color:var(--texte);font-weight:600}
-.hook .f .src{margin-left:4px}
-.hook .det{padding:0 15px 13px 55px;font-size:12.5px;line-height:1.45;color:var(--texte-2)}
-.hook .det div{margin:3px 0}
-.hook .det b{font:700 10.5px var(--police-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--texte-3);margin-right:6px}
-.hook.rec{box-shadow:0 0 0 1.5px var(--pan),0 10px 30px -18px rgba(40,95,255,.6)}
-.badge{display:inline-block;font:600 10.5px var(--police);color:#fff;background:linear-gradient(135deg,var(--pan),var(--pan-3));padding:3px 8px;border-radius:999px;white-space:nowrap;margin-left:6px;vertical-align:1px}
-/* 09 · système */
-.roles{display:grid;gap:8px}
-.role{display:grid;grid-template-columns:78px 1fr auto;gap:10px;align-items:center;padding:9px 12px;border-radius:var(--r-m);background:rgba(255,255,255,.6);border:1px solid rgba(40,95,255,.1)}
-.role .t{font:700 11px var(--police-mono);color:var(--pan-3);letter-spacing:.03em}
-.role .c{font-size:13px;line-height:1.35;color:var(--texte-2)}
-.role .c b{color:var(--texte);display:block;font:700 13.5px var(--large);margin-bottom:1px}
-.role .k{font:700 11px var(--police-mono);color:var(--texte-3);white-space:nowrap}
-.regles{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-top:10px}
-.regles .cell p{margin:0;font-size:13px;color:var(--texte-2)}
-.regles .cell b{display:block;font:700 12px var(--police-mono);color:var(--pan-3);margin-bottom:3px}
-.budget{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:10px}
-.budget .cell{padding:10px 8px;text-align:center}
-.budget b{display:block;font:700 19px var(--large);color:var(--pan-3)}
-.budget span{display:block;font-size:11px;line-height:1.3;color:var(--texte-3);margin-top:2px}
-/* 10 · structures */
-.struct{padding:16px 18px}
-.struct h3{display:flex;align-items:center;flex-wrap:wrap;gap:4px 0}
-.struct .q{font-size:13.5px;color:var(--texte-2);margin:0 0 8px;line-height:1.35}
-.struct dl{margin:0;display:grid;grid-template-columns:74px 1fr;gap:5px 10px}
-.struct dt{font:700 10px/1.5 var(--police-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--texte-3);padding-top:2px}
-.struct dd{margin:0;font-size:12.5px;line-height:1.4;color:var(--texte-2)}
-.struct.rec{box-shadow:0 0 0 1.5px var(--pan),0 10px 30px -18px rgba(40,95,255,.6)}
-.struct .contra{margin-top:8px;padding-top:8px;border-top:1px solid var(--filet);font-size:12.5px;line-height:1.4;color:var(--texte-2)}
-.struct .contra b{font:700 10px var(--police-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--pan-3);margin-right:5px}
-.beats{margin-top:12px}
-.barre{display:flex;gap:3px;height:34px;margin:10px 0 12px}
-.seg.b{border-radius:8px;font-size:12px;width:auto;flex:var(--s) 1 0;transform-origin:left}
-.seg.b.fort{background:var(--pan)}
-.seg.b.toi{background:repeating-linear-gradient(135deg,rgba(40,95,255,.14) 0 6px,rgba(40,95,255,.26) 6px 12px);color:var(--pan-3)}
-.lbeat{display:grid;grid-template-columns:22px 62px 1fr;gap:8px;padding:6px 0;border-bottom:1px solid var(--filet);font-size:13px;line-height:1.35;color:var(--texte-2)}
-.lbeat:last-child{border-bottom:0}
-.lbeat .n{font:700 11.5px var(--police-mono);color:var(--pan)}
-.lbeat .s{font:700 10.5px var(--police-mono);color:var(--texte-3)}
-.lbeat b{color:var(--texte)}
-/* 11-12 · décisions */
-.deux{display:grid;gap:12px;margin-top:12px}
-@media(min-width:760px){.deux{grid-template-columns:1fr 1fr}}
-.deux .verre p,.deux .verre li{font-size:13.5px}
-.deux ol{margin:6px 0 0;padding-left:20px;color:var(--texte-2)}
-.deux li{margin:5px 0;line-height:1.4}
-.decision{padding:15px 18px}
-.decision .q{display:flex;align-items:baseline;gap:9px;margin-bottom:8px}
-.decision .q b{font:700 12px var(--police-mono);color:var(--pan)}
-.decision .q h3{margin:0}
-.opts{display:flex;flex-wrap:wrap;gap:6px}
-.opts button{font:600 12.5px/1.25 var(--police);padding:8px 12px;border-radius:12px;border:1px solid rgba(40,95,255,.25);background:rgba(255,255,255,.7);color:var(--texte-2);cursor:pointer;text-align:left;transition:background .2s,color .2s,box-shadow .2s}
-.opts button[aria-pressed="true"]{background:linear-gradient(135deg,var(--pan),var(--pan-3));color:#fff;border-color:transparent;box-shadow:0 6px 16px -8px rgba(40,95,255,.7)}
-.opts button .r{font:700 9.5px var(--police-mono);letter-spacing:.06em;text-transform:uppercase;opacity:.75;margin-left:6px}
-.decision .note{font-size:12.5px;line-height:1.4;color:var(--texte-3);margin:8px 0 0}
-.decision .note b{color:var(--texte-2)}
-.recap{margin-top:12px}
-.recap code{display:block;font:600 12.5px/1.5 var(--police-mono);color:var(--texte);background:rgba(40,95,255,.07);padding:11px 13px;border-radius:var(--r-m);margin:8px 0 10px;word-break:break-word}
-.recap button{font:600 13px var(--police);padding:9px 16px;border-radius:999px;border:0;color:#fff;background:linear-gradient(135deg,var(--pan),var(--pan-3));cursor:pointer;box-shadow:0 8px 20px -10px rgba(40,95,255,.8)}
-.repères{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
-.repères span{font:700 11px var(--police-mono);padding:5px 9px;border-radius:9px;background:rgba(40,95,255,.08);color:var(--pan-3)}
-/* 13 · pièges */
-.pieges{display:grid;gap:7px}
-.piege{display:grid;grid-template-columns:1fr;gap:3px;padding:9px 12px;border-radius:var(--r-m);background:rgba(255,255,255,.6);border:1px solid rgba(40,95,255,.1);font-size:13px;line-height:1.38;color:var(--texte-2)}
-.piege b{font:700 10px var(--police-mono);letter-spacing:.05em;text-transform:uppercase;color:var(--pan-3);margin-right:6px}
-.piege .x b{color:var(--texte-3)}
-@media(min-width:760px){.piege{grid-template-columns:1fr 1fr;gap:16px}}
-.trous{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
-.trous span{font-size:12.5px;padding:6px 10px;border-radius:10px;background:rgba(40,95,255,.07);color:var(--texte-2);line-height:1.3}
-.pied .verre{margin-top:10px}
-.pied p{font-size:12.5px}
-.pied code{font:600 12px var(--police-mono);color:var(--pan-3)}
-/* LECTURE 14/11 : rien sous 16 px, notes en police normale, pas de petites capitales mono */
-body.aura p,body.aura li,.texte p,.cell p,.trio p,.reco li,.noeud p,.maillon p,.deux .verre p,.deux .verre li,.regles .cell p,.struct .q,.lecture,.contre,.tuile p,.hook .det,.role .c,.struct dd,.struct .contra,.lbeat,.decision .note,.trous span,.piege,.pied p{font-size:17px!important;line-height:1.55!important}
-.tuiles span.t{font-size:16px!important;line-height:1.4!important}
-.hook .f{font-size:18px!important;line-height:1.4!important}
-h3,.role .c b,.niv .tt b{font-size:19px!important}
-.nb,.cap,.compteur small,.niv small,.budget span,.leg{font:500 15.5px/1.5 var(--police)!important;letter-spacing:0!important;color:var(--texte-2)!important}
-.nb b{color:var(--texte)!important}
-.mono,.noeud .an,.hook .n,.role .t,.role .k,.regles .cell b,.lig .e,.comp .e,.lbeat .n,.lbeat .s,.decision .q b,.pas span,.legende,.repères span,.pied code{font-size:14px!important}
-.struct dt,.struct .contra b,.piege b,.hook .det b{font-size:13px!important}
-.lig .e small{font-size:13px!important}
-.src{font-size:12px!important;padding:4px 7px!important}
-.bar em,.seg,.seg.b{font-size:13px!important}
-.lig{grid-template-columns:110px 1fr!important}
-.comp{grid-template-columns:96px 1fr!important}
-.lbeat{grid-template-columns:28px 80px 1fr!important}
-.compteur span{font-size:17px!important}
-.opts button{font-size:16px!important;padding:11px 15px!important}
-.opts button .r{font-size:11.5px!important}
-.recap code{font-size:15px!important}
-.recap button{font-size:16px!important;padding:12px 20px!important}
-.budget b{font-size:22px!important}
-.tuile .gros{font-size:30px!important}
-.svgt{font-size:13.5px!important}.svgt.g{font-size:14.5px!important}.svgt.s{font-size:12px!important}
-</style></head>
+main{max-width:640px;margin:0 auto;position:relative;z-index:1;padding:0 16px 60px}
+.hero{padding:60px 4px 26px;position:relative}
+.hero .orbe{--d:70px;position:absolute;right:6px;top:44px;animation:souffle 6s ease-in-out infinite}
+@keyframes souffle{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.hero h1{font-size:33px;line-height:1.08;letter-spacing:-.03em;max-width:14ch}
+.hero p{margin:16px 0 0;font-size:16px;line-height:1.5;max-width:38ch;color:var(--texte-2)}
+.hero p b,.carte p b,.franc b,.spec p b,.spec li b,.chiffre p b,.beat p b{color:var(--texte)}
+section{margin:34px 0}
+section>.etiquette{display:block;margin:0 4px 10px}
+.carte{padding:20px;margin-bottom:12px}
+.carte h2{font-size:23px;letter-spacing:-.02em;line-height:1.15}
+.carte>p{margin:10px 0 0;line-height:1.55;color:var(--texte-2)}
+.franc{border-left:2px solid var(--pan-2);padding:14px 16px;margin:14px 0 0;color:var(--texte-2);font-size:16px;line-height:1.5;border-radius:0 var(--r-m) var(--r-m) 0;background:rgba(40,95,255,.06)}
+.spec{padding:14px 0;border-top:1px solid var(--filet)}
+.spec:first-of-type{border-top:0;padding-top:4px}
+.num{font:600 13px var(--police-mono);color:var(--pan-3);letter-spacing:.06em}
+.spec h3{font-size:19px;margin-top:4px;letter-spacing:-.01em;line-height:1.2}
+.spec p{margin:6px 0 0;font-size:16px;line-height:1.5;color:var(--texte-2)}
+.chiffre{display:flex;gap:14px;align-items:baseline;padding:12px 0;border-top:1px solid var(--filet)}
+.chiffre:first-of-type{border-top:0;padding-top:2px}
+.chiffre .gros{font-family:var(--large);font-size:30px;letter-spacing:-.03em;color:var(--pan-3);min-width:96px;line-height:1}
+.chiffre p{margin:0;font-size:16px;line-height:1.45;color:var(--texte-2)}
+.tag{display:inline-block;font:600 12px var(--police-mono);letter-spacing:.08em;text-transform:uppercase;padding:3px 8px;border-radius:var(--r-pilule);margin-left:6px;vertical-align:middle}
+.tag.v{background:rgba(40,95,255,.14);color:var(--pan-3)}
+.tag.m{background:rgba(255,255,255,.7);border:1px solid var(--filet);color:var(--texte-3)}
+.beat{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:14px 0;border-top:1px solid var(--filet)}
+.beat:first-of-type{border-top:0;padding-top:4px;margin-top:10px}
+.beat .t{font:600 13px var(--police-mono);color:var(--pan-3);letter-spacing:.04em;line-height:1.4;padding-top:3px}
+.beat h3{font-size:18px;letter-spacing:-.01em;line-height:1.2;margin:0}
+.beat p{margin:5px 0 0;font-size:16px;line-height:1.5;color:var(--texte-2)}
+.frise{list-style:none;margin:8px 0 0;padding:0}
+.frise li{display:grid;grid-template-columns:72px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--filet);font-size:16px;line-height:1.45;color:var(--texte-2)}
+.frise li:first-child{border-top:0}
+.frise b{font-family:var(--large);color:var(--pan-3);font-size:18px}
+.reco{display:inline-block;font:600 12px var(--police-mono);letter-spacing:.08em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--bleu-chat),var(--bleu-renard));padding:4px 10px;border-radius:var(--r-pilule);margin:0 0 6px}
+.options{margin:8px 0 0;padding-left:0;list-style:none}
+.options li{padding:6px 0 6px 14px;border-left:2px solid var(--filet);margin:4px 0;font-size:16px;line-height:1.45;color:var(--texte-2)}
+.options li:first-child{border-left-color:var(--pan-2);color:var(--texte);font-weight:600}
+.puces{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 0}
+.puce{background:rgba(255,255,255,.7);border:1px solid var(--filet);color:var(--texte-2);font:500 16px var(--police);padding:10px 16px;border-radius:var(--r-pilule);cursor:pointer;transition:all .3s var(--ressort);-webkit-tap-highlight-color:transparent}
+.puce.on{color:#fff;border-color:transparent;background:linear-gradient(135deg,var(--bleu-chat),var(--bleu-renard));box-shadow:0 6px 16px -6px rgba(36,54,184,.6);transform:scale(1.04)}
+.puce.faux{opacity:.4;transform:scale(.96)}
+.bilan{margin-top:14px;font-size:16px;color:var(--texte-2);line-height:1.5;min-height:22px}
+.pied{font-size:15px;color:var(--texte-3);line-height:1.5;margin:40px 4px 0}
+.pied a{color:var(--pan-3)}
+</style>
+</head>
 <body class="aura">
 <div class="auras" aria-hidden="true"><i></i><i></i><i></i></div>
 <div class="lis-progres" aria-hidden="true"></div>
 <main>
+  <header class="hero">
+    <span class="orbe"></span>
+    <span class="etiquette">Uniqlo · vidéo 1 de novembre · post le 18/11</span>
+    <h1>HEATTECH&nbsp;: le dossier pour décider</h1>
+    <p>Un reel de <b>40 à 50 secondes</b>, une seule idée&nbsp;: <b>pourquoi c'est si peu cher</b>. Les faits sont triés, les pièges marqués. Le script, c'est toi qui l'écris.</p>
+  </header>
 
-<section class="tete">
-<div class="etiquette">Uniqlo · HEATTECH · dossier de décision · 13/11/2026</div>
-<div class="verre cadre">
-<h1>HEATTECH&nbsp;: le dossier pour décider</h1>
-<p>51 faits sourcés, 4 façons de raconter, 6 décisions à toi. Rien n'est écrit à ta place&nbsp;: tu écris, ceci te donne la matière, les chiffres et le squelette.</p>
-<p class="leg"><span class="src v">V · F-xx</span> vérifié&nbsp;: brevet, comptes, étude, presse indépendante ou 2 sources. <span class="src m">M · F-xx</span> dit par la marque (Uniqlo, Fast Retailing, Toray)&nbsp;: à dire «&nbsp;selon Uniqlo&nbsp;». Chaque F-xx renvoie à <code>sources.md</code>.</p>
-</div>
-<div class="tuiles">
-<div class="verre"><b class="gros">2003</b><span class="t">première vente&nbsp;: homme, une seule fonction</span><span class="src v" title="vérifié">V · F-A08</span></div>
-<div class="verre"><b class="gros"><span class="cnt" data-to="28" data-suf=" M" data-d="1400">28&nbsp;M</span></b><span class="t">pièces en 2008, plus que le fleece (26&nbsp;M en 2000)</span><span class="src v" title="vérifié">V · F-A11</span></div>
-<div class="verre"><b class="gros">~1&nbsp;Md</b><span class="t">pièces cumulées en 2017, selon Uniqlo</span><span class="src m" title="dit par la marque">M · F-B06</span></div>
-<div class="verre"><b class="gros"><span class="cnt" data-to="14.9" data-dec="2" data-suf=" €" data-d="1400">14,90&nbsp;€</span></b><span class="t">le T-shirt classique, uniqlo.com/fr le 13/11</span><span class="src m" title="dit par la marque">M · F-C09</span></div>
-</div>
-<div class="verre reco">
-<span class="mono">La reco en 3 lignes</span>
-<ol>
-<li><b>1 reel de 40-50&nbsp;s</b> et le reste en recyclage (légende, commentaire épinglé, carrousel, page Diggeur).</li>
-<li><b>Colonne&nbsp;: le prix.</b> Ton fil rouge valeur/prix. Le mécanisme tient en 1 beat, la limite devient un conseil d'usage.</li>
-<li><b>Tournage demain (14/11).</b> Si le script n'est pas écrit, la structure Prix (section 10) suffit. Les décisions D1 à D6 sont en section 12.</li>
-</ol>
-</div>
-</section>
+  <section>
+    <span class="etiquette">L'essentiel · 5 cartes</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="spec"><span class="num">01 · LA DATE</span><h3>Post le mardi 18 novembre</h3>
+        <p>Donnée à Uniqlo le 13/11 sur WhatsApp («&nbsp;une publication le 18 et le 30&nbsp;»). Aperçu et légende à faire valider avant, via Alexis. Pas de preview envoyée pour l'instant.</p></div>
+      <div class="spec"><span class="num">02 · LE FORMAT</span><h3>Un reel, fond vert, une idée</h3>
+        <p>Brief du 26/10&nbsp;: 30 à 45 s, vécu perso, une limite honnête, fin sur ta sélection Diggeur. Le contrat prévoit 1 contenu HEATTECH en novembre, pas trois.</p></div>
+      <div class="spec"><span class="num">03 · LA COLONNE</span><h3>Le prix, pas la transpiration</h3>
+        <p>Le 26/10 l'idée était «&nbsp;ta transpiration te chauffe&nbsp;». Changé&nbsp;: c'est l'angle le plus risqué face à un annonceur, et J23 l'explique déjà dans ta série. Le prix est ton fil rouge.</p></div>
+      <div class="spec"><span class="num">04 · LA RÈGLE DE VOIX</span><h3>«&nbsp;Selon Uniqlo&nbsp;», jamais «&nbsp;prouvé&nbsp;»</h3>
+        <p>Chaque fait porte une étiquette&nbsp;: <span class="tag v">V</span> vérifié dans un brevet ou des comptes, <span class="tag m">M</span> dit par la marque. Un fait M se dit à voix haute avec sa source.</p></div>
+      <div class="spec"><span class="num">05 · LE BUDGET DE MOTS</span><h3>45 s ≈ 250 mots ≈ 4 faits</h3>
+        <p>À ton débit de 5,5 mots par seconde. Pas plus de 4 ou 5 faits chiffrés, une phrase chacun. Le reste va en légende ou en commentaire épinglé.</p></div>
+      </div>
+    </div>
+  </section>
 
-<section class="bloc g" id="s1">
-<div class="etiquette">01 · Le chiffre d'ouverture</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>700 000&nbsp;km de tissu</h2>
-<p>Selon Uniqlo, un milliard de pièces HEATTECH (cumul 2017), c'est environ 700 000&nbsp;km de tissu&nbsp;: <b>17,5 fois le tour de la Terre</b>. <span class="src m" title="dit par la marque">M · F-B07 · B06</span></p>
-<p>Contrôle&nbsp;: 700 000 ÷ 40 075&nbsp;km (l'équateur) = 17,5. Le calcul tombe juste.</p>
-<span class="nb"><b>À savoir</b> · chiffre de 2017, il inclut une projection de fin de saison. Le 1,5 milliard de 2023 vient de la presse, pas d'Uniqlo.</span>
-</div>
-<div class="verre visuel">
-<svg class="orbite" viewBox="0 0 260 260" role="img" aria-label="Spirale de 17,5 tours autour de la Terre">
-<defs><radialGradient id="terre" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#000"/><stop offset=".16" stop-color="#0a1a66"/><stop offset=".5" stop-color="#0041FF"/><stop offset=".75" stop-color="#285FFF"/><stop offset="1" stop-color="#8AA8FF"/></radialGradient></defs>
-<path class="rail" d="M130.0 103.0 L132.4 103.0 L134.7 103.3 L137.0 103.7 L139.3 104.3 L141.6 105.2 L143.7 106.2 L145.8 107.5 L147.7 108.9 L149.6 110.4 L151.3 112.2 L152.8 114.0 L154.2 116.0 L155.4 118.2 L156.4 120.4 L157.2 122.7 L157.8 125.1 L158.2 127.5 L158.4 130.0 L158.3 132.5 L158.1 135.0 L157.6 137.4 L156.9 139.8 L156.0 142.1 L154.9 144.4 L153.7 146.6 L152.2 148.6 L150.5 150.5 L148.7 152.3 L146.7 153.9 L144.6 155.3 L142.4 156.6 L140.1 157.6 L137.6 158.5 L135.1 159.1 L132.6 159.5 L130.0 159.7 L127.4 159.7 L124.8 159.4 L122.3 158.9 L119.7 158.2 L117.3 157.3 L114.9 156.1 L112.7 154.8 L110.5 153.2 L108.5 151.5 L106.7 149.6 L105.0 147.5 L103.5 145.3 L102.2 143.0 L101.1 140.5 L100.2 138.0 L99.5 135.4 L99.1 132.7 L98.9 130.0 L99.0 127.3 L99.3 124.6 L99.8 121.9 L100.5 119.3 L101.5 116.7 L102.7 114.2 L104.1 111.9 L105.7 109.6 L107.5 107.5 L109.5 105.6 L111.7 103.9 L114.0 102.3 L116.5 101.0 L119.0 99.8 L121.7 98.9 L124.4 98.2 L127.2 97.8 L130.0 97.6 L132.8 97.6 L135.7 97.9 L138.5 98.5 L141.2 99.2 L143.9 100.3 L146.4 101.5 L148.9 103.0 L151.2 104.7 L153.4 106.6 L155.4 108.7 L157.2 110.9 L158.9 113.3 L160.3 115.9 L161.5 118.5 L162.4 121.3 L163.1 124.2 L163.6 127.1 L163.8 130.0 L163.7 133.0 L163.4 135.9 L162.9 138.8 L162.0 141.7 L161.0 144.4 L159.7 147.1 L158.1 149.7 L156.3 152.1 L154.4 154.4 L152.2 156.5 L149.9 158.4 L147.3 160.0 L144.7 161.5 L141.9 162.7 L139.0 163.7 L136.1 164.5 L133.1 164.9 L130.0 165.1 L126.9 165.1 L123.9 164.8 L120.8 164.2 L117.9 163.3 L115.0 162.2 L112.2 160.8 L109.5 159.2 L107.0 157.4 L104.7 155.3 L102.5 153.1 L100.5 150.6 L98.8 148.0 L97.3 145.3 L96.0 142.4 L95.0 139.4 L94.2 136.3 L93.7 133.2 L93.5 130.0 L93.6 126.8 L93.9 123.6 L94.5 120.5 L95.4 117.4 L96.6 114.4 L98.0 111.5 L99.7 108.8 L101.6 106.2 L103.7 103.7 L106.1 101.5 L108.6 99.4 L111.3 97.6 L114.2 96.0 L117.2 94.7 L120.3 93.7 L123.5 92.9 L126.7 92.4 L130.0 92.1 L133.3 92.2 L136.6 92.6 L139.9 93.2 L143.1 94.1 L146.2 95.3 L149.2 96.8 L152.0 98.6 L154.7 100.5 L157.2 102.8 L159.6 105.2 L161.7 107.8 L163.6 110.6 L165.2 113.6 L166.6 116.7 L167.7 119.9 L168.5 123.2 L169.0 126.6 L169.2 130.0 L169.1 133.4 L168.8 136.8 L168.1 140.2 L167.1 143.5 L165.9 146.7 L164.4 149.8 L162.6 152.8 L160.5 155.6 L158.2 158.2 L155.7 160.6 L153.0 162.8 L150.1 164.7 L147.0 166.4 L143.8 167.8 L140.4 169.0 L137.0 169.8 L133.5 170.3 L130.0 170.6 L126.5 170.5 L122.9 170.1 L119.4 169.4 L116.0 168.4 L112.7 167.1 L109.5 165.5 L106.4 163.7 L103.5 161.5 L100.8 159.2 L98.3 156.6 L96.1 153.7 L94.1 150.7 L92.3 147.6 L90.9 144.2 L89.7 140.8 L88.9 137.3 L88.3 133.6 L88.1 130.0 L88.2 126.3 L88.6 122.7 L89.3 119.1 L90.3 115.6 L91.7 112.1 L93.3 108.8 L95.2 105.6 L97.4 102.7 L99.9 99.9 L102.6 97.3 L105.5 95.0 L108.6 92.9 L111.9 91.1 L115.3 89.6 L118.9 88.4 L122.5 87.5 L126.2 87.0 L130.0 86.7 L133.8 86.8 L137.5 87.2 L141.3 88.0 L144.9 89.0 L148.5 90.4 L151.9 92.1 L155.1 94.1 L158.2 96.4 L161.1 98.9 L163.7 101.7 L166.1 104.7 L168.3 107.9 L170.1 111.3 L171.7 114.8 L172.9 118.5 L173.8 122.3 L174.4 126.1 L174.6 130.0 L174.5 133.9 L174.1 137.8 L173.3 141.6 L172.2 145.4 L170.8 149.0 L169.1 152.5 L167.0 155.9 L164.7 159.1 L162.0 162.0 L159.2 164.8 L156.1 167.2 L152.8 169.4 L149.3 171.3 L145.6 172.9 L141.8 174.2 L138.0 175.2 L134.0 175.7 L130.0 176.0 L126.0 175.9 L122.0 175.4 L118.0 174.7 L114.2 173.5 L110.4 172.0 L106.8 170.2 L103.3 168.1 L100.0 165.7 L97.0 163.0 L94.2 160.1 L91.6 156.9 L89.4 153.5 L87.4 149.9 L85.8 146.1 L84.5 142.2 L83.5 138.2 L82.9 134.1 L82.6 130.0 L82.7 125.9 L83.2 121.8 L84.0 117.7 L85.2 113.7 L86.7 109.8 L88.6 106.1 L90.8 102.5 L93.3 99.2 L96.0 96.0 L99.1 93.1 L102.4 90.5 L105.9 88.2 L109.6 86.2 L113.4 84.5 L117.5 83.2 L121.6 82.2 L125.8 81.5 L130.0 81.3 L134.3 81.4 L138.5 81.9 L142.7 82.7 L146.8 83.9 L150.7 85.5 L154.6 87.4 L158.2 89.7 L161.7 92.2 L164.9 95.1 L167.9 98.2 L170.6 101.6 L173.0 105.2 L175.0 109.0 L176.8 113.0 L178.1 117.1 L179.2 121.3 L179.8 125.6 L180.1 130.0 L180.0 134.4 L179.5 138.7 L178.6 143.0 L177.3 147.2 L175.7 151.3 L173.8 155.3 L171.4 159.0 L168.8 162.6 L165.9 165.9 L162.7 168.9 L159.2 171.7 L155.5 174.1 L151.6 176.3 L147.5 178.0 L143.3 179.5 L138.9 180.5 L134.5 181.2 L130.0 181.4 L125.5 181.3 L121.0 180.8 L116.6 179.9 L112.3 178.6 L108.1 177.0 L104.1 174.9 L100.2 172.6 L96.6 169.9 L93.2 166.8 L90.0 163.5 L87.2 160.0 L84.7 156.2 L82.5 152.1 L80.7 148.0 L79.2 143.6 L78.2 139.1 L77.5 134.6 L77.2 130.0 L77.3 125.4 L77.9 120.8 L78.8 116.3 L80.1 111.8 L81.8 107.5 L83.9 103.4 L86.3 99.4 L89.1 95.7 L92.2 92.2 L95.6 89.0 L99.2 86.1 L103.2 83.5 L107.3 81.3 L111.6 79.4 L116.0 77.9 L120.6 76.8 L125.3 76.1 L130.0 75.9 L134.7 76.0 L139.4 76.5 L144.1 77.5 L148.6 78.8 L153.0 80.6 L157.3 82.7 L161.4 85.2 L165.2 88.1 L168.8 91.2 L172.1 94.7 L175.0 98.5 L177.7 102.5 L180.0 106.7 L181.9 111.1 L183.4 115.7 L184.5 120.4 L185.2 125.2 L185.5 130.0 L185.4 134.8 L184.8 139.7 L183.8 144.4 L182.4 149.1 L180.6 153.6 L178.5 158.0 L175.9 162.1 L173.0 166.1 L169.7 169.7 L166.2 173.1 L162.3 176.1 L158.2 178.8 L153.9 181.2 L149.3 183.1 L144.7 184.7 L139.8 185.8 L134.9 186.6 L130.0 186.9 L125.0 186.7 L120.1 186.1 L115.2 185.1 L110.5 183.7 L105.8 181.9 L101.3 179.6 L97.1 177.0 L93.1 174.0 L89.3 170.7 L85.9 167.0 L82.7 163.1 L80.0 158.9 L77.6 154.4 L75.6 149.8 L74.0 145.0 L72.8 140.1 L72.1 135.1 L71.8 130.0 L71.9 124.9 L72.5 119.9 L73.6 114.9 L75.0 110.0 L76.9 105.2 L79.2 100.7 L81.9 96.3 L84.9 92.2 L88.4 88.4 L92.1 84.8 L96.1 81.6 L100.4 78.8 L105.0 76.4 L109.7 74.3 L114.6 72.7 L119.7 71.5 L124.8 70.7 L130.0 70.4 L135.2 70.6 L140.4 71.2 L145.5 72.2 L150.5 73.7 L155.3 75.7 L160.0 78.0 L164.5 80.8 L168.7 83.9 L172.6 87.4 L176.2 91.2 L179.5 95.4 L182.4 99.8 L184.9 104.4 L187.0 109.3 L188.6 114.3 L189.9 119.4 L190.6 124.7 L190.9 130.0 L190.8 135.3 L190.2 140.6 L189.1 145.8 L187.5 150.9 L185.6 155.9 L183.2 160.7 L180.3 165.2 L177.1 169.6 L173.6 173.6 L169.6 177.3 L165.4 180.6 L160.9 183.5 L156.2 186.1 L151.2 188.2 L146.1 189.9 L140.8 191.2 L135.4 192.0 L130.0 192.3 L124.6 192.1 L119.2 191.5 L113.8 190.4 L108.6 188.8 L103.5 186.8 L98.6 184.3 L94.0 181.5 L89.6 178.2 L85.5 174.5 L81.7 170.5 L78.3 166.2 L75.3 161.6 L72.7 156.7 L70.5 151.7 L68.7 146.4 L67.5 141.0 L66.7 135.5 L66.4 130.0 L66.5 124.4 L67.2 118.9 L68.3 113.5 L69.9 108.1 L72.0 102.9 L74.5 98.0 L77.4 93.2 L80.8 88.7 L84.5 84.5 L88.6 80.7 L93.0 77.2 L97.7 74.1 L102.7 71.4 L107.9 69.2 L113.2 67.4 L118.7 66.1 L124.3 65.3 L130.0 65.0 L135.7 65.2 L141.3 65.8 L146.9 67.0 L152.3 68.6 L157.6 70.7 L162.7 73.3 L167.6 76.3 L172.2 79.7 L176.4 83.6 L180.4 87.7 L183.9 92.2 L187.1 97.0 L189.8 102.1 L192.1 107.4 L193.9 112.9 L195.2 118.5 L196.0 124.2 L196.4 130.0 L196.2 135.8 L195.5 141.5 L194.3 147.2 L192.6 152.8 L190.5 158.2 L187.9 163.4 L184.8 168.4 L181.3 173.0 L177.4 177.4 L173.1 181.4 L168.5 185.0 L163.6 188.3 L158.5 191.0 L153.1 193.3 L147.5 195.2 L141.7 196.5 L135.9 197.4 L130.0 197.7 L124.1 197.5 L118.2 196.8 L112.4 195.6 L106.7 193.9 L101.2 191.7 L95.9 189.0 L90.9 185.9 L86.1 182.3 L81.6 178.4 L77.6 174.0 L73.9 169.3 L70.6 164.3 L67.7 159.0 L65.4 153.5 L63.5 147.8 L62.1 142.0 L61.3 136.0 L60.9 130.0 L61.1 124.0 L61.8 118.0 L63.1 112.1 L64.8 106.3 L67.1 100.6 L69.8 95.2 L73.0 90.1 L76.6 85.2 L80.7 80.7 L85.1 76.5 L89.9 72.7 L95.0 69.4 L100.4 66.5 L106.0 64.1 L111.8 62.2 L117.8 60.8 L123.9 59.9 L130.0 59.6 L136.1 59.8 L142.3 60.5 L148.3 61.8 L154.2 63.5 L159.9 65.8 L165.4 68.6 L170.7 71.9 L175.7 75.6 L180.3 79.7 L184.5 84.2 L188.4 89.1 L191.8 94.3 L194.7 99.8 L197.2 105.6 L199.1 111.5 L200.5 117.6 L201.4 123.8 L201.8 130.0 L201.6 136.3 L200.8 142.5 L199.6 148.6 L197.7 154.7 L195.4 160.5 L192.6 166.1 L189.2 171.5 L185.5 176.5 L181.2 181.2 L176.6 185.6 L171.7 189.5 L166.3 193.0 L160.8 195.9 L154.9 198.4 L148.9 200.4 L142.7 201.9 L136.4 202.8 L130.0 203.1 L123.6 202.9 L117.3 202.2 L111.0 200.9 L104.9 199.0 L98.9 196.6 L93.2 193.7 L87.7 190.3 L82.6 186.5 L77.8 182.2 L73.4 177.5 L69.4 172.4 L65.9 167.0 L62.8 161.3 L60.3 155.4 L58.3 149.2 L56.8 142.9 L55.9 136.5 L55.5 130.0 L55.7 123.5 L56.5 117.0 L57.8 110.7 L59.7 104.4 L62.1 98.4 L65.1 92.5 L68.5 87.0 L72.5 81.7 L76.8 76.8 L81.6 72.4 L86.8 68.3 L92.3 64.7 L98.1 61.6 L104.2 59.0 L110.4 56.9 L116.9 55.4 L123.4 54.5 L130.0 54.1 L136.6 54.4 L143.2 55.1 L149.7 56.5 L156.0 58.4 L162.2 60.9 L168.2 63.9 L173.8 67.4 L179.1 71.4 L184.1 75.9 L188.7 80.8 L192.8 86.0 L196.5 91.6 L199.6 97.5 L202.3 103.7 L204.4 110.1 L205.9 116.6 L206.8 123.3 L207.2 130.0 L207.0 136.7 L206.2 143.4 L204.8 150.0 L202.8 156.5 L200.3 162.8 L197.3 168.8 L193.7 174.6 L189.6 180.0 L185.1 185.1 L180.1 189.7 L174.8 193.9 L169.1 197.7 L163.0 200.9 L156.8 203.5 L150.3 205.7 L143.6 207.2 L136.8 208.2 L130.0 208.6 L123.1 208.3 L116.3 207.5 L109.6 206.1 L103.0 204.1 L96.6 201.6 L90.5 198.4 L84.6 194.8 L79.1 190.7 L74.0 186.0 L69.2 181.0 L65.0 175.5 L61.2 169.7 L57.9 163.6 L55.2 157.2 L53.0 150.6 L51.4 143.9 L50.5 137.0 L50.1 130.0 L50.3 123.0 L51.1 116.1 L52.6 109.3 L54.6 102.6 L57.2 96.1 L60.4 89.8 L64.1 83.9 L68.3 78.2 L73.0 73.0 L78.1 68.2 L83.7 63.8 L89.6 60.0 L95.8 56.7 L102.3 53.9 L109.0 51.7 L115.9 50.1 L122.9 49.1 L130.0 48.7 L137.1 48.9 L144.1 49.8 L151.1 51.3 L157.9 53.3 L164.5 56.0 L170.9 59.2 L176.9 63.0 L182.6 67.3 L188.0 72.0 L192.8 77.3 L197.3 82.9 L201.2 88.9 L204.6 95.2 L207.4 101.8 L209.6 108.7 L211.2 115.7 L212.3 122.8 L212.6 130.0 L212.4 137.2 L211.5 144.4 L210.0 151.4 L207.9 158.4 L205.2 165.1 L202.0 171.5 L198.1 177.7 L193.8 183.5 L188.9 188.9 L183.6 193.9 L177.9 198.4 L171.8 202.4 L165.3 205.8 L158.6 208.7 L151.7 210.9 L144.6 212.6 L137.3 213.6 L130.0 214.0 L122.7 213.8 L115.4 212.9 L108.2 211.4 L101.2 209.2 L94.3 206.5 L87.8 203.1 L81.5 199.2 L75.6 194.8 L70.1 189.9 L65.1 184.5 L60.5 178.7 L56.5 172.5 L53.0 165.9 L50.1 159.1 L47.8 152.0 L46.1 144.8 L45.0 137.4 L44.6 130.0 L44.9 122.6 L45.8 115.2 L47.3 107.8 L49.5 100.7 L52.3 93.8 L55.7 87.1 L59.6 80.7 L64.2 74.7 L69.2 69.2 L74.6 64.0 L80.6 59.4 L86.9 55.3 L93.5 51.8 L100.4 48.8 L107.6 46.5 L115.0 44.8 L122.4 43.7 L130.0 43.3 L137.6 43.5 L145.1 44.5 L152.5 46.0 L159.8 48.2 L166.8 51.1 L173.6 54.5 L180.0 58.5 L186.1 63.1 L191.8 68.2 L197.0 73.8 L201.7 79.8 L205.9 86.2 L209.5 92.9 L212.5 100.0 L214.9 107.3 L216.6 114.7 L217.7 122.3 L218.1 130.0 L217.8 137.7 L216.9 145.3 L215.3 152.9 L213.0 160.2 L210.2 167.4 L206.7 174.3 L202.6 180.8 L197.9 187.0 L192.8 192.8 L187.1 198.0 L181.0 202.8 L174.5 207.1 L167.6 210.7 L160.5 213.8 L153.1 216.2 L145.5 217.9 L137.8 219.0 L130.0 219.4 L122.2 219.2 L114.4 218.2 L106.8 216.6 L99.3 214.3 L92.0 211.4 L85.1 207.8 L78.4 203.7 L72.1 199.0 L66.3 193.7 L60.9 188.0 L56.1 181.8 L51.8 175.2 L48.1 168.2 L45.0 160.9 L42.5 153.4 L40.7 145.7 L39.6 137.9 L39.2 130.0 L39.5 122.1 L40.4 114.2 L42.1 106.4 L44.4 98.8 L47.4 91.5 L51.0 84.4 L55.2 77.6 L60.0 71.3 L65.3 65.3 L71.2 59.9 L77.5 55.0 L84.2 50.6 L91.2 46.8 L98.6 43.7 L106.2 41.2 L114.0 39.4 L122.0 38.3 L130.0 37.9 L138.0 38.1 L146.0 39.1 L153.9 40.8 L161.6 43.1 L169.1 46.1 L176.3 49.8 L183.2 54.1 L189.6 59.0 L195.6 64.4 L201.2 70.3 L206.2 76.7 L210.6 83.5 L214.4 90.6 L217.6 98.1 L220.1 105.9 L221.9 113.8 L223.1 121.9 L223.5 130.0 L223.2 138.2 L222.2 146.3 L220.5 154.3 L218.1 162.1 L215.1 169.7 L211.4 177.0 L207.0 183.9 L202.1 190.5 L196.6 196.6 L190.6 202.2 L184.1 207.3 L177.2 211.8 L169.9 215.6 L162.3 218.9 L154.5 221.4 L146.4 223.3 L138.3 224.4 L130.0 224.9 L121.7 224.6 L113.5 223.6 L105.4 221.8 L97.5 219.4 L89.8 216.3 L82.3 212.5 L75.3 208.1 L68.6 203.1 L62.4 197.6 L56.8 191.5 L51.6 184.9 L47.1 177.9 L43.1 170.5 L39.9 162.8 L37.3 154.8 L35.4 146.7 L34.2 138.4 L33.8 130.0 L34.1 121.6 L35.1 113.3 L36.8 105.0 L39.3 97.0 L42.5 89.2 L46.3 81.7 L50.8 74.5 L55.8 67.8 L61.5 61.5 L67.7 55.7 L74.3 50.5 L81.4 45.9 L88.9 41.9 L96.7 38.6 L104.8 36.0 L113.1 34.1 L121.5 32.9 L130.0 32.4 L138.5 32.7 L147.0 33.8 L155.3 35.5 L163.5 38.0 L171.4 41.2 L179.0 45.1 L186.3 49.6 L193.1 54.8 L199.5 60.5 L205.3 66.8 L210.6 73.6 L215.3 80.8 L219.3 88.4 L222.7 96.3 L225.3 104.5 L227.3 112.8 L228.5 121.4 L228.9 130.0 L228.6 138.6 L227.6 147.2 L225.8 155.7 L223.2 163.9 L220.0 172.0 L216.1 179.7 L211.5 187.0 L206.2 194.0 L200.4 200.4 L194.1 206.4 L187.2 211.7 L179.9 216.5 L172.2 220.5 L164.2 224.0 L155.9 226.7 L147.4 228.6 L138.7 229.8 L130.0 230.3 L121.3 230.0 L112.6 228.9 L104.0 227.1 L95.6 224.5 L87.5 221.2 L79.6 217.2 L72.2 212.6 L65.1 207.3 L58.6 201.4 L52.6 194.9 L47.2 188.0 L42.4 180.6 L38.2 172.8 L34.8 164.7 L32.0 156.2 L30.0 147.6 L28.8 138.9 L28.4 130.0 L28.7 121.1 L29.8 112.3 L31.6 103.6 L34.2 95.1 L37.5 86.9 L41.6 79.0 L46.3 71.4 L51.7 64.3 L57.6 57.6 L64.2 51.6 L71.2 46.1 L78.7 41.2 L86.6 37.0 L94.9 33.5 L103.4 30.7 L112.1 28.7 L121.0 27.5 L130.0 27.0 L139.0 27.3 L147.9 28.4 L156.7 30.3 L165.3 32.9 L173.7 36.3 L181.7 40.4 L189.4 45.2 L196.6 50.6 L203.3 56.7 L209.5 63.3 L215.1 70.4 L220.0 78.0 L224.2 86.1 L227.8 94.4 L230.6 103.0 L232.6 111.9 L233.9 120.9 L234.4 130.0 L234.0 139.1 L232.9 148.1 L231.0 157.1 L228.3 165.8 L224.9 174.3 L220.8 182.4 L215.9 190.2 L210.4 197.5 L204.3 204.3 L197.6 210.5 L190.3 216.2 L182.6 221.2 L174.5 225.5 L166.1 229.1 L157.3 231.9 L148.3 234.0 L139.2 235.2 L130.0 235.7 L120.8 235.4 L111.6 234.3 L102.6 232.3 L93.7 229.6 L85.2 226.2 L76.9 221.9 L69.1 217.0 L61.7 211.4 L54.8 205.2 L48.4 198.4 L42.7 191.1 L37.7 183.3 L33.3 175.1 L29.7 166.5 L26.8 157.7 L24.7 148.6 L23.4 139.3 L22.9 130.0 L23.3 120.7 L24.4 111.4 L26.4 102.2 L29.1 93.3 L32.6 84.6 L36.9 76.2 L41.9 68.3 L47.5 60.8 L53.8 53.8 L60.7 47.4 L68.1 41.6 L76.0 36.5 L84.3 32.1 L93.0 28.4 L102.0 25.5 L111.2 23.4 L120.6 22.1 L130.0 21.6 L139.5 21.9 L148.9 23.1 L158.1 25.0 L167.2 27.8 L176.0 31.4 L184.4 35.7 L192.5 40.7 L200.1 46.5 L207.2 52.8 L213.6 59.8 L219.5 67.3 L224.7 75.3 L229.2 83.8 L232.9 92.6 L235.8 101.6 L238.0 111.0 L239.3 120.4 L239.8 130.0 L239.4 139.6 L238.3 149.1 L236.3 158.5 L233.4 167.7 L229.8 176.6 L225.5 185.1 L220.4 193.3 L214.6 201.0 L208.1 208.1 L201.1 214.7 L193.4 220.6 L185.3 225.9 L176.8 230.4 L167.9 234.2 L158.7 237.1 L149.3 239.3 L139.7 240.6 L130.0 241.1 L120.3 240.8 L110.7 239.6 L101.2 237.6 L91.9 234.7 L82.9 231.1 L74.2 226.6 L65.9 221.5 L58.2 215.6 L50.9 209.1 L44.3 201.9 L38.3 194.2 L33.0 186.0 L28.4 177.4 L24.6 168.4 L21.6 159.1 L19.4 149.5 L18.0 139.8 L17.5 130.0 L17.9 120.2 L19.1 110.4 L21.1 100.8 L24.0 91.4 L27.7 82.3 L32.2 73.5 L37.4 65.2 L43.4 57.3 L50.0 50.0 L57.2 43.2 L65.0 37.2 L73.3 31.8 L82.0 27.2 L91.2 23.3 L100.6 20.2 L110.3 18.0 L120.1 16.7 L130.0 16.1 L139.9 16.5 L149.8 17.7 L159.5 19.8 L169.0 22.7 L178.3 26.5 L187.2 31.0 L195.6 36.3 L203.6 42.3 L211.0 49.0 L217.8 56.3 L223.9 64.2 L229.4 72.6 L234.1 81.5 L238.0 90.7 L241.1 100.2 L243.3 110.0 L244.7 120.0 L245.2 130.0 L244.9 140.0 L243.6 150.0 L241.5 159.9 L238.5 169.5 L234.8 178.9 L230.2 187.8 L224.8 196.4 L218.7 204.4 L211.9 211.9 L204.5 218.8 L196.6 225.1 L188.1 230.6 L179.1 235.3 L169.8 239.3 L160.1 242.4 L150.2 244.7 L140.2 246.1 L130.0 246.6 L119.8 246.2 L109.7 244.9 L99.8 242.8 L90.0 239.8 L80.6 236.0 L71.5 231.3 L62.8 225.9 L54.7 219.8 L47.1 212.9 L40.1 205.4 L33.8 197.3 L28.3 188.7 L23.5 179.7 L19.5 170.2 L16.3 160.5 L14.0 150.5 L12.6 140.3 L12.1 130.0 L12.4 119.7 L13.7 109.5 L15.9 99.4 L18.9 89.6 L22.8 80.0 L27.5 70.8 L33.0 62.1 L39.2 53.8 L46.1 46.1 L53.7 39.1 L61.9 32.7 L70.6 27.1 L79.7 22.2 L89.3 18.2 L99.2 15.0 L109.3 12.7 L119.6 11.2 L130.0 10.7 L140.4 11.1 L150.7 12.4 L160.9 14.6 L170.9 17.6 L180.6 21.5 L189.9 26.3 L198.7 31.9 L207.1 38.2 L214.8 45.2 L222.0 52.8 L228.4 61.1 L234.1 69.9 L239.0 79.2 L243.1 88.8 L246.3 98.8 L248.7 109.1 L250.1 119.5 L250.6 130.0 L250.3 140.5 L249.0 151.0 L246.8 161.3 L243.7 171.4 L239.7 181.1 L234.9 190.5 L229.3 199.5 L222.9 207.9 L215.8 215.8 L208.0 223.0 L199.7 229.5 L190.8 235.3 L181.4 240.2 L171.6 244.4 L161.5 247.6 L151.2 250.0 L140.6 251.5 L130.0 252.0"/>
-<path class="spirale" pathLength="1" d="M130.0 103.0 L132.4 103.0 L134.7 103.3 L137.0 103.7 L139.3 104.3 L141.6 105.2 L143.7 106.2 L145.8 107.5 L147.7 108.9 L149.6 110.4 L151.3 112.2 L152.8 114.0 L154.2 116.0 L155.4 118.2 L156.4 120.4 L157.2 122.7 L157.8 125.1 L158.2 127.5 L158.4 130.0 L158.3 132.5 L158.1 135.0 L157.6 137.4 L156.9 139.8 L156.0 142.1 L154.9 144.4 L153.7 146.6 L152.2 148.6 L150.5 150.5 L148.7 152.3 L146.7 153.9 L144.6 155.3 L142.4 156.6 L140.1 157.6 L137.6 158.5 L135.1 159.1 L132.6 159.5 L130.0 159.7 L127.4 159.7 L124.8 159.4 L122.3 158.9 L119.7 158.2 L117.3 157.3 L114.9 156.1 L112.7 154.8 L110.5 153.2 L108.5 151.5 L106.7 149.6 L105.0 147.5 L103.5 145.3 L102.2 143.0 L101.1 140.5 L100.2 138.0 L99.5 135.4 L99.1 132.7 L98.9 130.0 L99.0 127.3 L99.3 124.6 L99.8 121.9 L100.5 119.3 L101.5 116.7 L102.7 114.2 L104.1 111.9 L105.7 109.6 L107.5 107.5 L109.5 105.6 L111.7 103.9 L114.0 102.3 L116.5 101.0 L119.0 99.8 L121.7 98.9 L124.4 98.2 L127.2 97.8 L130.0 97.6 L132.8 97.6 L135.7 97.9 L138.5 98.5 L141.2 99.2 L143.9 100.3 L146.4 101.5 L148.9 103.0 L151.2 104.7 L153.4 106.6 L155.4 108.7 L157.2 110.9 L158.9 113.3 L160.3 115.9 L161.5 118.5 L162.4 121.3 L163.1 124.2 L163.6 127.1 L163.8 130.0 L163.7 133.0 L163.4 135.9 L162.9 138.8 L162.0 141.7 L161.0 144.4 L159.7 147.1 L158.1 149.7 L156.3 152.1 L154.4 154.4 L152.2 156.5 L149.9 158.4 L147.3 160.0 L144.7 161.5 L141.9 162.7 L139.0 163.7 L136.1 164.5 L133.1 164.9 L130.0 165.1 L126.9 165.1 L123.9 164.8 L120.8 164.2 L117.9 163.3 L115.0 162.2 L112.2 160.8 L109.5 159.2 L107.0 157.4 L104.7 155.3 L102.5 153.1 L100.5 150.6 L98.8 148.0 L97.3 145.3 L96.0 142.4 L95.0 139.4 L94.2 136.3 L93.7 133.2 L93.5 130.0 L93.6 126.8 L93.9 123.6 L94.5 120.5 L95.4 117.4 L96.6 114.4 L98.0 111.5 L99.7 108.8 L101.6 106.2 L103.7 103.7 L106.1 101.5 L108.6 99.4 L111.3 97.6 L114.2 96.0 L117.2 94.7 L120.3 93.7 L123.5 92.9 L126.7 92.4 L130.0 92.1 L133.3 92.2 L136.6 92.6 L139.9 93.2 L143.1 94.1 L146.2 95.3 L149.2 96.8 L152.0 98.6 L154.7 100.5 L157.2 102.8 L159.6 105.2 L161.7 107.8 L163.6 110.6 L165.2 113.6 L166.6 116.7 L167.7 119.9 L168.5 123.2 L169.0 126.6 L169.2 130.0 L169.1 133.4 L168.8 136.8 L168.1 140.2 L167.1 143.5 L165.9 146.7 L164.4 149.8 L162.6 152.8 L160.5 155.6 L158.2 158.2 L155.7 160.6 L153.0 162.8 L150.1 164.7 L147.0 166.4 L143.8 167.8 L140.4 169.0 L137.0 169.8 L133.5 170.3 L130.0 170.6 L126.5 170.5 L122.9 170.1 L119.4 169.4 L116.0 168.4 L112.7 167.1 L109.5 165.5 L106.4 163.7 L103.5 161.5 L100.8 159.2 L98.3 156.6 L96.1 153.7 L94.1 150.7 L92.3 147.6 L90.9 144.2 L89.7 140.8 L88.9 137.3 L88.3 133.6 L88.1 130.0 L88.2 126.3 L88.6 122.7 L89.3 119.1 L90.3 115.6 L91.7 112.1 L93.3 108.8 L95.2 105.6 L97.4 102.7 L99.9 99.9 L102.6 97.3 L105.5 95.0 L108.6 92.9 L111.9 91.1 L115.3 89.6 L118.9 88.4 L122.5 87.5 L126.2 87.0 L130.0 86.7 L133.8 86.8 L137.5 87.2 L141.3 88.0 L144.9 89.0 L148.5 90.4 L151.9 92.1 L155.1 94.1 L158.2 96.4 L161.1 98.9 L163.7 101.7 L166.1 104.7 L168.3 107.9 L170.1 111.3 L171.7 114.8 L172.9 118.5 L173.8 122.3 L174.4 126.1 L174.6 130.0 L174.5 133.9 L174.1 137.8 L173.3 141.6 L172.2 145.4 L170.8 149.0 L169.1 152.5 L167.0 155.9 L164.7 159.1 L162.0 162.0 L159.2 164.8 L156.1 167.2 L152.8 169.4 L149.3 171.3 L145.6 172.9 L141.8 174.2 L138.0 175.2 L134.0 175.7 L130.0 176.0 L126.0 175.9 L122.0 175.4 L118.0 174.7 L114.2 173.5 L110.4 172.0 L106.8 170.2 L103.3 168.1 L100.0 165.7 L97.0 163.0 L94.2 160.1 L91.6 156.9 L89.4 153.5 L87.4 149.9 L85.8 146.1 L84.5 142.2 L83.5 138.2 L82.9 134.1 L82.6 130.0 L82.7 125.9 L83.2 121.8 L84.0 117.7 L85.2 113.7 L86.7 109.8 L88.6 106.1 L90.8 102.5 L93.3 99.2 L96.0 96.0 L99.1 93.1 L102.4 90.5 L105.9 88.2 L109.6 86.2 L113.4 84.5 L117.5 83.2 L121.6 82.2 L125.8 81.5 L130.0 81.3 L134.3 81.4 L138.5 81.9 L142.7 82.7 L146.8 83.9 L150.7 85.5 L154.6 87.4 L158.2 89.7 L161.7 92.2 L164.9 95.1 L167.9 98.2 L170.6 101.6 L173.0 105.2 L175.0 109.0 L176.8 113.0 L178.1 117.1 L179.2 121.3 L179.8 125.6 L180.1 130.0 L180.0 134.4 L179.5 138.7 L178.6 143.0 L177.3 147.2 L175.7 151.3 L173.8 155.3 L171.4 159.0 L168.8 162.6 L165.9 165.9 L162.7 168.9 L159.2 171.7 L155.5 174.1 L151.6 176.3 L147.5 178.0 L143.3 179.5 L138.9 180.5 L134.5 181.2 L130.0 181.4 L125.5 181.3 L121.0 180.8 L116.6 179.9 L112.3 178.6 L108.1 177.0 L104.1 174.9 L100.2 172.6 L96.6 169.9 L93.2 166.8 L90.0 163.5 L87.2 160.0 L84.7 156.2 L82.5 152.1 L80.7 148.0 L79.2 143.6 L78.2 139.1 L77.5 134.6 L77.2 130.0 L77.3 125.4 L77.9 120.8 L78.8 116.3 L80.1 111.8 L81.8 107.5 L83.9 103.4 L86.3 99.4 L89.1 95.7 L92.2 92.2 L95.6 89.0 L99.2 86.1 L103.2 83.5 L107.3 81.3 L111.6 79.4 L116.0 77.9 L120.6 76.8 L125.3 76.1 L130.0 75.9 L134.7 76.0 L139.4 76.5 L144.1 77.5 L148.6 78.8 L153.0 80.6 L157.3 82.7 L161.4 85.2 L165.2 88.1 L168.8 91.2 L172.1 94.7 L175.0 98.5 L177.7 102.5 L180.0 106.7 L181.9 111.1 L183.4 115.7 L184.5 120.4 L185.2 125.2 L185.5 130.0 L185.4 134.8 L184.8 139.7 L183.8 144.4 L182.4 149.1 L180.6 153.6 L178.5 158.0 L175.9 162.1 L173.0 166.1 L169.7 169.7 L166.2 173.1 L162.3 176.1 L158.2 178.8 L153.9 181.2 L149.3 183.1 L144.7 184.7 L139.8 185.8 L134.9 186.6 L130.0 186.9 L125.0 186.7 L120.1 186.1 L115.2 185.1 L110.5 183.7 L105.8 181.9 L101.3 179.6 L97.1 177.0 L93.1 174.0 L89.3 170.7 L85.9 167.0 L82.7 163.1 L80.0 158.9 L77.6 154.4 L75.6 149.8 L74.0 145.0 L72.8 140.1 L72.1 135.1 L71.8 130.0 L71.9 124.9 L72.5 119.9 L73.6 114.9 L75.0 110.0 L76.9 105.2 L79.2 100.7 L81.9 96.3 L84.9 92.2 L88.4 88.4 L92.1 84.8 L96.1 81.6 L100.4 78.8 L105.0 76.4 L109.7 74.3 L114.6 72.7 L119.7 71.5 L124.8 70.7 L130.0 70.4 L135.2 70.6 L140.4 71.2 L145.5 72.2 L150.5 73.7 L155.3 75.7 L160.0 78.0 L164.5 80.8 L168.7 83.9 L172.6 87.4 L176.2 91.2 L179.5 95.4 L182.4 99.8 L184.9 104.4 L187.0 109.3 L188.6 114.3 L189.9 119.4 L190.6 124.7 L190.9 130.0 L190.8 135.3 L190.2 140.6 L189.1 145.8 L187.5 150.9 L185.6 155.9 L183.2 160.7 L180.3 165.2 L177.1 169.6 L173.6 173.6 L169.6 177.3 L165.4 180.6 L160.9 183.5 L156.2 186.1 L151.2 188.2 L146.1 189.9 L140.8 191.2 L135.4 192.0 L130.0 192.3 L124.6 192.1 L119.2 191.5 L113.8 190.4 L108.6 188.8 L103.5 186.8 L98.6 184.3 L94.0 181.5 L89.6 178.2 L85.5 174.5 L81.7 170.5 L78.3 166.2 L75.3 161.6 L72.7 156.7 L70.5 151.7 L68.7 146.4 L67.5 141.0 L66.7 135.5 L66.4 130.0 L66.5 124.4 L67.2 118.9 L68.3 113.5 L69.9 108.1 L72.0 102.9 L74.5 98.0 L77.4 93.2 L80.8 88.7 L84.5 84.5 L88.6 80.7 L93.0 77.2 L97.7 74.1 L102.7 71.4 L107.9 69.2 L113.2 67.4 L118.7 66.1 L124.3 65.3 L130.0 65.0 L135.7 65.2 L141.3 65.8 L146.9 67.0 L152.3 68.6 L157.6 70.7 L162.7 73.3 L167.6 76.3 L172.2 79.7 L176.4 83.6 L180.4 87.7 L183.9 92.2 L187.1 97.0 L189.8 102.1 L192.1 107.4 L193.9 112.9 L195.2 118.5 L196.0 124.2 L196.4 130.0 L196.2 135.8 L195.5 141.5 L194.3 147.2 L192.6 152.8 L190.5 158.2 L187.9 163.4 L184.8 168.4 L181.3 173.0 L177.4 177.4 L173.1 181.4 L168.5 185.0 L163.6 188.3 L158.5 191.0 L153.1 193.3 L147.5 195.2 L141.7 196.5 L135.9 197.4 L130.0 197.7 L124.1 197.5 L118.2 196.8 L112.4 195.6 L106.7 193.9 L101.2 191.7 L95.9 189.0 L90.9 185.9 L86.1 182.3 L81.6 178.4 L77.6 174.0 L73.9 169.3 L70.6 164.3 L67.7 159.0 L65.4 153.5 L63.5 147.8 L62.1 142.0 L61.3 136.0 L60.9 130.0 L61.1 124.0 L61.8 118.0 L63.1 112.1 L64.8 106.3 L67.1 100.6 L69.8 95.2 L73.0 90.1 L76.6 85.2 L80.7 80.7 L85.1 76.5 L89.9 72.7 L95.0 69.4 L100.4 66.5 L106.0 64.1 L111.8 62.2 L117.8 60.8 L123.9 59.9 L130.0 59.6 L136.1 59.8 L142.3 60.5 L148.3 61.8 L154.2 63.5 L159.9 65.8 L165.4 68.6 L170.7 71.9 L175.7 75.6 L180.3 79.7 L184.5 84.2 L188.4 89.1 L191.8 94.3 L194.7 99.8 L197.2 105.6 L199.1 111.5 L200.5 117.6 L201.4 123.8 L201.8 130.0 L201.6 136.3 L200.8 142.5 L199.6 148.6 L197.7 154.7 L195.4 160.5 L192.6 166.1 L189.2 171.5 L185.5 176.5 L181.2 181.2 L176.6 185.6 L171.7 189.5 L166.3 193.0 L160.8 195.9 L154.9 198.4 L148.9 200.4 L142.7 201.9 L136.4 202.8 L130.0 203.1 L123.6 202.9 L117.3 202.2 L111.0 200.9 L104.9 199.0 L98.9 196.6 L93.2 193.7 L87.7 190.3 L82.6 186.5 L77.8 182.2 L73.4 177.5 L69.4 172.4 L65.9 167.0 L62.8 161.3 L60.3 155.4 L58.3 149.2 L56.8 142.9 L55.9 136.5 L55.5 130.0 L55.7 123.5 L56.5 117.0 L57.8 110.7 L59.7 104.4 L62.1 98.4 L65.1 92.5 L68.5 87.0 L72.5 81.7 L76.8 76.8 L81.6 72.4 L86.8 68.3 L92.3 64.7 L98.1 61.6 L104.2 59.0 L110.4 56.9 L116.9 55.4 L123.4 54.5 L130.0 54.1 L136.6 54.4 L143.2 55.1 L149.7 56.5 L156.0 58.4 L162.2 60.9 L168.2 63.9 L173.8 67.4 L179.1 71.4 L184.1 75.9 L188.7 80.8 L192.8 86.0 L196.5 91.6 L199.6 97.5 L202.3 103.7 L204.4 110.1 L205.9 116.6 L206.8 123.3 L207.2 130.0 L207.0 136.7 L206.2 143.4 L204.8 150.0 L202.8 156.5 L200.3 162.8 L197.3 168.8 L193.7 174.6 L189.6 180.0 L185.1 185.1 L180.1 189.7 L174.8 193.9 L169.1 197.7 L163.0 200.9 L156.8 203.5 L150.3 205.7 L143.6 207.2 L136.8 208.2 L130.0 208.6 L123.1 208.3 L116.3 207.5 L109.6 206.1 L103.0 204.1 L96.6 201.6 L90.5 198.4 L84.6 194.8 L79.1 190.7 L74.0 186.0 L69.2 181.0 L65.0 175.5 L61.2 169.7 L57.9 163.6 L55.2 157.2 L53.0 150.6 L51.4 143.9 L50.5 137.0 L50.1 130.0 L50.3 123.0 L51.1 116.1 L52.6 109.3 L54.6 102.6 L57.2 96.1 L60.4 89.8 L64.1 83.9 L68.3 78.2 L73.0 73.0 L78.1 68.2 L83.7 63.8 L89.6 60.0 L95.8 56.7 L102.3 53.9 L109.0 51.7 L115.9 50.1 L122.9 49.1 L130.0 48.7 L137.1 48.9 L144.1 49.8 L151.1 51.3 L157.9 53.3 L164.5 56.0 L170.9 59.2 L176.9 63.0 L182.6 67.3 L188.0 72.0 L192.8 77.3 L197.3 82.9 L201.2 88.9 L204.6 95.2 L207.4 101.8 L209.6 108.7 L211.2 115.7 L212.3 122.8 L212.6 130.0 L212.4 137.2 L211.5 144.4 L210.0 151.4 L207.9 158.4 L205.2 165.1 L202.0 171.5 L198.1 177.7 L193.8 183.5 L188.9 188.9 L183.6 193.9 L177.9 198.4 L171.8 202.4 L165.3 205.8 L158.6 208.7 L151.7 210.9 L144.6 212.6 L137.3 213.6 L130.0 214.0 L122.7 213.8 L115.4 212.9 L108.2 211.4 L101.2 209.2 L94.3 206.5 L87.8 203.1 L81.5 199.2 L75.6 194.8 L70.1 189.9 L65.1 184.5 L60.5 178.7 L56.5 172.5 L53.0 165.9 L50.1 159.1 L47.8 152.0 L46.1 144.8 L45.0 137.4 L44.6 130.0 L44.9 122.6 L45.8 115.2 L47.3 107.8 L49.5 100.7 L52.3 93.8 L55.7 87.1 L59.6 80.7 L64.2 74.7 L69.2 69.2 L74.6 64.0 L80.6 59.4 L86.9 55.3 L93.5 51.8 L100.4 48.8 L107.6 46.5 L115.0 44.8 L122.4 43.7 L130.0 43.3 L137.6 43.5 L145.1 44.5 L152.5 46.0 L159.8 48.2 L166.8 51.1 L173.6 54.5 L180.0 58.5 L186.1 63.1 L191.8 68.2 L197.0 73.8 L201.7 79.8 L205.9 86.2 L209.5 92.9 L212.5 100.0 L214.9 107.3 L216.6 114.7 L217.7 122.3 L218.1 130.0 L217.8 137.7 L216.9 145.3 L215.3 152.9 L213.0 160.2 L210.2 167.4 L206.7 174.3 L202.6 180.8 L197.9 187.0 L192.8 192.8 L187.1 198.0 L181.0 202.8 L174.5 207.1 L167.6 210.7 L160.5 213.8 L153.1 216.2 L145.5 217.9 L137.8 219.0 L130.0 219.4 L122.2 219.2 L114.4 218.2 L106.8 216.6 L99.3 214.3 L92.0 211.4 L85.1 207.8 L78.4 203.7 L72.1 199.0 L66.3 193.7 L60.9 188.0 L56.1 181.8 L51.8 175.2 L48.1 168.2 L45.0 160.9 L42.5 153.4 L40.7 145.7 L39.6 137.9 L39.2 130.0 L39.5 122.1 L40.4 114.2 L42.1 106.4 L44.4 98.8 L47.4 91.5 L51.0 84.4 L55.2 77.6 L60.0 71.3 L65.3 65.3 L71.2 59.9 L77.5 55.0 L84.2 50.6 L91.2 46.8 L98.6 43.7 L106.2 41.2 L114.0 39.4 L122.0 38.3 L130.0 37.9 L138.0 38.1 L146.0 39.1 L153.9 40.8 L161.6 43.1 L169.1 46.1 L176.3 49.8 L183.2 54.1 L189.6 59.0 L195.6 64.4 L201.2 70.3 L206.2 76.7 L210.6 83.5 L214.4 90.6 L217.6 98.1 L220.1 105.9 L221.9 113.8 L223.1 121.9 L223.5 130.0 L223.2 138.2 L222.2 146.3 L220.5 154.3 L218.1 162.1 L215.1 169.7 L211.4 177.0 L207.0 183.9 L202.1 190.5 L196.6 196.6 L190.6 202.2 L184.1 207.3 L177.2 211.8 L169.9 215.6 L162.3 218.9 L154.5 221.4 L146.4 223.3 L138.3 224.4 L130.0 224.9 L121.7 224.6 L113.5 223.6 L105.4 221.8 L97.5 219.4 L89.8 216.3 L82.3 212.5 L75.3 208.1 L68.6 203.1 L62.4 197.6 L56.8 191.5 L51.6 184.9 L47.1 177.9 L43.1 170.5 L39.9 162.8 L37.3 154.8 L35.4 146.7 L34.2 138.4 L33.8 130.0 L34.1 121.6 L35.1 113.3 L36.8 105.0 L39.3 97.0 L42.5 89.2 L46.3 81.7 L50.8 74.5 L55.8 67.8 L61.5 61.5 L67.7 55.7 L74.3 50.5 L81.4 45.9 L88.9 41.9 L96.7 38.6 L104.8 36.0 L113.1 34.1 L121.5 32.9 L130.0 32.4 L138.5 32.7 L147.0 33.8 L155.3 35.5 L163.5 38.0 L171.4 41.2 L179.0 45.1 L186.3 49.6 L193.1 54.8 L199.5 60.5 L205.3 66.8 L210.6 73.6 L215.3 80.8 L219.3 88.4 L222.7 96.3 L225.3 104.5 L227.3 112.8 L228.5 121.4 L228.9 130.0 L228.6 138.6 L227.6 147.2 L225.8 155.7 L223.2 163.9 L220.0 172.0 L216.1 179.7 L211.5 187.0 L206.2 194.0 L200.4 200.4 L194.1 206.4 L187.2 211.7 L179.9 216.5 L172.2 220.5 L164.2 224.0 L155.9 226.7 L147.4 228.6 L138.7 229.8 L130.0 230.3 L121.3 230.0 L112.6 228.9 L104.0 227.1 L95.6 224.5 L87.5 221.2 L79.6 217.2 L72.2 212.6 L65.1 207.3 L58.6 201.4 L52.6 194.9 L47.2 188.0 L42.4 180.6 L38.2 172.8 L34.8 164.7 L32.0 156.2 L30.0 147.6 L28.8 138.9 L28.4 130.0 L28.7 121.1 L29.8 112.3 L31.6 103.6 L34.2 95.1 L37.5 86.9 L41.6 79.0 L46.3 71.4 L51.7 64.3 L57.6 57.6 L64.2 51.6 L71.2 46.1 L78.7 41.2 L86.6 37.0 L94.9 33.5 L103.4 30.7 L112.1 28.7 L121.0 27.5 L130.0 27.0 L139.0 27.3 L147.9 28.4 L156.7 30.3 L165.3 32.9 L173.7 36.3 L181.7 40.4 L189.4 45.2 L196.6 50.6 L203.3 56.7 L209.5 63.3 L215.1 70.4 L220.0 78.0 L224.2 86.1 L227.8 94.4 L230.6 103.0 L232.6 111.9 L233.9 120.9 L234.4 130.0 L234.0 139.1 L232.9 148.1 L231.0 157.1 L228.3 165.8 L224.9 174.3 L220.8 182.4 L215.9 190.2 L210.4 197.5 L204.3 204.3 L197.6 210.5 L190.3 216.2 L182.6 221.2 L174.5 225.5 L166.1 229.1 L157.3 231.9 L148.3 234.0 L139.2 235.2 L130.0 235.7 L120.8 235.4 L111.6 234.3 L102.6 232.3 L93.7 229.6 L85.2 226.2 L76.9 221.9 L69.1 217.0 L61.7 211.4 L54.8 205.2 L48.4 198.4 L42.7 191.1 L37.7 183.3 L33.3 175.1 L29.7 166.5 L26.8 157.7 L24.7 148.6 L23.4 139.3 L22.9 130.0 L23.3 120.7 L24.4 111.4 L26.4 102.2 L29.1 93.3 L32.6 84.6 L36.9 76.2 L41.9 68.3 L47.5 60.8 L53.8 53.8 L60.7 47.4 L68.1 41.6 L76.0 36.5 L84.3 32.1 L93.0 28.4 L102.0 25.5 L111.2 23.4 L120.6 22.1 L130.0 21.6 L139.5 21.9 L148.9 23.1 L158.1 25.0 L167.2 27.8 L176.0 31.4 L184.4 35.7 L192.5 40.7 L200.1 46.5 L207.2 52.8 L213.6 59.8 L219.5 67.3 L224.7 75.3 L229.2 83.8 L232.9 92.6 L235.8 101.6 L238.0 111.0 L239.3 120.4 L239.8 130.0 L239.4 139.6 L238.3 149.1 L236.3 158.5 L233.4 167.7 L229.8 176.6 L225.5 185.1 L220.4 193.3 L214.6 201.0 L208.1 208.1 L201.1 214.7 L193.4 220.6 L185.3 225.9 L176.8 230.4 L167.9 234.2 L158.7 237.1 L149.3 239.3 L139.7 240.6 L130.0 241.1 L120.3 240.8 L110.7 239.6 L101.2 237.6 L91.9 234.7 L82.9 231.1 L74.2 226.6 L65.9 221.5 L58.2 215.6 L50.9 209.1 L44.3 201.9 L38.3 194.2 L33.0 186.0 L28.4 177.4 L24.6 168.4 L21.6 159.1 L19.4 149.5 L18.0 139.8 L17.5 130.0 L17.9 120.2 L19.1 110.4 L21.1 100.8 L24.0 91.4 L27.7 82.3 L32.2 73.5 L37.4 65.2 L43.4 57.3 L50.0 50.0 L57.2 43.2 L65.0 37.2 L73.3 31.8 L82.0 27.2 L91.2 23.3 L100.6 20.2 L110.3 18.0 L120.1 16.7 L130.0 16.1 L139.9 16.5 L149.8 17.7 L159.5 19.8 L169.0 22.7 L178.3 26.5 L187.2 31.0 L195.6 36.3 L203.6 42.3 L211.0 49.0 L217.8 56.3 L223.9 64.2 L229.4 72.6 L234.1 81.5 L238.0 90.7 L241.1 100.2 L243.3 110.0 L244.7 120.0 L245.2 130.0 L244.9 140.0 L243.6 150.0 L241.5 159.9 L238.5 169.5 L234.8 178.9 L230.2 187.8 L224.8 196.4 L218.7 204.4 L211.9 211.9 L204.5 218.8 L196.6 225.1 L188.1 230.6 L179.1 235.3 L169.8 239.3 L160.1 242.4 L150.2 244.7 L140.2 246.1 L130.0 246.6 L119.8 246.2 L109.7 244.9 L99.8 242.8 L90.0 239.8 L80.6 236.0 L71.5 231.3 L62.8 225.9 L54.7 219.8 L47.1 212.9 L40.1 205.4 L33.8 197.3 L28.3 188.7 L23.5 179.7 L19.5 170.2 L16.3 160.5 L14.0 150.5 L12.6 140.3 L12.1 130.0 L12.4 119.7 L13.7 109.5 L15.9 99.4 L18.9 89.6 L22.8 80.0 L27.5 70.8 L33.0 62.1 L39.2 53.8 L46.1 46.1 L53.7 39.1 L61.9 32.7 L70.6 27.1 L79.7 22.2 L89.3 18.2 L99.2 15.0 L109.3 12.7 L119.6 11.2 L130.0 10.7 L140.4 11.1 L150.7 12.4 L160.9 14.6 L170.9 17.6 L180.6 21.5 L189.9 26.3 L198.7 31.9 L207.1 38.2 L214.8 45.2 L222.0 52.8 L228.4 61.1 L234.1 69.9 L239.0 79.2 L243.1 88.8 L246.3 98.8 L248.7 109.1 L250.1 119.5 L250.6 130.0 L250.3 140.5 L249.0 151.0 L246.8 161.3 L243.7 171.4 L239.7 181.1 L234.9 190.5 L229.3 199.5 L222.9 207.9 L215.8 215.8 L208.0 223.0 L199.7 229.5 L190.8 235.3 L181.4 240.2 L171.6 244.4 L161.5 247.6 L151.2 250.0 L140.6 251.5 L130.0 252.0"/>
-<circle cx="130" cy="130" r="19" fill="url(#terre)"/>
-<text class="svgt s" x="130" y="133" text-anchor="middle" fill="#fff" style="fill:#fff;font-size:8px">TERRE</text>
-</svg>
-<div class="compteur"><b class="gros"><span class="cnt" data-to="17.5" data-dec="1" data-d="3200">17,5</span></b><span>tours de la Terre</span><small>1 tour = 40 075&nbsp;km (équateur) · calcul</small></div>
-</div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Le reel · 7 beats · 48 s</span>
+    <div class="verre carte">
+      <h2>Pourquoi si peu cher</h2>
+      <p>Le squelette, pas le texte. Pour tenir 30 s&nbsp;: fusionne les beats 4 et 5 en un seul fait de prix.</p>
+      <div class="beat"><span class="t">0-5 s<br>ACCROCHE</span><div><h3>L'écart prix contre chaleur</h3><p>14,90 € contre 29,90 € pour «&nbsp;2,25 fois plus chaud&nbsp;». Le ×2,25 est un calcul d'Uniqlo <span class="tag m">M</span>.</p></div></div>
+      <div class="beat"><span class="t">5-12 s<br>ENJEU</span><div><h3>Ton vécu</h3><p>Toi seul&nbsp;: en portes-tu, depuis quand, en Chine du Nord, à Tokyo&nbsp;? Le moment où tu as senti la différence, ou pas.</p></div></div>
+      <div class="beat"><span class="t">12-20 s<br>MÉCANISME</span><div><h3>Un seul beat, attribué</h3><p>La fibre capte la vapeur du corps, l'air piégé garde la chaleur. «&nbsp;Selon Uniqlo&nbsp;» <span class="tag m">M</span>. Pas une seconde de plus.</p></div></div>
+      <div class="beat"><span class="t">20-30 s<br>PREUVE 1</span><div><h3>Le refus de Toray</h3><p>Toray refuse de faire une fibre pour un seul client. Condition&nbsp;: une ligne dédiée et du volume. 1,5 M de pièces en 2003, 28 M en 2008 <span class="tag v">V</span>.</p></div></div>
+      <div class="beat"><span class="t">30-38 s<br>PREUVE 2</span><div><h3>Tu paies de la maille</h3><p>Mêmes 4 fibres du classique à l'Ultra. Ce qui change&nbsp;: la maille et le brossage. ×2 le prix pour ×2,25 la chaleur annoncée <span class="tag m">M</span>.</p></div></div>
+      <div class="beat"><span class="t">38-43 s<br>TENSION</span><div><h3>La limite, en conseil d'usage</h3><p>«&nbsp;Pas pour courir&nbsp;»&nbsp;: la viscose garde l'eau. À savoir&nbsp;: la fiche FR de l'Ultra Chaud autorise le sport en plein air, elle te contredit.</p></div></div>
+      <div class="beat"><span class="t">43-48 s<br>CHUTE</span><div><h3>Essaie le manches longues</h3><p>Ce que fait le spectateur. Le lien de la sélection Diggeur arrive en dernier.</p></div></div>
+      <div class="franc"><b>Le contre-argument en une ligne&nbsp;:</b> le prix est la partie où le sourcing est le plus faible. Aucun coût de fabrication n'est publié, tout se dit «&nbsp;selon eux&nbsp;».</div>
+    </div>
+  </section>
 
-<section class="bloc large d" id="s2">
-<div class="etiquette">02 · La frise</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>De 2000 à 2026 en 12 jalons</h2>
-<p>La colonne vertébrale des 4 structures&nbsp;: tout récit s'accroche à cette ligne. Chaque jalon porte sa source.</p>
-<span class="nb"><b>À savoir</b> · Toray date la vente en 2003 mais le produit à 4 fibres en 2006&nbsp;: écris «&nbsp;selon Toray&nbsp;», jamais «&nbsp;inventé en 2006&nbsp;».</span>
-</div>
-</div>
-<div class="frise">
-<div class="verre noeud g" style="--i:0"><b class="an">2000</b><p>Le 24/04, Yanai s'isole environ 30 minutes avec le président de Toray. En sept.-nov., Toray dépose les priorités d'un brevet sur la chaleur d'adsorption.</p><span class="src m" title="dit par la marque">M · F-A01</span> <span class="src v" title="vérifié">V · F-C07</span></div>
-<div class="verre noeud d" style="--i:1"><b class="an">2003</b><p>Première vente&nbsp;: homme, une seule fonction, environ 1,5&nbsp;M de pièces.</p><span class="src v" title="vérifié">V · F-A08 · A10</span></div>
-<div class="verre noeud g" style="--i:2"><b class="an">2004-05</b><p>«&nbsp;Plus&nbsp;» antibactérien (2004), version femme hydratante (2005).</p><span class="src v" title="vérifié">V · F-A09</span></div>
-<div class="verre noeud d" style="--i:0"><b class="an">2006</b><p>Le micro-acrylique remplace le coton creux. Partenariat stratégique signé en juin.</p><span class="src v" title="vérifié">V · F-A09</span> <span class="src m" title="dit par la marque">M · F-A14</span></div>
-<div class="verre noeud g" style="--i:1"><b class="an">2007</b><p>Première pub TV. 20&nbsp;M de pièces.</p><span class="src v" title="vérifié">V · F-A09 · A10</span></div>
-<div class="verre noeud d" style="--i:2"><b class="an">2008</b><p>28&nbsp;M de pièces&nbsp;: HEATTECH bat le record du fleece. Lancement international.</p><span class="src v" title="vérifié">V · F-A11 · A09</span></div>
-<div class="verre noeud g" style="--i:0"><b class="an">2011</b><p>~200&nbsp;M cumulés. Yanai le compare à Boeing et à Apple.</p><span class="src m" title="dit par la marque">M · F-A15</span></div>
-<div class="verre noeud d" style="--i:1"><b class="an">2013</b><p>Extra Chaud en vente le 04/11. Environ 250 articles HEATTECH.</p><span class="src v" title="vérifié">V · F-C03</span> <span class="src m" title="dit par la marque">M · F-A20</span></div>
-<div class="verre noeud g" style="--i:2"><b class="an">2015-16</b><p>Plan de 1 000&nbsp;Md¥ d'échanges Toray-Uniqlo (17/11/2015). Ultra Chaud à l'hiver 2016, mois non confirmé.</p><span class="src v" title="vérifié">V · F-A17</span> <span class="src m" title="dit par la marque">M · F-C06</span></div>
-<div class="verre noeud d" style="--i:0"><b class="an">2017</b><p>~1&nbsp;Md de pièces cumulées&nbsp;: 700 000&nbsp;km de tissu.</p><span class="src m" title="dit par la marque">M · F-B06 · B07</span></div>
-<div class="verre noeud g" style="--i:1"><b class="an">2023</b><p>~1,5&nbsp;Md de pièces cumulées selon la presse, compteur non daté.</p><span class="src v" title="vérifié">V · F-B09</span></div>
-<div class="verre noeud d" style="--i:2"><b class="an">2026</b><p>Fast Retailing&nbsp;: 3 963&nbsp;Md¥ de chiffre d'affaires (+16,6&nbsp;%). Le T-shirt classique est à 14,90&nbsp;€.</p><span class="src v" title="vérifié">V · F-B12</span> <span class="src m" title="dit par la marque">M · F-C09</span></div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Les faits · 6 qui tiennent un hook</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="chiffre"><span class="gros">28 M</span><p><b>2008&nbsp;: 28 millions de HEATTECH vendus.</b> Le record du fleece était 26 M en 2000. Un sous-vêtement bat une polaire <span class="tag v">V</span>. Promesse à tenir&nbsp;: expliquer pourquoi.</p></div>
+      <div class="chiffre"><span class="gros">×2</span><p><b>14,90 € contre 29,90 € pour ×2,25 de chaleur.</b> La différence vient de la maille, pas d'une fibre miracle <span class="tag m">M</span>. Piège&nbsp;: «&nbsp;Ultra Chaud&nbsp;» contient un mot de ta liste interdite.</p></div>
+      <div class="chiffre"><span class="gros">2000</span><p><b>Le brevet Toray sur la chaleur d'adsorption date de l'automne 2000</b>, 3 ans avant la première vente <span class="tag v">V</span>. Piège&nbsp;: le brevet ne nomme pas HEATTECH.</p></div>
+      <div class="chiffre"><span class="gros">17,5</span><p><b>1 milliard de pièces = 700 000 km de tissu = 17,5 tours de Terre.</b> Chiffre Uniqlo de 2017, avec une projection dedans <span class="tag m">M</span>. Donner l'année.</p></div>
+      <div class="chiffre"><span class="gros">30 min</span><p><b>24 avril 2000, 14 h&nbsp;: Yanai chez Toray, 30 minutes en tête-à-tête.</b> La scène d'ouverture de l'histoire, racontée par Toray <span class="tag m">M</span>.</p></div>
+      <div class="chiffre"><span class="gros">55 %</span><p><b>Le prix est bas, la marge du groupe ne l'est pas&nbsp;:</b> 55,2 % de marge brute Fast Retailing en 2026, tous produits <span class="tag v">V</span>. Le contrepoint honnête.</p></div>
+      </div>
+      <div class="franc"><b>En respiration seulement, jamais en hook&nbsp;:</b> 50 personnes et 3 réunions par semaine chez Toray · la chambre climatique de Tokyo · l'hydratant lait, camélia puis argan · le short «&nbsp;haramaki&nbsp;» · le degré de chauffage en moins après 2011.</div>
+    </div>
+  </section>
 
-<section class="bloc g" id="s3">
-<div class="etiquette">03 · Le volume</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>De 1,5&nbsp;M vendus à 130&nbsp;M visés par an</h2>
-<p>Départ modeste, puis explosion. 2009 (50&nbsp;M) et 2012 (130&nbsp;M) sont des <b>objectifs</b>, pas des ventes réalisées. <span class="src v" title="vérifié">V · F-A10</span> <span class="src m" title="dit par la marque">M · F-B02</span> <span class="src v" title="vérifié">V · F-B03</span></p>
-<p>En 2008, HEATTECH passe au-dessus du record du fleece&nbsp;: 28&nbsp;M contre environ 26&nbsp;M à l'automne-hiver 2000. <span class="src v" title="vérifié">V · F-A11 · A02</span></p>
-<span class="nb"><b>À savoir</b> · les cumuls ne se raccordent pas&nbsp;: environ +600&nbsp;M en 4 ans (2013 → 2017), puis +500&nbsp;M en 6 ans (2017 → 2023), ordres de grandeur&nbsp;: les compteurs n'ont pas la même date d'arrêt. Le rythme ralentit, ou le compteur 2023 n'est pas à jour. Non tranché.</span>
-</div>
-<div class="verre visuel">
-<svg class="graph" viewBox="0 0 480 262" role="img" aria-label="Pièces HEATTECH par an : 1,5 M en 2003, 20 M en 2007, 28 M en 2008, objectif 50 M en 2009, plan 130 M en 2012">
-<line class="axe" x1="44" x2="466" y1="214.0" y2="214.0"/>
-<text class="svgt s" x="40" y="217.0" text-anchor="end">0</text>
-<line class="grille" x1="44" x2="466" y1="143.6" y2="143.6"/>
-<text class="svgt s" x="40" y="146.6" text-anchor="end">50</text>
-<line class="grille" x1="44" x2="466" y1="73.3" y2="73.3"/>
-<text class="svgt s" x="40" y="76.3" text-anchor="end">100</text>
-<line class="ref" x1="44" x2="466" y1="177.4" y2="177.4"/>
-<text class="svgt s" x="466" y="190.4" text-anchor="end" style="fill:#2436b8">record du fleece, 2000&nbsp;: 26&nbsp;M</text>
-<path class="obj" d="M272.0 174.6 L316.0 143.6 L448.0 31.0"/>
-<path class="courbe" pathLength="1" d="M52.0 211.9 L228.0 185.9 L272.0 174.6"/>
-<circle class="pt" style="--dl:0.30s" cx="52.0" cy="211.9" r="6.5"/>
-<text class="svgt g" x="56.0" y="198.9" text-anchor="start">1,5&nbsp;M</text>
-<circle class="pt" style="--dl:0.65s" cx="228.0" cy="185.9" r="6.5"/>
-<text class="svgt g" x="224.0" y="173.9" text-anchor="end">20&nbsp;M</text>
-<circle class="pt" style="--dl:1.00s" cx="272.0" cy="174.6" r="6.5"/>
-<text class="svgt g" x="274.0" y="160.6" text-anchor="start">28&nbsp;M</text>
-<circle class="pt o" style="--dl:1.35s" cx="316.0" cy="143.6" r="6.5"/>
-<text class="svgt g" x="305.0" y="139.6" text-anchor="end">50&nbsp;M · objectif</text>
-<circle class="pt o" style="--dl:1.70s" cx="448.0" cy="31.0" r="6.5"/>
-<text class="svgt g" x="437.0" y="27.0" text-anchor="end">130&nbsp;M · plan</text>
-<text class="svgt" x="52.0" y="234.0" text-anchor="middle">2003</text>
-<text class="svgt" x="228.0" y="234.0" text-anchor="middle">2007</text>
-<text class="svgt" x="272.0" y="234.0" text-anchor="middle">2008</text>
-<text class="svgt" x="316.0" y="234.0" text-anchor="middle">2009</text>
-<text class="svgt" x="448.0" y="234.0" text-anchor="middle">2012</text>
-<text class="svgt s" x="40" y="34.0" text-anchor="end">M</text>
-</svg>
-<div class="cumul">
-<span class="mono">Cumul depuis 2003</span>
-<div class="lig"><div class="e">2011<small>~200&nbsp;M</small></div><div><div class="bar" style="--i:0"><i style="--w:13%"></i></div></div></div>
-<div class="lig"><div class="e">~2013<small>&gt; 400&nbsp;M</small></div><div><div class="bar" style="--i:1"><i style="--w:27%"></i></div></div></div>
-<div class="lig"><div class="e">2017<small>~1&nbsp;Md</small></div><div><div class="bar" style="--i:2"><i style="--w:67%"></i></div></div></div>
-<div class="lig"><div class="e">2023<small>~1,5&nbsp;Md</small></div><div><div class="bar" style="--i:3"><i style="--w:100%"></i></div></div></div>
-<div><span class="src m" title="dit par la marque">M · F-A15</span> 2011 · <span class="src v" title="vérifié">V · F-B05</span> 2013, une seule source, en «&nbsp;styles&nbsp;» · <span class="src m" title="dit par la marque">M · F-B06</span> 2017, avec projection · <span class="src v" title="vérifié">V · F-B09</span> 2023, presse</div>
-</div>
-</div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Le fil du prix · 6 maillons</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="spec"><span class="num">1 · LE REFUS</span><h3>«&nbsp;Hors de question&nbsp;»</h3><p>Une fibre sur mesure pour un seul client, Toray dit non <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">2 · LA CONDITION</span><h3>Une ligne dédiée, du volume, longtemps</h3><p>Uniqlo s'engage à vendre assez, assez longtemps <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">3 · LE VOLUME</span><h3>1,5 M → 28 M → ~1 milliard</h3><p>2003, 2008, puis le cumul 2017 selon Uniqlo <span class="tag v">V</span> <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">4 · LES COUCHES</span><h3>Un produit, des fonctions ajoutées</h3><p>11 fonctions en 2019. Les 3 niveaux viennent de la maille et du brossage <span class="tag m">M</span>.</p></div>
+      <div class="spec"><span class="num">5 · LE PRIX AFFICHÉ</span><h3>14,90 · 24,90 · 29,90 €</h3><p>uniqlo.com/fr, relevé le 13/11. Le 24,90 est la version cachemire 9 %, non comparable <span class="tag v">V</span>.</p></div>
+      <div class="spec"><span class="num">6 · LE CONTREPOINT</span><h3>55,2 % de marge brute</h3><p>Comptes 2026 du groupe, tous produits <span class="tag v">V</span>. Aucune marge HEATTECH publiée.</p></div>
+      </div>
+      <div class="franc"><b>Face à la laine&nbsp;:</b> mérinos Decathlon 54,99 € (×3,7), Icebreaker 99,95 € (×6,7). Relevés du 12/10, non revérifiés.</div>
+    </div>
+  </section>
 
-<section class="bloc d" id="s4">
-<div class="etiquette">04 · Comment ça chauffe</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>Deux étapes, selon Uniqlo</h2>
-<p><b>1.</b> La fibre capte (adsorbe) la vapeur d'eau du corps&nbsp;: cela dégage de la chaleur. <b>2.</b> Une couche d'air entre les fibres garde cette chaleur. <span class="src m" title="dit par la marque">M · F-C01</span></p>
-<p>Le mot officiel est «&nbsp;adsorbe&nbsp;». Une seule version à utiliser&nbsp;: celle d'Uniqlo (2012).</p>
-<span class="nb"><b>Doublon</b> · l'épisode J23 (sous-pull thermique, sortie le 13/11) explique déjà l'air piégé. Le reel Uniqlo ne doit pas refaire ce plan.</span>
-</div>
-<div class="verre visuel">
-<svg class="meca" viewBox="0 0 320 300" role="img" aria-label="Schéma : la vapeur du corps est captée par les fibres, l'air entre les fibres garde la chaleur">
-<defs><linearGradient id="gpeau" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B6C9FF"/><stop offset="1" stop-color="#6f93ff"/></linearGradient><linearGradient id="gfroid" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d6e2ff"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
-<rect x="0" y="0" width="320" height="78" rx="12" fill="url(#gfroid)"/>
-<ellipse class="poche" cx="62" cy="128" rx="58" ry="36"/>
-<ellipse class="poche" cx="160" cy="128" rx="58" ry="36"/>
-<ellipse class="poche" cx="258" cy="128" rx="58" ry="36"/>
-<circle class="fib" cx="20" cy="196" r="14"/>
-<circle class="fib" cx="60" cy="196" r="14"/>
-<circle class="fib" cx="100" cy="196" r="14"/>
-<circle class="fib" cx="140" cy="196" r="14"/>
-<circle class="fib" cx="180" cy="196" r="14"/>
-<circle class="fib" cx="220" cy="196" r="14"/>
-<circle class="fib" cx="260" cy="196" r="14"/>
-<circle class="fib" cx="300" cy="196" r="14"/>
-<circle class="fib" cx="40" cy="222" r="14"/>
-<circle class="fib" cx="80" cy="222" r="14"/>
-<circle class="fib" cx="120" cy="222" r="14"/>
-<circle class="fib" cx="160" cy="222" r="14"/>
-<circle class="fib" cx="200" cy="222" r="14"/>
-<circle class="fib" cx="240" cy="222" r="14"/>
-<circle class="fib" cx="280" cy="222" r="14"/>
-<circle class="lueur" cx="20" cy="196" r="14"/>
-<circle class="lueur" cx="60" cy="196" r="14"/>
-<circle class="lueur" cx="100" cy="196" r="14"/>
-<circle class="lueur" cx="140" cy="196" r="14"/>
-<circle class="lueur" cx="180" cy="196" r="14"/>
-<circle class="lueur" cx="220" cy="196" r="14"/>
-<circle class="lueur" cx="260" cy="196" r="14"/>
-<circle class="lueur" cx="300" cy="196" r="14"/>
-<circle class="lueur" cx="40" cy="222" r="14"/>
-<circle class="lueur" cx="80" cy="222" r="14"/>
-<circle class="lueur" cx="120" cy="222" r="14"/>
-<circle class="lueur" cx="160" cy="222" r="14"/>
-<circle class="lueur" cx="200" cy="222" r="14"/>
-<circle class="lueur" cx="240" cy="222" r="14"/>
-<circle class="lueur" cx="280" cy="222" r="14"/>
-<rect x="0" y="262" width="320" height="38" rx="12" fill="url(#gpeau)"/>
-<circle class="vap" style="--dl:0.00s" cx="20" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.13s" cx="60" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.26s" cx="100" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.39s" cx="140" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.52s" cx="180" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.65s" cx="220" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.78s" cx="260" cy="256" r="4.2"/>
-<circle class="vap" style="--dl:0.91s" cx="300" cy="256" r="4.2"/>
-<path class="vague" style="--dl:0.00s" d="M60 168 q7 -10 0 -20 t0 -20 t0 -20"/>
-<path class="vague" style="--dl:0.12s" d="M110 168 q7 -10 0 -20 t0 -20 t0 -20"/>
-<path class="vague" style="--dl:0.24s" d="M160 168 q7 -10 0 -20 t0 -20 t0 -20"/>
-<path class="vague" style="--dl:0.36s" d="M210 168 q7 -10 0 -20 t0 -20 t0 -20"/>
-<path class="vague" style="--dl:0.48s" d="M260 168 q7 -10 0 -20 t0 -20 t0 -20"/>
-<path class="froid" style="--dl:0.0s" d="M80 10 v32 m-6 -7 l6 7 l6 -7"/>
-<path class="froid" style="--dl:0.2s" d="M160 10 v32 m-6 -7 l6 7 l6 -7"/>
-<path class="froid" style="--dl:0.4s" d="M240 10 v32 m-6 -7 l6 7 l6 -7"/>
-<text class="svgt" x="10" y="72">FROID</text>
-<text class="svgt" x="10" y="100" style="fill:#2436b8">COUCHE D'AIR</text>
-<text class="svgt" x="10" y="172">FIBRES</text>
-<text class="svgt" x="10" y="288" style="fill:#0b0f24">PEAU</text>
-</svg>
-<div class="pas"><span class="p1">1 · La fibre capte la vapeur</span><span class="p2">2 · L'air garde la chaleur</span></div>
-<div class="cap">Schéma d'après l'explication d'Uniqlo, pas une mesure</div>
-</div>
-</div>
-<div class="trio">
-<div class="verre"><h3>Le brevet</h3><p>Toray a déposé dès 2000 une demande de brevet sur la chaleur par adsorption d'eau&nbsp;: priorités 29/09 et 10/11/2000, dépôt 26/09/2001 (EP 1 260 355). Indice d'énergie exothermique ≥ 5. <b>Il ne nomme pas HEATTECH.</b> <span class="src v" title="vérifié">V · F-C07</span></p></div>
-<div class="verre"><h3>L'étude 2026</h3><p>Calorimétrie à 23&nbsp;°C&nbsp;: la laine mérinos chauffe le plus au mouillage, puis la viscose et le coton&nbsp;; le polyester presque rien. Sur tissu fini, plus bas et plus variable. <b>Elle ne teste pas HEATTECH.</b> <span class="src v" title="vérifié">V · F-C08</span></p></div>
-<div class="verre"><h3>Ce qu'on n'a pas</h3><p>En sources ouvertes (13/11)&nbsp;: aucun test indépendant du produit trouvé, aucun °C mesuré, aucune valeur CLO absolue. Les ×1,5 et ×2,25 sont calculés par Uniqlo. <span class="src m" title="dit par la marque">M · F-C04 · C05</span></p></div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">La frise · 2000 à 2026</span>
+    <div class="verre carte">
+      <ul class="frise">
+        <li><b>2000</b><span>24/04&nbsp;: Yanai chez Toray. Automne&nbsp;: brevet de chaleur déposé <span class="tag v">V</span></span></li>
+        <li><b>2003</b><span>Premières ventes, homme, coton creux, 1,5 M de pièces</span></li>
+        <li><b>2006</b><span>Les 4 fibres actuelles. Partenariat stratégique signé en juin</span></li>
+        <li><b>2008</b><span>28 M vendus, le fleece est battu. Lancement international</span></li>
+        <li><b>2013</b><span>Extra Chaud lancé le 4 novembre. Plan à 130 M par an</span></li>
+        <li><b>2016</b><span>Ultra Chaud, hiver 2016, mois non confirmé</span></li>
+        <li><b>2017</b><span>Environ 1 milliard cumulé, 700 000 km de tissu <span class="tag m">M</span></span></li>
+        <li><b>2026</b><span>Fast Retailing 3 963 Md¥ (+16,6 %). T-shirt à 14,90 € <span class="tag v">V</span></span></li>
+      </ul>
+      <div class="franc"><b>Piège de dates&nbsp;:</b> Toray date la vente en 2003 mais le produit à 4 fibres en 2006. Écris «&nbsp;selon Toray&nbsp;», jamais «&nbsp;inventé en 2006&nbsp;».</div>
+    </div>
+  </section>
 
-<section class="bloc g" id="s5">
-<div class="etiquette">05 · Les 3 niveaux</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>Selon Uniqlo&nbsp;: la maille change, pas la fibre</h2>
-<p>HEATTECH = jersey fin. Extra Chaud = tricot spécial + doublure brossée. Ultra Chaud = extérieur gaufré, brossage à poil plus long, tissu plus épais. <span class="src m" title="dit par la marque">M · F-C05</span></p>
-<p>Les 4 fibres ont chacune un rôle (Toray, 2008)&nbsp;: acrylique = chaleur, viscose = hydratation, polyester = séchage, élasthanne = ajustement. En 2023, Toray cite aussi la viscose pour la chaleur. <span class="src m" title="dit par la marque">M · F-A13 · C13</span></p>
-<span class="nb"><b>Composition qui bouge</b> · aujourd'hui, selon la fiche, le polyester recyclé passe en tête (40&nbsp;%). <span class="src m" title="dit par la marque">M · F-C09</span> Un blog relevait en 2020 un autre mélange (50&nbsp;% acrylique, 33&nbsp;% viscose, 13&nbsp;% polyester, 4&nbsp;% élasthanne)&nbsp;: non vérifié, produit peut-être différent.</span>
-</div>
-<div class="verre visuel">
-<div class="niv"><div class="tt"><b>HEATTECH</b><span>14,90&nbsp;€</span></div><div class="bar" style="--i:0"><i style="--w:44.4%"></i><em>×1</em></div><small>Jersey fin. <span class="src m" title="dit par la marque">M · F-C05</span></small></div>
-<div class="niv"><div class="tt"><b>Extra Chaud</b><span>24,90&nbsp;€ *</span></div><div class="bar" style="--i:1"><i style="--w:66.7%"></i><em>×1,5</em></div><small>Tricot spécial + doublure brossée. * version cachemire mélangé (9&nbsp;%)&nbsp;: pas l'Extra Chaud de base, prix non comparable. <span class="src m" title="dit par la marque">M · F-C05 · C11</span></small></div>
-<div class="niv"><div class="tt"><b>Ultra Chaud</b><span>29,90&nbsp;€</span></div><div class="bar" style="--i:2"><i style="--w:100%"></i><em>×2,25</em></div><small>Gaufré + brossage long, plus épais. <span class="src m" title="dit par la marque">M · F-C05 · C10</span></small></div>
-<span class="mono">Ce qu'il y a dedans (%)</span>
-<div class="comp"><span class="e">14,90&nbsp;€</span><div class="pile"><div class="seg c1" style="--w:40%;--i:0">40</div><div class="seg c2" style="--w:32%;--i:1">32</div><div class="seg c3" style="--w:21%;--i:2">21</div><div class="seg c4" style="--w:7%;--i:3">7</div></div></div>
-<div class="comp"><span class="e">24,90&nbsp;€</span><div class="pile"><div class="seg c2" style="--w:57%;--i:1">57</div><div class="seg c3" style="--w:28%;--i:2">28</div><div class="seg c4" style="--w:6%;--i:3">6</div><div class="seg c5" style="--w:9%;--i:4">9</div></div></div>
-<div class="comp"><span class="e">29,90&nbsp;€</span><div class="pile"><div class="seg c1" style="--w:33%;--i:0">33</div><div class="seg c2" style="--w:32%;--i:1">32</div><div class="seg c3" style="--w:21%;--i:2">21</div><div class="seg c4" style="--w:14%;--i:3">14</div></div></div>
-<div class="legende"><span><i class="c1"></i>polyester recyclé</span><span><i class="c2"></i>acrylique</span><span><i class="c3"></i>viscose</span><span><i class="c4"></i>élasthanne</span><span><i class="c5"></i>cachemire</span></div>
-<div class="lecture"><b>Lecture, pas un fait&nbsp;:</b> de l'original à l'Ultra, le prix fait <b>×2,01</b> (29,90 ÷ 14,90) pour <b>×2,25</b> de chaleur annoncée. L'élasthanne passe de 7 à 14&nbsp;%.</div>
-</div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Tes décisions · la reco est en premier</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="spec"><span class="num">D1 · NOMBRE DE VIDÉOS</span><h3>1 reel + recyclage</h3>
+        <ul class="options"><li>1 reel, les autres angles en légende, commentaire épinglé, carrousel, page Diggeur</li><li>3 reels (dépasse le contrat, à voir avec Alexis)</li><li>1 long de 8 à 10 min + courts</li></ul></div>
+      <div class="spec"><span class="num">D2 · COLONNE</span><h3>Le prix</h3>
+        <ul class="options"><li>Prix&nbsp;: pourquoi si peu cher</li><li>Mécanisme honnête (idée du 26/10, déjà dans J23)</li><li>Histoire, la scène de 2000</li><li>Guide des 3 niveaux</li></ul></div>
+      <div class="spec"><span class="num">D3 · QUEL SCRIPT FAIT FOI</span><h3>Un nouveau, écrit par toi</h3>
+        <ul class="options"><li>Nouveau script sur la colonne choisie</li><li>PDF du 26/10 (angle prix, à corriger&nbsp;: «&nbsp;synthétique&nbsp;» et «&nbsp;1 milliard en 2023&nbsp;»)</li><li>L'idée transpiration</li></ul></div>
+      <div class="spec"><span class="num">D4 · DATE DE POST</span><h3>Le 18/11, c'est donné</h3>
+        <ul class="options"><li>Tenir le 18&nbsp;: preview à Uniqlo dès le montage fini</li><li>Décaler, en le disant à Alexis avant le 17</li></ul></div>
+      <div class="spec"><span class="num">D5 · LA LIMITE HONNÊTE</span><h3>Conseil d'usage</h3>
+        <ul class="options"><li>«&nbsp;Pas pour courir&nbsp;»</li><li>«&nbsp;Pas de test indépendant&nbsp;» (à faire accepter par écrit avant)</li><li>Pas de limite</li></ul></div>
+      <div class="spec"><span class="num">D6 · LE NOM</span><h3>«&nbsp;Ultra Chaud&nbsp;», tu arbitres</h3>
+        <ul class="options"><li>Dire le nom officiel, une fois, en lisant l'étiquette</li><li>Dire «&nbsp;le troisième niveau&nbsp;»</li></ul></div>
+      </div>
+    </div>
+  </section>
 
-<section class="bloc d" id="s6">
-<div class="etiquette">06 · Le fil du prix</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>Pourquoi 14,90&nbsp;€&nbsp;: la chaîne en 6 maillons</h2>
-<p>Le lien volume → prix bas est notre lecture&nbsp;: selon Toray, c'est la ligne dédiée et le volume qui ont rendu possibles des fibres sur mesure. <b>Aucun coût de fabrication n'est publié</b>&nbsp;: tout se dit «&nbsp;selon eux&nbsp;».</p>
-<span class="nb"><b>Contre-argument</b> · le prix est la partie du récit au sourcing le plus faible. C'est aussi ton fil rouge valeur/prix.</span>
-</div>
-<div class="verre visuel">
-<div class="chaine"><span class="pulse"></span>
-<div class="maillon" style="--i:0"><span class="n">1</span><p><b>Le refus.</b> Des fibres sur mesure pour un seul client&nbsp;: «&nbsp;hors de question&nbsp;» pour Toray. <span class="src m" title="dit par la marque">M · F-A06</span></p></div>
-<div class="maillon" style="--i:1"><span class="n">2</span><p><b>La condition.</b> Uniqlo s'engage sur une ligne de production dédiée et vend assez, longtemps. <span class="src m" title="dit par la marque">M · F-A06</span></p></div>
-<div class="maillon" style="--i:2"><span class="n">3</span><p><b>Le volume.</b> 1,5&nbsp;M (2003), 28&nbsp;M (2008), ~1&nbsp;Md cumulé (2017). <span class="src v" title="vérifié">V · F-A10</span> <span class="src m" title="dit par la marque">M · F-B06</span></p></div>
-<div class="maillon" style="--i:3"><span class="n">4</span><p><b>Les couches.</b> Les fonctions s'ajoutent une à une (11 en 2019)&nbsp;; les 3 niveaux viennent de la maille et du brossage. <span class="src m" title="dit par la marque">M · F-C02 · C14 · C05</span></p></div>
-<div class="maillon" style="--i:4"><span class="n">5</span><p><b>Le prix.</b> 14,90 / 24,90 (cachemire) / 29,90&nbsp;€ en France. Japon 2017&nbsp;: 1 500&nbsp;¥ hors taxe (T-shirt sans couture col V, manches courtes). <span class="src m" title="dit par la marque">M · F-C09 · C10 · C11 · B08</span></p></div>
-<div class="maillon" style="--i:5"><span class="n">6</span><p><b>Le contrepoint.</b> Prix bas, marge du groupe pas basse&nbsp;: 55,2&nbsp;% de marge brute en 2026, tous produits (ratio recalculé). <span class="src v" title="vérifié">V · F-B13</span></p></div>
-</div>
-<div class="contre"><b>Contre la laine</b> (fiche J23, relevés du 12/10, non revérifiés)&nbsp;: Decathlon Merino Resist 29,99&nbsp;€ (×2,0), Decathlon Simond mérinos 54,99&nbsp;€ (×3,7), Icebreaker Oasis 99,95&nbsp;€ (×6,7), face aux 14,90&nbsp;€.</div>
-</div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Les pièges · à ne pas dire de travers</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="spec"><h3>«&nbsp;1,5 milliard vendus&nbsp;»</h3><p>Non. 1 milliard = 2017, dit par Uniqlo. 1,5 milliard = presse 2023, compteur non daté.</p></div>
+      <div class="spec"><h3>«&nbsp;Synthétique&nbsp;»</h3><p>La viscose est artificielle, pas synthétique. Et la version 24,90 € contient 9 % de cachemire.</p></div>
+      <div class="spec"><h3>«&nbsp;Prouvé&nbsp;»</h3><p>×1,5 et ×2,25 sont des calculs d'Uniqlo. L'étude Fibers 2026 ne teste pas HEATTECH. Le brevet ne le nomme pas.</p></div>
+      <div class="spec"><h3>Deux mécanismes</h3><p>«&nbsp;Adsorbe la vapeur&nbsp;» ou «&nbsp;convertit l'énergie cinétique&nbsp;» circulent. Garde la seule version 2012&nbsp;: la vapeur.</p></div>
+      <div class="spec"><h3>«&nbsp;En coton ultra chaud&nbsp;»</h3><p>C'est écrit sur la fiche FR de l'Ultra Chaud, qui ne contient aucun coton. Ne la recopie pas.</p></div>
+      <div class="spec"><h3>Les mots hype</h3><p>«&nbsp;Ultra, trop, de fou&nbsp;»&nbsp;: 0,57 abonné pour 1 000 vues contre 1,10 sans. Aveu, question ou preuve filmée à la place.</p></div>
+      </div>
+    </div>
+  </section>
 
-<section class="bloc large g" id="s7">
-<div class="etiquette">07 · Les pépites</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>10 anecdotes à glisser en respiration</h2>
-<p>Un détail concret, une phrase. Toutes sourcées. Trois (30&nbsp;min, 58&nbsp;W, Boeing/Apple) sont aussi des hooks possibles en section 08.</p>
-</div>
-</div>
-<div class="grille pep">
-<div class="verre tuile" style="--i:0;--dx:-14px;--dy:6px"><b class="gros">~30&nbsp;min</b><p>24/04/2000, vers 14&nbsp;h&nbsp;: Yanai s'isole avec le président de Toray, puis annonce «&nbsp;We will be partnering with Toray&nbsp;».</p><span class="src m" title="dit par la marque">M · F-A01</span></div>
-<div class="verre tuile" style="--i:1;--dx:14px;--dy:6px"><b class="gros">50</b><p>personnes des deux sociétés, 3 à 4 réunions par semaine, une «&nbsp;société virtuelle&nbsp;» (2008).</p><span class="src m" title="dit par la marque">M · F-A12</span></div>
-<div class="verre tuile" style="--i:2;--dx:-14px;--dy:6px"><b class="gros">58&nbsp;W</b><p>2011&nbsp;: 1 degré de chauffage en moins avec HEATTECH, par foyer. Pour 10&nbsp;M de foyers&nbsp;: environ la moitié du déficit électrique attendu. Calcul d'Uniqlo, non audité.</p><span class="src m" title="dit par la marque">M · F-A16</span></div>
-<div class="verre tuile" style="--i:3;--dx:14px;--dy:6px"><b class="gros">Boeing, Apple</b><p>25/08/2011&nbsp;: Yanai compare HEATTECH à l'avion en carbone et au smartphone.</p><span class="src m" title="dit par la marque">M · F-A15</span></div>
-<div class="verre tuile" style="--i:4;--dx:-14px;--dy:6px"><b class="gros">lait, camélia, argan</b><p>L'hydratant du modèle femme&nbsp;: sérum de lait (2012), huile de camélia (2013), argan (page 2019).</p><span class="src m" title="dit par la marque">M · F-C12</span></div>
-<div class="verre tuile" style="--i:0;--dx:14px;--dy:6px"><b class="gros">haramaki</b><p>2013&nbsp;: un short chauffant avec ceinture ventre, et environ 250 articles HEATTECH.</p><span class="src m" title="dit par la marque">M · F-A20</span></div>
-<div class="verre tuile" style="--i:1;--dx:-14px;--dy:6px"><b class="gros">7 collabs</b><p>2013&nbsp;: motifs signés Celia Birtwell, SOU・SOU, Orla Kiely, Eley Kishimoto, GreenGate, Sanrio, Pokémon.</p><span class="src m" title="dit par la marque">M · F-A21</span></div>
-<div class="verre tuile" style="--i:2;--dx:14px;--dy:6px"><b class="gros">chambre météo</b><p>Uniqlo teste dans une chambre qui simule climat et humidité, à son siège de Tokyo.</p><span class="src m" title="dit par la marque">M · F-C13</span></div>
-<div class="verre tuile" style="--i:3;--dx:-14px;--dy:6px"><b class="gros">40&nbsp;%</b><p>de polyester recyclé dans le T-shirt à 14,90&nbsp;€&nbsp;: la première fibre, avant l'acrylique (32&nbsp;%).</p><span class="src m" title="dit par la marque">M · F-C09</span></div>
-<div class="verre tuile" style="--i:4;--dx:14px;--dy:6px"><b class="gros">10 nov.</b><p>«&nbsp;Journée HEATTECH&nbsp;» (jeu de mots 11-10). Source secondaire&nbsp;: à recouper avant usage.</p><span class="src m" title="dit par la marque">M · F-A22</span></div>
-</div>
-</section>
+  <section>
+    <span class="etiquette">Le jeu · V ou M ?</span>
+    <div class="verre carte">
+      <h2>Vérifié ou dit par la marque&nbsp;?</h2>
+      <p>Avant de tourner, 6 faits. Touche <b>V</b> ou <b>M</b>.</p>
+      <div id="jeu"></div>
+      <div class="bilan" id="bilan"></div>
+    </div>
+  </section>
 
-<section class="bloc large d" id="s8">
-<div class="etiquette">08 · Les 10 faits qui peuvent ouvrir</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>Hook&nbsp;: une promesse que la vidéo tient</h2>
-<p>Touche un fait pour voir sa famille d'intro (catalogue Intros), la promesse à tenir et le piège. Pas de «&nbsp;ultra / trop / de fou&nbsp;»&nbsp;: 0,57 abonné pour 1 000 contre 1,10 sans.</p>
-</div>
-</div>
-<div class="grille hk">
-<details class="verre hook" style="--i:0;--dx:-14px;--dy:6px"><summary><span class="n">01</span><span class="f">2008&nbsp;: 28&nbsp;M de HEATTECH vendus, plus que le fleece (26&nbsp;M en 2000) <span class="src v" title="vérifié">V · F-A11</span></span></summary><div class="det"><div><b>Famille</b>9 · mystère, ou 2 · constat</div><div><b>À tenir</b>expliquer pourquoi un sous-vêtement bat une polaire</div><div><b>Piège</b>deux saisons comparées, 2 sources</div></div></details>
-<details class="verre hook" style="--i:1;--dx:14px;--dy:6px"><summary><span class="n">02</span><span class="f">Toray refuse de faire des fibres pour un seul client, jusqu'à la ligne dédiée <span class="src m" title="dit par la marque">M · F-A06</span></span></summary><div class="det"><div><b>Famille</b>9 · mystère</div><div><b>À tenir</b>le «&nbsp;pourquoi si peu cher&nbsp;»</div><div><b>Piège</b>récit de Toray, après coup</div></div></details>
-<details class="verre hook rec" open style="--i:2;--dx:-14px;--dy:6px"><summary><span class="n">03</span><span class="f">14,90&nbsp;€ contre 29,90&nbsp;€ pour «&nbsp;2,25 x plus chaud&nbsp;» <span class="src m" title="dit par la marque">M · F-C09 · C10 · C05</span><span class=badge>Reco</span></span></summary><div class="det"><div><b>Famille</b>3 · prix contre prix</div><div><b>À tenir</b>montrer d'où vient la différence&nbsp;: la maille (selon Uniqlo), pas une fibre nouvelle</div><div><b>Piège</b>le ×2,25 est un calcul d'Uniqlo</div></div></details>
-<details class="verre hook" style="--i:3;--dx:14px;--dy:6px"><summary><span class="n">04</span><span class="f">Brevet Toray sur la chaleur d'adsorption&nbsp;: priorités sept.-nov. 2000, 3 ans avant la demande d'Uniqlo <span class="src v" title="vérifié">V · F-C07</span></span></summary><div class="det"><div><b>Famille</b>9 · mystère</div><div><b>À tenir</b>dire ce que le brevet dit, et pas plus</div><div><b>Piège</b>le brevet ne nomme pas HEATTECH</div></div></details>
-<details class="verre hook" style="--i:0;--dx:-14px;--dy:6px"><summary><span class="n">05</span><span class="f">24/04/2000, vers 14&nbsp;h&nbsp;: environ 30 minutes en tête-à-tête <span class="src m" title="dit par la marque">M · F-A01</span></span></summary><div class="det"><div><b>Famille</b>scène (pas de famille dédiée)</div><div><b>À tenir</b>enchaîner sur la suite de l'histoire</div><div><b>Piège</b>raconté par Toray</div></div></details>
-<details class="verre hook" style="--i:1;--dx:14px;--dy:6px"><summary><span class="n">06</span><span class="f">Selon Uniqlo, environ 1 milliard de pièces (2017) = 700 000&nbsp;km de tissu = 17,5 tours de Terre <span class="src m" title="dit par la marque">M · F-B07</span></span></summary><div class="det"><div><b>Famille</b>2 · constat</div><div><b>À tenir</b>donner la source et l'année</div><div><b>Piège</b>chiffre de 2017, avec une projection</div></div></details>
-<details class="verre hook" style="--i:2;--dx:-14px;--dy:6px"><summary><span class="n">07</span><span class="f">1,5&nbsp;M (2003) → 130&nbsp;M (plan 2012) <span class="src v" title="vérifié">V · F-A10</span></span></summary><div class="det"><div><b>Famille</b>3 · écart</div><div><b>À tenir</b>la courbe, puis la cause</div><div><b>Piège</b>2009 et 2012 sont des objectifs</div></div></details>
-<details class="verre hook" style="--i:3;--dx:14px;--dy:6px"><summary><span class="n">08</span><span class="f">Mêmes 4 fibres du classique à l'Ultra&nbsp;: l'élasthanne passe de 7 à 14&nbsp;% <span class="src m" title="dit par la marque">M · F-C09 · C10</span></span></summary><div class="det"><div><b>Famille</b>9 · mystère</div><div><b>À tenir</b>«&nbsp;tu paies de la maille&nbsp;»</div><div><b>Piège</b>le nom du produit contient «&nbsp;Ultra&nbsp;» (mot hype de ta liste)</div></div></details>
-<details class="verre hook" style="--i:0;--dx:-14px;--dy:6px"><summary><span class="n">09</span><span class="f">Selon Uniqlo&nbsp;: 1 degré de chauffage en moins avec HEATTECH dans 10&nbsp;M de foyers = la moitié du déficit électrique du Japon 2011 <span class="src m" title="dit par la marque">M · F-A16</span></span></summary><div class="det"><div><b>Famille</b>2 · constat</div><div><b>À tenir</b>rester sur l'anecdote</div><div><b>Piège</b>calcul d'Uniqlo, non audité</div></div></details>
-<details class="verre hook" style="--i:1;--dx:14px;--dy:6px"><summary><span class="n">10</span><span class="f">Yanai&nbsp;: HEATTECH comme l'avion en carbone de Boeing et le smartphone d'Apple <span class="src m" title="dit par la marque">M · F-A15</span></span></summary><div class="det"><div><b>Famille</b>2 · constat</div><div><b>À tenir</b>la citation seule, datée du 25/08/2011</div><div><b>Piège</b>grandiose&nbsp;: à nuancer</div></div></details>
-</div>
-</section>
+  <section>
+    <span class="etiquette">À toi · 3 questions</span>
+    <div class="verre carte">
+      <div class="grille">
+      <div class="spec"><span class="num">1</span><h3>En portes-tu, depuis quand, où&nbsp;?</h3><p>Chine du Nord, Tokyo. C'est la seule matière que personne ne peut te fournir.</p></div>
+      <div class="spec"><span class="num">2</span><h3>Le moment où tu as senti la différence, ou pas&nbsp;?</h3><p>Ce que tu dirais même si Uniqlo n'écoutait pas.</p></div>
+      <div class="spec"><span class="num">3</span><h3>Qu'est-ce que tu refuses de dire sur ce produit&nbsp;?</h3><p>Ta limite honnête vient de là.</p></div>
+      </div>
+    </div>
+  </section>
 
-<section class="bloc g" id="s9">
-<div class="etiquette">09 · Le système de narration</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>5 rôles, 4 règles</h2>
-<p>Chaque vidéo suit les mêmes 5 rôles, dans cet ordre. Les faits ne sont qu'une partie&nbsp;: <b>l'enjeu, c'est toi</b>, personne d'autre ne peut l'écrire.</p>
-<p>Ton rythme de référence&nbsp;: 5,5 mots par seconde, mesuré sur tes 20 meilleurs reels (25/10). Les budgets ci-dessous sont un calcul simple.</p>
-<div class="budget">
-<div class="cell"><b>165</b><span>mots pour 30&nbsp;s · 4 faits</span></div>
-<div class="cell"><b>250</b><span>mots pour 45&nbsp;s · 4-5 faits</span></div>
-<div class="cell"><b>330</b><span>mots pour 60&nbsp;s · 6 faits</span></div>
-<div class="cell"><b>2 600</b><span>mots pour 8&nbsp;min</span></div>
-</div>
-</div>
-<div class="verre visuel">
-<div class="roles"><div class="role" style="--i:0"><span class="t">0-5&nbsp;s</span><span class="c"><b>ACCROCHE</b>1 fait, 1 promesse que la vidéo tient</span><span class="k">1 fait</span></div>
-<div class="role" style="--i:1"><span class="t">5-12&nbsp;s</span><span class="c"><b>ENJEU</b>pourquoi toi, pourquoi maintenant&nbsp;: ton vécu</span><span class="k">0 fait</span></div>
-<div class="role" style="--i:2"><span class="t">milieu</span><span class="c"><b>PREUVE</b>2 à 3 faits chiffrés, une phrase chacun</span><span class="k">2-3 faits</span></div>
-<div class="role" style="--i:3"><span class="t">avant la fin</span><span class="c"><b>TENSION</b>1 limite ou 1 contradiction</span><span class="k">1 fait</span></div>
-<div class="role" style="--i:4"><span class="t">fin</span><span class="c"><b>CHUTE</b>ce que fait le spectateur&nbsp;; le lien Diggeur en dernier</span><span class="k">0-1 fait</span></div></div>
-<div class="regles">
-<div class="cell"><b>R1 · une idée par vidéo</b><p>Le reste va en recyclage.</p></div>
-<div class="cell"><b>R2 · l'étiquette se dit</b><p>M → «&nbsp;selon Uniqlo&nbsp;». V → «&nbsp;c'est dans le brevet&nbsp;». Jamais «&nbsp;prouvé&nbsp;» pour un fait M.</p></div>
-<div class="cell"><b>R3 · le budget de mots</b><p>30&nbsp;s ≈ 165 mots. On coupe un fait avant de parler plus vite.</p></div>
-<div class="cell"><b>R4 · arrondir la voix, jamais le fait</b><p>«&nbsp;Environ un milliard, selon Uniqlo, en 2017&nbsp;» et pas «&nbsp;un milliard vendus&nbsp;».</p></div>
-</div>
-</div>
-</div>
-</section>
-
-<section class="bloc large d" id="s10">
-<div class="etiquette">10 · Les 4 structures</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>4 façons de raconter, 1 recommandée</h2>
-<p>Des squelettes, pas des textes. Chacune a son contre-argument en une ligne.</p>
-</div>
-</div>
-<div class="grille st">
-<div class="verre struct rec" style="--i:0;--dx:-14px;--dy:6px"><h3>Prix<span class=badge>Recommandée</span></h3><p class="q">Comment c'est possible à ce prix&nbsp;?</p><dl><dt>Format</dt><dd>reel 40-50&nbsp;s</dd><dt>Hook</dt><dd>famille 3 · prix contre prix, ou 9 · mystère</dd><dt>Fil rouge</dt><dd>maximal · vécu requis&nbsp;: oui</dd><dt>À filmer</dt><dd>étiquettes côte à côte</dd><dt>Faits clés</dt><dd><span class="src m" title="dit par la marque">M · F-A06</span> <span class="src v" title="vérifié">V · F-A10</span> <span class="src m" title="dit par la marque">M · F-C05 · C10</span></dd></dl><div class="contra"><b>Contre</b>le sourcing du prix est le plus faible (aucun coût publié)&nbsp;: tout se dit «&nbsp;selon eux&nbsp;».</div></div>
-<div class="verre struct" style="--i:1;--dx:14px;--dy:6px"><h3>Histoire</h3><p class="q">D'où ça vient&nbsp;?</p><dl><dt>Format</dt><dd>reel 60-90&nbsp;s, ou long 8-10&nbsp;min</dd><dt>Hook</dt><dd>famille 9 · mystère, ou 2 · constat</dd><dt>Fil rouge</dt><dd>moyen · vécu requis&nbsp;: non</dd><dt>À filmer</dt><dd>lieux, archives</dd><dt>Faits clés</dt><dd><span class="src m" title="dit par la marque">M · F-A01 · A04 · A06</span> <span class="src v" title="vérifié">V · F-A11</span> <span class="src m" title="dit par la marque">M · F-B07</span></dd></dl><div class="contra"><b>Contre</b>l'origine est racontée presque seulement par Toray et Uniqlo, et 2003 et 2006 ne concordent pas&nbsp;: écrire «&nbsp;selon Toray&nbsp;».</div></div>
-<div class="verre struct" style="--i:2;--dx:-14px;--dy:6px"><h3>Mécanisme honnête</h3><p class="q">Comment ça chauffe vraiment&nbsp;?</p><dl><dt>Format</dt><dd>reel 45&nbsp;s</dd><dt>Hook</dt><dd>famille 6 · interdit / contrarien, ou 7 · question pratique</dd><dt>Fil rouge</dt><dd>faible · vécu requis&nbsp;: oui</dd><dt>À filmer</dt><dd>un test à inventer</dd><dt>Faits clés</dt><dd><span class="src m" title="dit par la marque">M · F-C01</span> <span class="src v" title="vérifié">V · F-C07 · C08</span> <span class="src m" title="dit par la marque">M · F-C10</span></dd></dl><div class="contra"><b>Contre</b>le plus exposé devant un annonceur, le plus abstrait à filmer seul sur fond vert, et déjà couvert par J23.</div></div>
-<div class="verre struct" style="--i:3;--dx:14px;--dy:6px"><h3>Guide des 3 niveaux</h3><p class="q">Lequel prendre&nbsp;?</p><dl><dt>Format</dt><dd>reel 30-40&nbsp;s, ou carrousel</dd><dt>Hook</dt><dd>famille 7 · question pratique</dd><dt>Fil rouge</dt><dd>moyen («&nbsp;selon ta région&nbsp;») · vécu requis&nbsp;: oui</dd><dt>À filmer</dt><dd>3 pièces à plat</dd><dt>Faits clés</dt><dd><span class="src m" title="dit par la marque">M · F-C05 · C09 · C10 · C11</span></dd></dl><div class="contra"><b>Contre</b>aucune source ouverte ne donne la température de chaque niveau&nbsp;; le «&nbsp;selon ta région&nbsp;» est un avis, et on tombe vite dans le catalogue.</div></div>
-</div>
-<div class="verre beats">
-<h3>La structure Prix en 7 beats · 48&nbsp;s ≈ 264 mots</h3>
-<p style="font-size:13px">Pour 30&nbsp;s&nbsp;: fusionner les beats 4 et 5. On garde toujours le mécanisme (la mission), la limite et la chute (brief du 26/10). Ce brief visait 30-45&nbsp;s&nbsp;: à 48&nbsp;s on le dépasse. Hachuré = ton vécu, aucun fait.</p>
-<div class="barre">
-<div class="seg b fort" style="--s:5;--i:0" title="ACCROCHE 0-5 s">1</div>
-<div class="seg b toi" style="--s:7;--i:1" title="ENJEU 5-12 s">2</div>
-<div class="seg b fort" style="--s:8;--i:2" title="MÉCANISME 12-20 s">3</div>
-<div class="seg b fort" style="--s:10;--i:3" title="PREUVE 1 20-30 s">4</div>
-<div class="seg b fort" style="--s:8;--i:4" title="PREUVE 2 30-38 s">5</div>
-<div class="seg b fort" style="--s:5;--i:5" title="TENSION 38-43 s">6</div>
-<div class="seg b fort" style="--s:5;--i:6" title="CHUTE 43-48 s">7</div>
-</div>
-<div class="lbeat"><span class="n">1</span><span class="s">0-5&nbsp;s</span><span><b>ACCROCHE</b> · Écart prix / chaleur&nbsp;: 14,90&nbsp;€ contre 29,90&nbsp;€ pour «&nbsp;2,25 x plus chaud&nbsp;». <span class="src m" title="dit par la marque">M · F-C09 · C10</span></span></div>
-<div class="lbeat"><span class="n">2</span><span class="s">5-12&nbsp;s</span><span><b>ENJEU</b> · Ton vécu. Toi seul. </span></div>
-<div class="lbeat"><span class="n">3</span><span class="s">12-20&nbsp;s</span><span><b>MÉCANISME</b> · Un seul beat&nbsp;: la fibre capte la vapeur du corps, l'air garde la chaleur, «&nbsp;selon Uniqlo&nbsp;». <span class="src m" title="dit par la marque">M · F-C01</span></span></div>
-<div class="lbeat"><span class="n">4</span><span class="s">20-30&nbsp;s</span><span><b>PREUVE 1</b> · Toray refuse sans ligne dédiée, puis le volume. <span class="src m" title="dit par la marque">M · F-A06</span> <span class="src v" title="vérifié">V · F-A10</span></span></div>
-<div class="lbeat"><span class="n">5</span><span class="s">30-38&nbsp;s</span><span><b>PREUVE 2</b> · Mêmes 4 fibres en autres parts, maille plus épaisse (selon Uniqlo)&nbsp;: ×2,01 le prix pour ×2,25 de chaleur annoncée. <span class="src m" title="dit par la marque">M · F-C10 · C05</span></span></div>
-<div class="lbeat"><span class="n">6</span><span class="s">38-43&nbsp;s</span><span><b>TENSION</b> · La limite, en conseil d'usage (pas pour le sport intense). Voir D5. </span></div>
-<div class="lbeat"><span class="n">7</span><span class="s">43-48&nbsp;s</span><span><b>CHUTE</b> · Essayer le manches longues. La sélection Diggeur en dernier. </span></div>
-</div>
-</section>
-
-<section class="bloc g" id="s11">
-<div class="etiquette">11 · Avant de trancher</div>
-<div class="deux">
-<div class="verre">
-<h3>Ce qu'un contradicteur, sans ton contexte, a dit</h3>
-<ol>
-<li><b>Contre</b> le mécanisme en colonne&nbsp;: le plus loin de ton fil rouge, le plus risqué devant un annonceur.</li>
-<li><b>Pour</b>&nbsp;: l'honnêteté est ta marque&nbsp;; une pub qui pose une limite convertit mieux (avis, sans preuve).</li>
-<li><b>Verdict</b>&nbsp;: faire, avec le prix en colonne et la limite en conseil d'usage. Confiance moyenne, avis non testé.</li>
-<li><b>Il changerait d'avis</b> si Uniqlo accepte par écrit, avant le tournage, «&nbsp;pas de test indépendant trouvé&nbsp;», ou si tes stats montrent que les explications convertissent mieux que le prix.</li>
-</ol>
-<span class="nb"><b>À vérifier</b> · selon lui, la loi française de 2023 sur les influenceurs te rend responsable des affirmations commerciales que tu prononces.</span>
-</div>
-<div class="verre">
-<h3>3 questions que toi seul peux régler</h3>
-<ol>
-<li>En portes-tu, depuis quand, dans quelle situation (Chine du Nord, Tokyo)&nbsp;?</li>
-<li>As-tu senti la différence, ou pas&nbsp;? Ce que tu dirais même si Uniqlo n'écoutait pas.</li>
-<li>Qu'est-ce que tu refuses de dire sur ce produit&nbsp;?</li>
-</ol>
-<span class="nb"><b>Pourquoi</b> · ton vécu est la seule matière qu'on ne peut pas te fournir. Alexis a écrit à Uniqlo (04/09, mail rapporté dans 00-existant.md) que tu te projettes moins sur un sous-vêtement.</span>
-</div>
-</div>
-</section>
-
-<section class="bloc large d" id="s12">
-<div class="etiquette">12 · Les décisions</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>6 décisions, la reco est déjà cochée</h2>
-<p>Touche une option pour changer. Le récap en bas se copie en un tap. Aucune décision ne bloque la suite.</p>
-</div>
-</div>
-<div class="grille" style="grid-template-columns:1fr">
-<div class="verre decision" data-d="D1" style="--i:0"><div class="q"><b>D1</b><h3>Nombre de vidéos</h3></div><div class="opts"><button type="button" data-c="1 reel + recyclage" aria-pressed="true">1 reel + recyclage<span class=r>reco</span></button><button type="button" data-c="3 reels" aria-pressed="false">3 reels, à voir avec Alexis</button><button type="button" data-c="1 long + courts" aria-pressed="false">1 long + des courts</button></div><p class="note">Le contrat prévoit 1 contenu HEATTECH en novembre (échéance affichée 30/11), 2 contenus par mois en tout. <b>3 reels</b> dépasse le contrat. <b>1 long</b>&nbsp;: script à faire valider par Uniqlo, montage d'Emilio sous 10 jours, tournage au Japon à partir du 16/11 (arrivée à Tokyo). Dans la mission, «&nbsp;série&nbsp;» désigne peut-être le fil rouge Uniqlo (polaires, vestes, HEATTECH, doudounes)&nbsp;: à confirmer.</p></div>
-<div class="verre decision" data-d="D2" style="--i:1"><div class="q"><b>D2</b><h3>Colonne du reel</h3></div><div class="opts"><button type="button" data-c="Prix" aria-pressed="true">Prix<span class=r>reco</span></button><button type="button" data-c="Mécanisme honnête" aria-pressed="false">Mécanisme honnête</button><button type="button" data-c="Histoire" aria-pressed="false">Histoire</button><button type="button" data-c="Niveaux" aria-pressed="false">Niveaux</button></div><p class="note">Détail des 4 structures en section 10.</p></div>
-<div class="verre decision" data-d="D3" style="--i:2"><div class="q"><b>D3</b><h3>Quel script fait foi</h3></div><div class="opts"><button type="button" data-c="nouveau script de toi" aria-pressed="true">Un nouveau script, écrit par toi<span class=r>reco</span></button><button type="button" data-c="PDF du 26/10" aria-pressed="false">Le PDF du 26/10</button><button type="button" data-c="idée transpiration" aria-pressed="false">L'idée «&nbsp;transpiration&nbsp;»</button></div><p class="note">Deux scripts se contredisent&nbsp;: le PDF du 26/10 (angle prix) et le journal du 26/10 (angle transpiration). Le PDF est à corriger&nbsp;: «&nbsp;synthétiques&nbsp;» (la viscose est artificielle) et «&nbsp;plus d'un milliard en 2023&nbsp;» (1&nbsp;Md = 2017 officiel, 1,5&nbsp;Md = presse 2023).</p></div>
-<div class="verre decision" style="--i:0"><div class="q"><b>D4</b><h3>Date de post à donner à Uniqlo</h3></div><div class="repères"><span>tournage 14/11</span><span>règle des 48&nbsp;h&nbsp;: 16/11</span><span>échéance affichée 30/11</span></div><p class="note"><b>À toi.</b> Aperçu et légende à faire valider côté Uniqlo avant&nbsp;: leur délai est inconnu. La date a été redemandée le 12/11.</p></div>
-<div class="verre decision" data-d="D5" style="--i:1"><div class="q"><b>D5</b><h3>La limite honnête</h3></div><div class="opts"><button type="button" data-c="conseil d'usage" aria-pressed="true">Conseil d'usage («&nbsp;pas pour courir&nbsp;»)<span class=r>reco</span></button><button type="button" data-c="pas de test indépendant trouvé, à faire accepter par écrit avant le tournage" aria-pressed="false">«&nbsp;Pas de test indépendant trouvé&nbsp;»</button><button type="button" data-c="pas de limite" aria-pressed="false">Pas de limite</button></div><p class="note">«&nbsp;Pas de test indépendant trouvé&nbsp;» est à faire accepter par écrit avant le tournage. La fiche FR de l'Ultra Chaud autorise le sport en pleine nature&nbsp;: elle s'oppose en partie à ta limite. <span class="src m" title="dit par la marque">M · F-C10</span></p></div>
-<div class="verre decision" data-d="D6" style="--i:2"><div class="q"><b>D6</b><h3>Où tourner</h3></div><div class="opts"><button type="button" data-c="fond vert 14/11" aria-pressed="true">Fond vert demain (14/11)<span class=r>reco</span></button><button type="button" data-c="Tokyo dès le 16/11" aria-pressed="false">Tokyo, dès le 16/11, en magasin</button></div><p class="note">Tokyo&nbsp;: prix en yens, rayon en vrai. Les prix actuels au Japon ne sont pas relevés.</p></div>
-<div class="verre decision" style="--i:0"><div class="q"><b>Aussi</b><h3>Le nom «&nbsp;Ultra Chaud&nbsp;»</h3></div><p class="note">Il contient un mot de ta liste interdite, et ta règle veut le nom officiel du produit&nbsp;: <b>à toi d'arbitrer.</b></p></div>
-</div>
-<div class="verre recap">
-<span class="mono">Tes choix</span>
-<code id="recap">D1 1 reel + recyclage · D2 Prix · D3 nouveau script de toi · D5 conseil d'usage · D6 fond vert 14/11</code>
-<button id="copier" type="button">Copier le récap</button>
-</div>
-<div class="verre" style="margin-top:12px">
-<h3>Recyclage de l'option A&nbsp;: rien ne se perd</h3>
-<p style="font-size:13.5px">Histoire (2000) → commentaire épinglé «&nbsp;d'où ça vient&nbsp;» · mécanisme → légende, une phrase attribuée · 3 niveaux → carrousel ou page Diggeur «&nbsp;choisis ton niveau&nbsp;» · environ 1 milliard (Uniqlo, 2017) = 700 000&nbsp;km → story.</p>
-</div>
-</section>
-
-<section class="bloc g" id="s13">
-<div class="etiquette">13 · Les pièges</div>
-<div class="rangee">
-<div class="verre texte">
-<h2>À dire, à éviter</h2>
-<p>Les formulations qui tiennent face à un annonceur et face à ceux qui vérifient.</p>
-<span class="nb"><b>Trous du dossier</b> · pas trouvé (ou pas cherché, budget de recherche), donc pas de fait&nbsp;:</span>
-<div class="trous">
-<span>origine du nom «&nbsp;HEATTECH&nbsp;»</span><span>°C gagnés mesurés</span><span>tests indépendants</span><span>part de HEATTECH dans le chiffre d'affaires</span><span>pays et usines de fabrication</span><span>prix actuels au Japon</span>
-</div>
-</div>
-<div class="verre visuel">
-<div class="pieges"><div class="piege"><span><b>Dire</b>Selon Toray, le produit à 4 fibres date de 2006.</span><span class="x"><b>Éviter</b>«&nbsp;Inventé en 2006&nbsp;»&nbsp;: Toray date aussi la vente en 2003.</span></div>
-<div class="piege"><span><b>Dire</b>Environ un milliard, selon Uniqlo, en 2017.</span><span class="x"><b>Éviter</b>«&nbsp;1,5 milliard vendus&nbsp;»&nbsp;: c'est la presse en 2023, compteur non daté.</span></div>
-<div class="piege"><span><b>Dire</b>Uniqlo annonce ×2,25, calculé sur la valeur CLO.</span><span class="x"><b>Éviter</b>«&nbsp;Prouvé&nbsp;»&nbsp;: aucun test indépendant trouvé.</span></div>
-<div class="piege"><span><b>Dire</b>La viscose est une fibre artificielle.</span><span class="x"><b>Éviter</b>«&nbsp;Synthétique&nbsp;»&nbsp;: c'est de la cellulose régénérée. Le script du 26/10 se trompait.</span></div>
-<div class="piege"><span><b>Dire</b>Une étude de 2026&nbsp;: une fibre qui boit l'eau chauffe, moins sur tissu fini.</span><span class="x"><b>Éviter</b>«&nbsp;Étude sur HEATTECH&nbsp;»&nbsp;: elle ne teste pas HEATTECH.</span></div>
-<div class="piege"><span><b>Dire</b>Toray a déposé dès 2000 une demande de brevet sur la chaleur d'adsorption.</span><span class="x"><b>Éviter</b>«&nbsp;Le brevet de HEATTECH&nbsp;»&nbsp;: il ne nomme pas le produit.</span></div>
-<div class="piege"><span><b>Dire</b>Une seule explication&nbsp;: la vapeur adsorbée (Uniqlo, 2012).</span><span class="x"><b>Éviter</b>La mélanger avec «&nbsp;convertit l'énergie cinétique&nbsp;» (page Uniqlo Inde).</span></div>
-<div class="piege"><span><b>Dire</b>La composition relevée sur la fiche du classique à 14,90&nbsp;€&nbsp;: 40 / 32 / 21 / 7.</span><span class="x"><b>Éviter</b>Recopier la fiche Ultra Chaud&nbsp;: elle écrit «&nbsp;en coton ultra chaud&nbsp;», sans aucun coton.</span></div></div>
-</div>
-</div>
-</section>
-
-<section class="pied">
-<div class="verre">
-<p><b>D'où vient tout ça.</b> 51 faits relevés le 13/11/2026&nbsp;: 19 vérifiés, 32 dits par la marque, chacun avec sa source ouverte (dont une secondaire, F-A22) dans <code>sources.md</code>. Le récit, les 4 structures et les décisions sont dans <code>narration.md</code>. Ce qui existait avant (script du 26/10, dossier d'enquête, brief) est dans <code>00-existant.md</code>.</p>
-<p>Aucun script n'est écrit ici&nbsp;: tu écris. Les prix et compositions sont ceux d'uniqlo.com/fr au 13/11/2026.</p>
-</div>
-</section>
-
+  <p class="pied">Sources, 51 faits étiquetés et le dossier complet du 13/11&nbsp;: <a href="dossier-complet.html">version détaillée</a>. Prix relevés sur uniqlo.com/fr le 13/11/2026. Script PDF du 26/10 dans ~/Documents/uniqlo-heattech/envoi.</p>
 </main>
 <script>
 (function(){
-var reduit=matchMedia('(prefers-reduced-motion: reduce)').matches;
-function compte(el){
- var to=+el.dataset.to,dec=+(el.dataset.dec||0),suf=el.dataset.suf||'',d=+(el.dataset.d||1400),fin=el.textContent,t0=performance.now();
- function f(t){var k=Math.max(0,Math.min(1,(t-t0)/d)),e=1-Math.pow(1-k,3);
-  el.textContent=k<1?(to*e).toLocaleString('fr-FR',{minimumFractionDigits:dec,maximumFractionDigits:dec})+suf:fin;
-  if(k<1)requestAnimationFrame(f)}
- f(t0)}
-if('IntersectionObserver' in window){
- var io=new IntersectionObserver(function(es){es.forEach(function(e){
-  if(!e.isIntersecting)return;
-  var el=e.target;el.classList.add('go');io.unobserve(el);
-  if(!reduit)el.querySelectorAll('.cnt').forEach(compte);
- })},{threshold:0,rootMargin:'0px 0px -10% 0px'});
- document.querySelectorAll('.tete,.bloc,.frise,.noeud,.tuile,.hook,.struct,.maillon,.role,.decision,.chaine').forEach(function(el){io.observe(el)});
-}
-/* décisions : l'option recommandée est cochée, un tap change, le récap se copie */
-var recap=document.getElementById('recap');
-function maj(){
- var parts=[];
- document.querySelectorAll('.decision[data-d]').forEach(function(d){
-  var b=d.querySelector('button[aria-pressed="true"]');
-  if(b)parts.push(d.dataset.d+' '+b.dataset.c);
- });
- recap.textContent=parts.join(' · ');
-}
-document.querySelectorAll('.decision .opts').forEach(function(g){
- g.addEventListener('click',function(e){
-  var b=e.target.closest('button');if(!b)return;
-  g.querySelectorAll('button').forEach(function(x){x.setAttribute('aria-pressed','false')});
-  b.setAttribute('aria-pressed','true');maj();
- });
-});
-var cp=document.getElementById('copier');
-cp.addEventListener('click',function(){
- var t=recap.textContent;
- var dire=function(m){cp.textContent=m;setTimeout(function(){cp.textContent='Copier le récap'},1800)};
- var secours=function(){var a=document.createElement('textarea');a.value=t;a.setAttribute('readonly','');a.style.cssText='position:fixed;top:0;left:0;opacity:0;font-size:16px';document.body.appendChild(a);a.focus();a.select();a.setSelectionRange(0,t.length);var ok=false;try{ok=document.execCommand('copy')}catch(e){}document.body.removeChild(a);
-  if(ok){dire('Copié')}else{var r=document.createRange();r.selectNodeContents(recap);var s=getSelection();s.removeAllRanges();s.addRange(r);dire('Sélectionné : copie-le')}};
- if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(function(){dire('Copié')},secours)}else{secours()}
-});
-maj();
-})();
+const Q=[
+ ["28 M de HEATTECH vendus en 2008, record du fleece","V","Deux saisons comparées, deux sources ouvertes."],
+ ["L'Ultra Chaud est 2,25 fois plus chaud que le classique","M","Valeur CLO calculée par Uniqlo, aucun test indépendant."],
+ ["Le brevet de chaleur d'adsorption date de l'automne 2000","V","Priorités sept.-nov. 2000, dans le brevet Toray."],
+ ["1 milliard de pièces = 700 000 km de tissu","M","Chiffre Uniqlo 2017, avec une projection dedans."],
+ ["Toray refusait de faire une fibre pour un seul client","M","Récit de Toray, raconté après coup."],
+ ["55,2 % de marge brute Fast Retailing en 2026","V","Ratio recalculé dans les comptes, tous produits."]];
+const jeu=document.getElementById('jeu'),bilan=document.getElementById('bilan');let i=0,ok=0;
+function pose(){if(i>=Q.length){bilan.innerHTML='<b>'+ok+' sur '+Q.length+'.</b> '+(ok==Q.length?'Tu peux tourner.':'Relis les étiquettes des faits ratés avant de tourner.');return}
+const q=Q[i];jeu.innerHTML='<p style="font-size:18px;line-height:1.4;margin:14px 0 0;color:var(--texte)">'+q[0]+'</p><div class="puces"><button class="puce" data-r="V">V · vérifié</button><button class="puce" data-r="M">M · dit par la marque</button></div>';
+bilan.textContent='';jeu.querySelectorAll('.puce').forEach(b=>b.onclick=()=>{const bon=b.dataset.r===q[1];jeu.querySelectorAll('.puce').forEach(x=>x.classList.add(x.dataset.r===q[1]?'on':'faux'));if(bon)ok++;bilan.innerHTML=(bon?'<b>Oui.</b> ':'<b>Non, c\'est '+q[1]+'.</b> ')+q[2];i++;setTimeout(pose,1600)})}
+pose()})();
 </script>
 <script>
 (function(){const m=document.querySelector('main');if(!m)return;const secs=[...m.querySelectorAll('section')].filter(s=>s.querySelector(':scope>.etiquette'));
@@ -898,4 +351,5 @@ if(pb)pb.style.width=(100*window.scrollY/H)+'%'}
 let raf=0;addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(()=>{raf=0;maj()})},{passive:true});
 addEventListener('resize',()=>{mesure();maj()});addEventListener('load',()=>{mesure();maj()});mesure();maj();})();
 </script>
-</body></html>
+</body>
+</html>
